@@ -12,11 +12,6 @@ def test_buttons_in_header(driver):
     assert products_label.text == "Your working capital platform"
     highlight(products_label)
 
-    # button_products = home_page.products_open_button
-    # action_chains = ActionChains(driver)
-    # action_chains.move_to_element(button_products).perform()
-    # time.sleep(2)
-
     products_button = home_page.products_button()
     products_button.click()
     time.sleep(1)
