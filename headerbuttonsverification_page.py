@@ -1,16 +1,6 @@
 from selenium.webdriver.common.by import By
-
-
-class Text:
-    pass
-
-
-class Label:
-    pass
-
-
-class Button:
-    pass
+from elements import Button, Text
+from social_networks import SocialNetworks
 
 
 class HeaderButtonsVerification:
@@ -42,6 +32,14 @@ class HeaderButtonsVerification:
     def articles_label(self) -> Text:
         return self.driver.find_element(By.XPATH, '//div[text()="Articles"]')
 
-    def contact_us_label(self) -> Label:
+    def contact_us_label(self) -> Text:
         return self.driver.find_element(By.XPATH, '//div[text()="Contact Us"]')
 
+    def pop_up_close_button(self) -> Button:
+        return self.driver.find_element(By.XPATH, '//*[@data-testid="ClearIcon"]')
+
+    def footer_logo_stenn(self) -> Text:
+        return self.driver.find_element(By.XPATH, '//*[@class="footer__contacts-logo"]')
+
+    def get_social_networks(self) -> SocialNetworks:
+        return SocialNetworks(self.driver)
