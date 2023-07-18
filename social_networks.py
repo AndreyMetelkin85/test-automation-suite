@@ -4,10 +4,6 @@ from elements import Button, Text
 
 
 class SocialNetworks:
-    pass
-
-
-class SocialNetworks:
     def __init__(self, driver):
         self.driver = driver
 

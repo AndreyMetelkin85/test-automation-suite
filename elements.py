@@ -1,6 +1,9 @@
-
 class Text:
-    pass
+    def __init__(self):
+        self.text = None
+
+    def is_displayed(self):
+        pass
 
 
 class Label:
@@ -8,4 +11,5 @@ class Label:
 
 
 class Button:
-    pass
+    def click(self):
+        pass
