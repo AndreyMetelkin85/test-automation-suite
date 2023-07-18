@@ -35,7 +35,7 @@ class HeaderButtonsVerification:
     def contact_us_label(self) -> Text:
         return self.driver.find_element(By.XPATH, '//div[text()="Contact Us"]')
 
-    def pop_up_close_button(self) -> Button:
+    def accept_all_pop_up_button(self) -> Button:
         return self.driver.find_element(By.XPATH, '//*[@data-testid="ClearIcon"]')
 
     def footer_logo_stenn(self) -> Text:
