@@ -70,7 +70,7 @@ def test_opening_social_networks(driver, slow_scroll):
     current_window = driver.current_window_handle
     driver.switch_to.window(driver.window_handles[-1])
     current_url = driver.current_url
-    expected_url = "https://www.linkedin.com/company/stenn-financial-services?original_referer="
+    expected_url = "https://www.linkedin.com/company/stenn-financial-services"
     assert current_url == expected_url
 
     driver.switch_to.window(current_window)
