@@ -1,18 +1,17 @@
 import time
-
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from BaseApp import BasePage
 
-from config import Config
 
-
-@pytest.fixture()
+@pytest.fixture(scope="session")
 def driver():
     options = Options()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
-    driver.get(Config.BASE_URL)
+    base_page = BasePage(driver)
+    base_page.go_to_site()
     yield driver
     driver.quit()
 
