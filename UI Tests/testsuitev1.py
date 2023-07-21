@@ -67,7 +67,6 @@ def test_opening_social_networks(driver, slow_scroll):
 
     linkedin_button = home_page.social_networks()
     linkedin_button[0].click()
-    # time.sleep(3)
 
     current_window = driver.current_window_handle
     driver.switch_to.window(driver.window_handles[-1])
@@ -79,7 +78,6 @@ def test_opening_social_networks(driver, slow_scroll):
 
     facebook_button = SocialNetworks(driver)
     facebook_button.social_networks()[2].click()
-    # time.sleep(3)
 
     current_window = driver.current_window_handle
     driver.switch_to.window(driver.window_handles[-1])
@@ -91,7 +89,6 @@ def test_opening_social_networks(driver, slow_scroll):
 
     twitter_button = SocialNetworks(driver)
     twitter_button.social_networks()[1].click()
-    # time.sleep(3)
 
     current_window = driver.current_window_handle
     driver.switch_to.window(driver.window_handles[-1])
@@ -103,7 +100,6 @@ def test_opening_social_networks(driver, slow_scroll):
 
     youtube_button = SocialNetworks(driver)
     youtube_button.social_networks()[3].click()
-    # time.sleep(3)
 
     driver.switch_to.window(driver.window_handles[-1])
     current_url = driver.current_url
@@ -131,9 +127,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.back()
     time.sleep(1)
 
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
-
     list_buttons = home_page.navi_bar_button()
     list_buttons[0].click()
     time.sleep(1)
@@ -155,9 +148,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
 
     driver.back()
     time.sleep(2)
-
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
 
     list_buttons = home_page.navi_bar_button()
     list_buttons[1].click()
@@ -181,9 +171,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.back()
     time.sleep(1)
 
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
-
     list_buttons = home_page.navi_bar_button()
     list_buttons[2].click()
     time.sleep(1)
@@ -205,9 +192,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.back()
     time.sleep(2)
 
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
-
     driver.execute_script("window.scrollBy(0, 1200);")
     time.sleep(2)
 
@@ -227,9 +211,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.back()
     time.sleep(2)
 
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
-
     useful_guides_label = home_page.what_stenn_label()
     assert useful_guides_label[1].is_displayed()
     highlight(useful_guides_label[1])
@@ -247,9 +228,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.back()
     time.sleep(2)
 
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
-
     careers_label = home_page.what_stenn_label()
     assert careers_label[2].is_displayed()
     highlight(careers_label[2])
@@ -264,9 +242,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
 
     driver.back()
     time.sleep(2)
-
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
 
     faq_label = home_page.what_stenn_label()
     assert faq_label[3].is_displayed()
@@ -283,9 +258,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.back()
     time.sleep(2)
 
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
-
     driver.execute_script("window.scrollBy(0, 1000);")
     time.sleep(2)
 
@@ -300,9 +272,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.back()
     time.sleep(2)
 
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
-
     driver.execute_script("window.scrollBy(0, 500);")
     time.sleep(2)
 
@@ -316,9 +285,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
 
     driver.back()
     time.sleep(2)
-
-    # accept_all_button = home_page.accept_all_pop_up_button()
-    # accept_all_button.click()
 
     products_label = home_page.heading_your_working_label()
     assert products_label.is_displayed()
