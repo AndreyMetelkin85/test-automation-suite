@@ -7,11 +7,8 @@ class HomePage(BasePage):
     def heading_your_working_label(self) -> Text:
         return self.find_element((By.XPATH, '//h1[text()="Your working capital platform"]'))
 
-    def apply_for_finance_button_1(self) -> Button:
-        return self.find_element((By.XPATH, '//span[contains(.,"Apply for Finance")]'))
-
-    def apply_for_finance_button_2(self) -> Button:
-        return self.find_element((By.XPATH, '//div[@id="mainContentContainer"]/div[2]/div/button/span'))
+    def apply_for_finance_button(self) -> Button:
+        return self.find_elements((By.XPATH, '(//span[text()="Apply for Finance"])'))
 
     def navi_bar_button(self) -> Button:
         return self.find_elements((By.XPATH, '//div[@id="navBarWrapper"]/div'))

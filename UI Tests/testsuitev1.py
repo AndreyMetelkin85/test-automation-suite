@@ -116,8 +116,8 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     accept_all_button = home_page.accept_all_pop_up_button()
     accept_all_button.click()
 
-    app_for_finance_button = home_page.apply_for_finance_button_1()
-    app_for_finance_button.click()
+    app_for_finance_button = home_page.apply_for_finance_button()
+    app_for_finance_button[0].click()
     time.sleep(1)
 
     right_for_you_label = home_page.right_for_you()
@@ -138,8 +138,8 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.execute_script("window.scrollBy(0, 700);")
     time.sleep(1)
 
-    apply_finance_button = home_page.apply_for_finance_button_2()
-    apply_finance_button.click()
+    apply_finance_button = home_page.apply_for_finance_button()
+    apply_finance_button[1].click()
     time.sleep(1)
 
     convert_your_invoices_label = home_page.convert_your_invoices_label()
@@ -160,8 +160,8 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.execute_script("window.scrollBy(0, 700);")
     time.sleep(1)
 
-    e_commerce_button = home_page.apply_for_finance_button_2()
-    e_commerce_button.click()
+    e_commerce_button = home_page.apply_for_finance_button()
+    e_commerce_button[1].click()
     time.sleep(1)
 
     current_url = driver.current_url
@@ -182,8 +182,8 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     assert saas_label.is_displayed()
     highlight(saas_label)
 
-    apply_finance_saas_button = home_page.apply_for_finance_button_2()
-    apply_finance_saas_button.click()
+    apply_finance_saas_button = home_page.apply_for_finance_button()
+    apply_finance_saas_button[1].click()
     time.sleep(1)
 
     financing_solution_label = home_page.looking_financing_label()
