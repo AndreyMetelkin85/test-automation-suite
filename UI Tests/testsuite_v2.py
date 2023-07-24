@@ -54,9 +54,6 @@ def test_invoice_financing_page(driver):
     driver.execute_script("window.scrollBy(0, 700);")
     time.sleep(1)
 
-    # close_live_chat = invoice_financing_page.close_live_chat_button()
-    # close_live_chat.click()
-
     asked_questions_button_count = 4
     for number_buttons in range(asked_questions_button_count):
         asked_questions_button = invoice_financing_page.asked_questions_button()
@@ -87,8 +84,8 @@ def test_invoice_financing_page(driver):
         time.sleep(1)
 
     apply_finance = HomePage(driver)
-    apply_finance_button = apply_finance.apply_for_finance_button_1()
-    apply_finance_button.click()
+    apply_finance_button = apply_finance.apply_for_finance_button()
+    apply_finance_button[0].click()
 
     current_window = driver.current_window_handle
     driver.switch_to.window(driver.window_handles[-1])
