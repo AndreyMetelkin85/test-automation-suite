@@ -46,7 +46,6 @@ class Label:
         return self.element.text
 
     def __getitem__(self, item):
-        # Вернуть значение элемента, если поддерживается доступ по индексу (item)
         if hasattr(self.element, '__getitem__'):
             return self.element[item]
         else:
@@ -61,8 +60,15 @@ class Button:
         self.element.click()
 
     def __getitem__(self, item):
-        # Вернуть значение элемента, если поддерживается доступ по индексу (item)
         if hasattr(self.element, '__getitem__'):
             return self.element[item]
         else:
             raise TypeError("Element does not support indexing")
+
+
+class Input:
+    pass
+
+
+class Dropdown:
+    pass
