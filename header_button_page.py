@@ -1,6 +1,5 @@
-import click
 from selenium.webdriver.common.by import By
-from BaseApp import BasePage
+from base_page import BasePage
 
 
 class HeaderButtons(BasePage):
@@ -19,6 +18,3 @@ class HeaderButtons(BasePage):
 
     def accept_all_pop_up_button(self):
         return self.find_element((By.XPATH, '//*[text()="Accept All"]'))
-
-    def click(self):
-        pass

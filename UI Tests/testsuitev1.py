@@ -1,12 +1,12 @@
 import time
-from HeaderButton_Page import HeaderButtons
-from BaseApp import highlight
-from SocialNetworks_Page import SocialNetworks
-from HomePage import HomePage
-from Invoicefinancing_Pages import InvoiceFinancing
-from ForTrade_Pages import ForTrade
-from News_Pages import News
-from ContactUs_Pages import ContactUs
+from header_button_page import HeaderButtons
+from base_page import highlight
+from social_networks_page import SocialNetworks
+from home_page import HomePage
+from invoice_financing_page import InvoiceFinancing
+from for_trade_page import ForTrade
+from news_page import News
+from contact_us_page import ContactUs
 
 
 def test_buttons_in_header(driver):

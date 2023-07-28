@@ -1,10 +1,10 @@
 import time
-from HeaderButton_Page import HeaderButtons
-from BaseApp import highlight
-from RevenueBasedFinancing_Page import RevenueBasedFinancing
-from HomePage import HomePage
-from Invoicefinancing_Pages import InvoiceFinancing
-from News_Pages import News
+from header_button_page import HeaderButtons
+from base_page import highlight
+from revenue_based_financing_page import RevenueBasedFinancing
+from home_page import HomePage
+from invoice_financing_page import InvoiceFinancing
+from news_page import News
 
 
 def test_invoice_financing_page(driver):
