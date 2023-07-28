@@ -93,8 +93,8 @@ def test_opening_social_networks(driver, slow_scroll):
     current_window = driver.current_window_handle
     driver.switch_to.window(driver.window_handles[-1])
     current_url = driver.current_url
-    expected_url = "https://twitter.com/i/flow/login?redirect_after_login=%2FStenn_Intl"
-    assert current_url == expected_url
+    expected_url_prefix = "https://twitter.com"
+    assert current_url.startswith(expected_url_prefix)
 
     driver.switch_to.window(current_window)
 

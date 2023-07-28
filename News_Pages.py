@@ -1,11 +1,11 @@
 from selenium.webdriver.common.by import By
-from BaseApp import Button, Text, Label, BasePage
+from BaseApp import BasePage
 
 
 class News(BasePage):
 
-    def heading_articles_label(self) -> Text:
+    def heading_articles_label(self):
         return self.find_element((By.XPATH, '//div[text()="Articles"]'))
 
-    def accept_all_pop_up_button(self) -> Button:
+    def accept_all_pop_up_button(self):
         return self.find_element((By.XPATH, '//*[text()="Accept All"]'))
