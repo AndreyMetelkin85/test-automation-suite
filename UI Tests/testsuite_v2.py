@@ -173,6 +173,7 @@ def test_revenue_based_financing(driver):
     driver.execute_script("arguments[0].scrollIntoView();", learn_more_button)
     time.sleep(1)
     learn_more_button.click()
+    time.sleep(1)
 
     learn_more_label = revenue_based_financing.stenn_named_label()
     assert learn_more_label.is_displayed()
