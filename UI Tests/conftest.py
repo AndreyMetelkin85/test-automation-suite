@@ -2,7 +2,7 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from BaseApp import BasePage
+from base_page import BasePage
 
 
 @pytest.fixture(scope="session")
