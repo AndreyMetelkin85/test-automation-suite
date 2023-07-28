@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from BaseApp import Button, Text, Label, BasePage, Input, Dropdown
+from base_page import BasePage
 
 
 class MailRu(BasePage):
