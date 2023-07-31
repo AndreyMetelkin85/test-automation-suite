@@ -33,3 +33,12 @@ class ForTrade(BasePage):
 
     def read_news_button(self):
         return self.find_element((By.XPATH, '//span[text()="Read all News"]'))
+
+    def convert_your_invoices_label(self):
+        return self.find_element((By.XPATH, '//h1[contains(.,"Convert your invoices")]'))
+
+    def apply_for_finance(self):
+        return self.find_element((By.XPATH, '//span[text()="Apply for Finance"]'))
+
+    def learn_more_label(self):
+        return self.find_element((By.XPATH, '//h1[contains(., "Stenn named")]'))
