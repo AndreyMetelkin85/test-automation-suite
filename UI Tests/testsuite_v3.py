@@ -5,6 +5,7 @@ from for_trade_page import ForTrade
 from header_button_page import HeaderButtons
 from home_page import HomePage
 from news_page import News
+from saas_page import Saas
 
 
 def test_for_trade_page(driver):
@@ -176,6 +177,117 @@ def test_e_commerce(driver):
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 4:
             who_is_stenn_label = e_commerce.sten_is_uk_label()
+            assert who_is_stenn_label.is_displayed()
+            highlight(who_is_stenn_label)
+            frequent_lyasked_questions_button[buttons].click()
+
+            driver.execute_script("window.scrollBy(0, 100);")
+            time.sleep(2)
+
+    driver.execute_script("window.scrollBy(0, 750);")
+    time.sleep(2)
+
+    read_news = HomePage(driver)
+    read_news_button = read_news.read_news_button()
+    read_news_button.click()
+    time.sleep(1)
+
+    page_articles_label = News(driver)
+    articles_label = page_articles_label.heading_articles_label()
+    assert articles_label.is_displayed()
+    highlight(articles_label)
+
+
+def test_saas_page(driver):
+    home_page = HeaderButtons(driver)
+
+    solutions_button = home_page.solutions_button()
+    solutions_button.click()
+    time.sleep(1)
+
+    close_popup = home_page.accept_all_pop_up_button()
+    close_popup.click()
+    time.sleep(1)
+
+    saas_page = Saas(driver)
+    saas_button = saas_page.saas_button()
+    saas_button[2].click()
+
+    saas_label = saas_page.saas_label()
+    assert saas_label.is_displayed()
+    highlight(saas_label)
+
+    privacy_policy_button = saas_page.privacy_policy_button()
+    privacy_policy_button.click()
+
+    current_window = driver.current_window_handle
+    driver.switch_to.window(driver.window_handles[-1])
+    privacy_policy_label = saas_page.privacy_policy_label()
+    assert privacy_policy_label.is_displayed()
+    highlight(privacy_policy_label)
+
+    driver.switch_to.window(current_window)
+
+    driver.execute_script("window.scrollBy(0, 800);")
+    time.sleep(1)
+
+    contact_us_label = saas_page.contact_us_label()
+    assert contact_us_label.is_displayed()
+    highlight(contact_us_label)
+
+    join_the_beta_button = saas_page.join_the_beta_button()
+    join_the_beta_button.click()
+    time.sleep(1)
+
+    saas_label = saas_page.saas_label()
+    assert saas_label.is_displayed()
+    highlight(saas_label)
+
+    driver.execute_script("window.scrollBy(0, 2000);")
+    time.sleep(2)
+
+    learn_more_button = saas_page.learn_more_button()
+    learn_more_button.click()
+    time.sleep(1)
+
+    learn_more_label = saas_page.learn_more_label()
+    assert learn_more_label.is_displayed()
+    highlight(learn_more_label)
+
+    driver.back()
+    time.sleep(1)
+
+    driver.execute_script("window.scrollBy(0, 900);")
+    time.sleep(2)
+
+    button_counter = 5
+    for buttons in range(button_counter):
+        frequent_lyasked_questions_button = saas_page.frequently_asked_questions()
+        frequent_lyasked_questions_button[buttons].click()
+        time.sleep(1)
+
+        if buttons == 0:
+            what_revenue_label = saas_page.revenue_based_financing_label()
+            assert what_revenue_label.is_displayed()
+            highlight(what_revenue_label)
+            frequent_lyasked_questions_button[buttons].click()
+        elif buttons == 1:
+            what_can_i_use_label = saas_page.typically_our_customers_label()
+            assert what_can_i_use_label.is_displayed()
+            highlight(what_can_i_use_label)
+            frequent_lyasked_questions_button[buttons].click()
+        elif buttons == 2:
+            how_do_repayments_work = saas_page.repayments_for_your_draw_label()
+            assert how_do_repayments_work.is_displayed()
+            highlight(how_do_repayments_work)
+            frequent_lyasked_questions_button[buttons].click()
+        elif buttons == 3:
+            what_information_label = saas_page.in_order_to_accurately_label()
+            assert what_information_label.is_displayed()
+            highlight(what_information_label)
+            frequent_lyasked_questions_button[buttons].click()
+        elif buttons == 4:
+            who_is_stenn_label = saas_page.sten_is_uk_label()
             assert who_is_stenn_label.is_displayed()
             highlight(who_is_stenn_label)
             frequent_lyasked_questions_button[buttons].click()
