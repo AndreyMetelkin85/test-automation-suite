@@ -3,5 +3,5 @@ from base_page import BasePage
 
 
 class Articles(BasePage):
-    def articles_heading(self):
+    def articles_heading_label(self):
         return self.find_element((By.XPATH, '//div[text()="Articles"]'))
