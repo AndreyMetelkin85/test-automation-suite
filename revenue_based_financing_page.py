@@ -4,6 +4,9 @@ from base_page import BasePage
 
 class RevenueBasedFinancing(BasePage):
 
+    def get_heading_label(self):
+        pass
+
     def revenue_based_financing_button(self):
         return self.find_element((By.XPATH, '//a[text()="Revenue-Based Financing"]'))
 

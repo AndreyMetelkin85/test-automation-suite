@@ -103,7 +103,7 @@ def test_invoice_financing_page(driver):
     time.sleep(1)
 
     page_articles_label = News(driver)
-    articles_label = page_articles_label.heading_articles_label()
+    articles_label = page_articles_label.get_heading_label()
     assert articles_label.is_displayed()
     highlight(articles_label)
 
@@ -226,6 +226,6 @@ def test_revenue_based_financing(driver):
     time.sleep(1)
 
     page_articles_label = News(driver)
-    articles_label = page_articles_label.heading_articles_label()
+    articles_label = page_articles_label.get_heading_label()
     assert articles_label.is_displayed()
     highlight(articles_label)
