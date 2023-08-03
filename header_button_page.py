@@ -4,6 +4,9 @@ from base_page import BasePage
 
 class HeaderButtons(BasePage):
 
+    def get_heading_label(self):
+        pass
+
     def products_button(self):
         return self.find_element((By.XPATH, '//a[contains(text(), "Products")]'))
 
