@@ -4,6 +4,9 @@ from base_page import BasePage
 
 class SocialNetworks(BasePage):
 
+    def get_heading_label(self):
+        pass
+
     def social_networks(self):
         return self.find_elements((By.XPATH, '//div[@class="SocialGroup_SocialGroup_Icons___61mu"]/a'))
 

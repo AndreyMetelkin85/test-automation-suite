@@ -3,6 +3,9 @@ from selenium.webdriver.common.by import By
 
 
 class Saas(BasePage):
+    def get_heading_label(self):
+        pass
+
     def saas_button(self):
         return self.find_elements((By.XPATH, '//div[@class= "styles_tabsWrapper__xUv97"]//a'))
 

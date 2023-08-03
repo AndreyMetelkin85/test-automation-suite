@@ -4,7 +4,7 @@ from base_page import BasePage
 
 class News(BasePage):
 
-    def heading_articles_label(self):
+    def get_heading_label(self):
         return self.find_element((By.XPATH, '//div[text()="Articles"]'))
 
     def accept_all_pop_up_button(self):

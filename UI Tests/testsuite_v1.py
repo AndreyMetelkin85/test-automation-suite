@@ -39,7 +39,7 @@ def test_buttons_in_header(driver):
     resources_button.click()
 
     page_resources_label = News(driver)
-    heading_articles_label = page_resources_label.heading_articles_label()
+    heading_articles_label = page_resources_label.get_heading_label()
     assert heading_articles_label.is_displayed()
     highlight(heading_articles_label)
 
@@ -204,7 +204,7 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     time.sleep(1)
 
     page_articles_label = News(driver)
-    articles_label = page_articles_label.heading_articles_label()
+    articles_label = page_articles_label.get_heading_label()
     assert articles_label.is_displayed()
     highlight(articles_label)
 
@@ -265,7 +265,7 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     read_news_button.click()
     time.sleep(1)
 
-    articles_label = page_articles_label.heading_articles_label()
+    articles_label = page_articles_label.get_heading_label()
     assert articles_label.is_displayed()
     highlight(articles_label)
 
