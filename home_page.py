@@ -4,6 +4,9 @@ from base_page import BasePage
 
 class HomePage(BasePage):
 
+    def get_heading_label(self):
+        pass
+
     def heading_your_working_label(self):
         return self.find_element((By.XPATH, '//h1[text()="Your working capital platform"]'))
 

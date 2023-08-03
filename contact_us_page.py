@@ -4,6 +4,9 @@ from base_page import BasePage
 
 class ContactUs(BasePage):
 
+    def get_heading_label(self):
+        pass
+
     def heading_contact_us_label(self):
         return self.find_element((By.XPATH, '//div[text()="Contact Us"]'))
 

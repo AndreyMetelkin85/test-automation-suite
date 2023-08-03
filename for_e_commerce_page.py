@@ -4,6 +4,9 @@ from base_page import BasePage
 
 class ForECommerce(BasePage):
 
+    def get_heading_label(self):
+        pass
+
     def ecommerce_batton(self):
         return self.find_element((By.XPATH, '//a[@class="styles_tabsTab__2bOpf"]'))
 
