@@ -5,9 +5,6 @@ from base_page import BasePage
 class HomePage(BasePage):
 
     def get_heading_label(self):
-        pass
-
-    def heading_your_working_label(self):
         return self.find_element((By.XPATH, '//h1[text()="Your working capital platform"]'))
 
     def apply_for_finance_button(self):
@@ -33,7 +30,7 @@ class HomePage(BasePage):
 
     def looking_financing_label(self):
         return self.find_element((By.XPATH,
-                                 '//div[text()="Looking for a financing solution that helps your SaaS business grow?"]'))
+                                  '//div[text()="Looking for a financing solution that helps your SaaS business grow?"]'))
 
     def what_stenn_label(self):
         return self.find_elements((By.XPATH, '//div[@id="scrollTarget"]/descendant::h1'))
