@@ -28,7 +28,7 @@ def test_invoice_financing_page(driver):
         apply_finance_button[finance_option_button].click()
 
         sign_up_page = InvoiceFinancing(driver)
-        convert_your_invoices = sign_up_page.sign_up_heading_convert_your_label()
+        convert_your_invoices = sign_up_page.get_heading_label()
         assert convert_your_invoices.is_displayed()
         highlight(convert_your_invoices)
 
@@ -88,7 +88,7 @@ def test_invoice_financing_page(driver):
     current_window = driver.current_window_handle
     driver.switch_to.window(driver.window_handles[-1])
     sign_up_page = InvoiceFinancing(driver)
-    convert_your_invoices = sign_up_page.sign_up_heading_convert_your_label()
+    convert_your_invoices = sign_up_page.get_heading_label()
     assert convert_your_invoices.is_displayed()
     highlight(convert_your_invoices)
 
@@ -122,7 +122,7 @@ def test_revenue_based_financing(driver):
     revenue_based_financing_button = revenue_based_financing.revenue_based_financing_button()
     revenue_based_financing_button.click()
 
-    are_you_e_commerce_label = revenue_based_financing.are_you_e_commerce_label()
+    are_you_e_commerce_label = revenue_based_financing.get_heading_label()
     assert are_you_e_commerce_label.is_displayed()
     highlight(are_you_e_commerce_label)
 

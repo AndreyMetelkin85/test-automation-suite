@@ -4,15 +4,12 @@ from base_page import BasePage
 
 class RevenueBasedFinancing(BasePage):
 
-    def get_heading_label(self):
-        pass
-
     def revenue_based_financing_button(self):
         return self.find_element((By.XPATH, '//a[text()="Revenue-Based Financing"]'))
 
-    def are_you_e_commerce_label(self):
+    def get_heading_label(self):
         return self.find_element((By.XPATH,
-                                 '//div[text()="Are you an E-commerce or SaaS business looking for a financing solution?"]'))
+                                  '//div[text()="Are you an E-commerce or SaaS business looking for a financing solution?"]'))
 
     def check_my_limit_button(self):
         return self.find_element((By.XPATH, '//span[text()="Check my limit"]'))

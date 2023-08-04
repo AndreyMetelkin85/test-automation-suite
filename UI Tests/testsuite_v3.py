@@ -16,7 +16,7 @@ def test_for_trade_page(driver):
 
     for_trade = ForTrade(driver)
 
-    for_trade_page = for_trade.heading_boost_your_cash_label()
+    for_trade_page = for_trade.get_heading_label()
     assert for_trade_page.is_displayed()
     highlight(for_trade_page)
 
@@ -118,7 +118,7 @@ def test_e_commerce(driver):
     e_commerce_button = e_commerce.ecommerce_batton()
     e_commerce_button.click()
 
-    e_commerce_page_label = e_commerce.e_commerce_label()
+    e_commerce_page_label = e_commerce.get_heading_label()
     assert e_commerce_page_label.is_displayed()
     highlight(e_commerce_page_label)
 
@@ -213,7 +213,7 @@ def test_saas_page(driver):
     saas_button = saas_page.saas_button()
     saas_button[2].click()
 
-    saas_label = saas_page.saas_label()
+    saas_label = saas_page.get_heading_label()
     assert saas_label.is_displayed()
     highlight(saas_label)
 
@@ -239,7 +239,7 @@ def test_saas_page(driver):
     join_the_beta_button.click()
     time.sleep(1)
 
-    saas_label = saas_page.saas_label()
+    saas_label = saas_page.get_heading_label()
     assert saas_label.is_displayed()
     highlight(saas_label)
 
