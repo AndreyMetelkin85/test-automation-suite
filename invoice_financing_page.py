@@ -3,10 +3,8 @@ from base_page import BasePage
 
 
 class InvoiceFinancing(BasePage):
-    def get_heading_label(self):
-        pass
 
-    def sign_up_heading_convert_your_label(self):
+    def get_heading_label(self):
         return self.find_element((By.XPATH, '//h1[contains(.,"Convert your invoices")]'))
 
     def heading_convert_your_invoices_label(self):

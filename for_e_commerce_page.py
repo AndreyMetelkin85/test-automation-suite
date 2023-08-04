@@ -4,13 +4,10 @@ from base_page import BasePage
 
 class ForECommerce(BasePage):
 
-    def get_heading_label(self):
-        pass
-
     def ecommerce_batton(self):
         return self.find_element((By.XPATH, '//a[@class="styles_tabsTab__2bOpf"]'))
 
-    def e_commerce_label(self):
+    def get_heading_label(self):
         return self.find_element((By.XPATH, '//div[@class="styles_blockTextWrapper__jxmTm"]'))
 
     def check_my_limit_button(self):
