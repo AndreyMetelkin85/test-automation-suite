@@ -3,13 +3,11 @@ from selenium.webdriver.common.by import By
 
 
 class Saas(BasePage):
-    def get_heading_label(self):
-        pass
 
     def saas_button(self):
         return self.find_elements((By.XPATH, '//div[@class= "styles_tabsWrapper__xUv97"]//a'))
 
-    def saas_label(self):
+    def get_heading_label(self):
         return self.find_element((By.XPATH, '//div[@class= "styles_saasHeaderTitle__8NTLf"]'))
 
     def privacy_policy_button(self):
