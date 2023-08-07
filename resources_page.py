@@ -4,7 +4,7 @@ from base_page import BasePage
 
 class Resources(BasePage):
 
-    def blog_titles_buttons(self):
+    def list_title_buttons(self):
         return self.find_elements((By.XPATH, '//div[@class="styles_tabs__WdiyN"]//a'))
 
     def get_heading_label(self):
