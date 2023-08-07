@@ -33,12 +33,51 @@ def test_buttons_header(driver):
     ]
 
     for index, current_page in enumerate(pages):
-        resources_page.list_title_buttons()[index].click()
+        resources_page.blog_titles_buttons()[index].click()
         page = current_page.page_name(driver)
         time.sleep(0.5)
         heading_label = page.get_heading_label()
         assert heading_label.is_displayed()
-        # highlight(heading_label)
         if current_page.is_need_to_go_back:
             driver.back()
             time.sleep(1)
+
+
+def test_blog_list_buttons(driver):
+    home_page = HeaderButtons(driver)
+
+    resources_button = home_page.resources_button()
+    resources_button.click()
+
+    resources_page = Resources(driver)
+    resources_blog_list = resources_page.blog_titles_buttons()
+    resources_blog_list[0].click()
+
+    current_url = driver.current_url
+    expected_url = "https://stenn.com/resources/articles/all/page-1"
+    assert current_url == expected_url
+
+    resources_page = Resources(driver)
+    resources_blog_list = resources_page.blog_titles_buttons()
+    resources_blog_list[1].click()
+
+    current_url = driver.current_url
+    expected_url = "https://stenn.com/resources/articles/news/page-1"
+    assert current_url == expected_url
+
+    resources_page = Resources(driver)
+    resources_blog_list = resources_page.blog_titles_buttons()
+    resources_blog_list[2].click()
+
+    current_url = driver.current_url
+    expected_url = "https://stenn.com/resources/articles/page-1"
+    assert current_url == expected_url
+
+    resources_page = Resources(driver)
+    resources_blog_list = resources_page.blog_titles_buttons()
+    resources_blog_list[3].click()
+
+    current_url = driver.current_url
+    expected_url = "https://stenn.com/resources/articles/press-releases/page-1"
+    assert current_url == expected_url
+
