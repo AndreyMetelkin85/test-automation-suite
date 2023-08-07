@@ -33,7 +33,7 @@ def test_buttons_header(driver):
     ]
 
     for index, current_page in enumerate(pages):
-        resources_page.blog_titles_buttons()[index].click()
+        resources_page.list_title_buttons()[index].click()
         page = current_page.page_name(driver)
         time.sleep(0.5)
         heading_label = page.get_heading_label()
