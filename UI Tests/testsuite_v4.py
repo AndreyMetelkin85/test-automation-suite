@@ -81,3 +81,134 @@ def test_blog_list_buttons(driver):
     expected_url = "https://stenn.com/resources/articles/press-releases/page-1"
     assert current_url == expected_url
 
+
+def test_careers_page(driver):
+    home_page = HeaderButtons(driver)
+
+    accept_all_button = home_page.accept_all_pop_up_button()
+    accept_all_button.click()
+
+    resources_button = home_page.resources_button()
+    resources_button.click()
+
+    resources_page = Resources(driver)
+    careers_buttons = resources_page.list_title_buttons()
+    careers_buttons[1].click()
+
+    careers_page = Careers(driver)
+    careers_page_header_label = careers_page.get_heading_label()
+    assert careers_page_header_label.is_displayed()
+
+    view_openings_button = careers_page.view_openings_button()
+    view_openings_button[0].click()
+
+    current_url = driver.current_url
+    expected_url = "https://boards.eu.greenhouse.io/stenn"
+    assert current_url == expected_url
+
+    driver.back()
+    time.sleep(1)
+
+    driver.execute_script("window.scrollBy(0, 1000);")
+    time.sleep(1)
+
+    why_join_stenn_headline = careers_page.why_join_stenn()
+    assert why_join_stenn_headline.is_displayed()
+
+    why_join_stenn_subheadings = careers_page.why_join_stenn_subheadings()
+    assert all(map(lambda subheading: subheading.is_displayed(), why_join_stenn_subheadings))
+
+    driver.execute_script("window.scrollBy(0, 400);")
+    time.sleep(1)
+
+    view_openings_button = careers_page.view_openings_button()
+    view_openings_button[1].click()
+
+    current_url = driver.current_url
+    expected_url = "https://boards.eu.greenhouse.io/stenn"
+    assert current_url == expected_url
+
+    driver.back()
+    time.sleep(1)
+
+    driver.execute_script("window.scrollBy(0, 1900);")
+    time.sleep(1)
+
+    making_difference_label = careers_page.making_difference_label()
+    assert making_difference_label
+
+    driver.execute_script("window.scrollBy(0, 1500);")
+    time.sleep(1)
+
+    culture_belonging_header = careers_page.culture_belonging_label()
+    assert culture_belonging_header
+
+    view_openings_button = careers_page.view_openings_button()
+    view_openings_button[2].click()
+
+    current_url = driver.current_url
+    expected_url = "https://boards.eu.greenhouse.io/stenn"
+    assert current_url == expected_url
+
+    driver.back()
+    time.sleep(1)
+
+    driver.execute_script("window.scrollBy(0, 4100);")
+    time.sleep(2)
+
+    life_stenn_header = careers_page.life_at_stenn_label()
+    assert life_stenn_header
+
+    view_openings_button = careers_page.view_openings_button()
+    view_openings_button[3].click()
+
+    current_url = driver.current_url
+    expected_url = "https://boards.eu.greenhouse.io/stenn"
+    assert current_url == expected_url
+
+    driver.back()
+    time.sleep(1)
+
+    driver.execute_script("window.scrollBy(0, 4800);")
+    time.sleep(2)
+
+    met_leadership_team_header = careers_page.leadership_team_label()
+    assert met_leadership_team_header
+
+    driver.execute_script("window.scrollBy(0, 500);")
+    time.sleep(2)
+
+    view_openings_button = careers_page.view_openings_button()
+    view_openings_button[4].click()
+
+    current_url = driver.current_url
+    expected_url = "https://boards.eu.greenhouse.io/stenn"
+    assert current_url == expected_url
+
+    driver.back()
+    time.sleep(1)
+
+    driver.execute_script("window.scrollBy(0, 5900);")
+    time.sleep(2)
+
+    our_values_guide_header = careers_page.our_values_guide_label()
+    assert our_values_guide_header
+
+    driver.execute_script("window.scrollBy(0, 260);")
+    time.sleep(2)
+
+    our_values_guide_subheadings = careers_page.our_values_guide_subheadings()
+    assert all(map(lambda subheading: subheading.is_displayed(), our_values_guide_subheadings))
+
+    driver.execute_script("window.scrollBy(0, 270);")
+    time.sleep(2)
+
+    view_openings_button = careers_page.view_openings_button()
+    view_openings_button[5].click()
+
+    current_url = driver.current_url
+    expected_url = "https://boards.eu.greenhouse.io/stenn"
+    assert current_url == expected_url
+
+    driver.back()
+    time.sleep(1)
