@@ -10,7 +10,7 @@ class FinanceOption(BasePage):
         return self.find_element((By.XPATH, '//h1[text()="International and Domestic Invoice Financing"]'))
 
     def revenue_based_financing_label(self):
-        return self.find_element((By.XPATH, '//h1[text()="International and Domestic Invoice Financing"]'))
+        return self.find_element((By.XPATH, '//h1[text()="Revenue-based Financing for your business"]'))
 
     def apply_for_finance_app(self):
         return self.find_element((By.XPATH, '//*[@data-testid = "https://app.stenn.com/auth/sign-up"]'))
