@@ -8,7 +8,7 @@ from utils import highlight, highlights
 class BasePage(ABC):
     def __init__(self, driver):
         self.driver = driver
-        self.base_url = "https://stenn.com/"
+        self.base_url = "https://ca.stenndev.com/"
 
     @highlight
     def find_element(self, locator, time=10):

@@ -267,3 +267,34 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
 
     products_label = home_page.get_heading_label()
     assert products_label.is_displayed()
+
+
+def test_opening_login_page(driver):
+    home_page = HeaderButtons(driver)
+
+    login_button = home_page.login_dropdown()
+    login_button.click()
+    invoice_financing_button = home_page.invoice_fincace_button()
+    invoice_financing_button.is_displayed()
+    revenue_button = home_page.revenue_button()
+    revenue_button.is_displayed()
+
+    invoice_financing_button.click()
+    current_url = driver.current_url
+    expected_url = "https://app.stenn.com/auth/login"
+    assert current_url == expected_url
+
+    driver.back()
+    time.sleep(0.5)
+
+    login_button = home_page.login_dropdown()
+    login_button.click()
+
+    revenue_button = home_page.revenue_button()
+    revenue_button.click()
+    current_url = driver.current_url
+    expected_url = "https://rbf.stenn.com/auth/login"
+    assert current_url == expected_url
+
+    driver.back()
+    time.sleep(0.5)
