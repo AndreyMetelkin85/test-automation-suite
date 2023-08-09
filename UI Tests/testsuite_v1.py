@@ -7,6 +7,7 @@ from invoice_financing_page import InvoiceFinancing
 from for_trade_page import ForTrade
 from news_page import News
 from contact_us_page import ContactUs
+from finance_option_page import FinanceOption
 
 
 def test_buttons_in_header(driver):
@@ -298,3 +299,42 @@ def test_opening_login_page(driver):
 
     driver.back()
     time.sleep(0.5)
+
+
+def test_select_your_finance_option(driver):
+    open_page = HeaderButtons(driver)
+
+    home_page = HomePage(driver)
+    accept_all_button = home_page.accept_all_pop_up_button()
+    accept_all_button.click()
+
+    apply_for_finance_button = open_page.apply_for_finance_button()
+    apply_for_finance_button.click()
+
+    select_finance_option_page = FinanceOption(driver)
+    select_finance_option_heading = select_finance_option_page.get_heading_label()
+    assert select_finance_option_heading.is_displayed()
+
+    international_domestic_financing = select_finance_option_page.international_and_domestic_label()
+    international_domestic_financing.is_displayed()
+
+    apply_for_finance_app = select_finance_option_page.apply_for_finance_app()
+    apply_for_finance_app.click()
+
+    current_url = driver.current_url
+    expected_url = "https://app.stenn.com/auth/sign-up"
+    assert current_url == expected_url
+
+    driver.back()
+
+    revenue_based_financing_label = select_finance_option_page.revenue_based_financing_label()
+    revenue_based_financing_label.is_displayed()
+
+    apply_for_finance_rbf = select_finance_option_page.apply_for_finance_rbf()
+    apply_for_finance_rbf.click()
+
+    current_url = driver.current_url
+    expected_url = "https://rbf.stenn.com/auth/sign-up"
+    assert current_url == expected_url
+
+    driver.back()
