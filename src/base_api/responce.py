@@ -4,7 +4,7 @@ from src.enums.global_enums import GlobalErrorMessages
 
 class Response:
     def __init__(self, response):
-        self.response_json = response
+        self.response = response
         self.response_json = response.json()
         self.response_status = response.status_code
 
