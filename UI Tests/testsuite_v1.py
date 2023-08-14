@@ -8,6 +8,7 @@ from for_trade_page import ForTrade
 from news_page import News
 from contact_us_page import ContactUs
 from finance_option_page import FinanceOption
+from conftest import driver
 
 
 def test_buttons_in_header(driver):
