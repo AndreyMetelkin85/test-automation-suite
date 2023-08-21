@@ -8,7 +8,7 @@ from for_trade_page import ForTrade
 from news_page import News
 from contact_us_page import ContactUs
 from finance_option_page import FinanceOption
-from conftest import driver
+from conftest import driver, slow_scroll
 
 
 def test_buttons_in_header(driver):
@@ -128,7 +128,7 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     invoice_financing_label = home_page.invoice_financing_label()
     assert invoice_financing_label.is_displayed()
 
-    driver.execute_script("window.scrollBy(0, 700);")
+    driver.execute_script("window.scrollBy(0, 600);")
     time.sleep(0.5)
 
     apply_finance_button = home_page.apply_for_finance_button()
@@ -148,9 +148,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     e_commerce_label = home_page.e_commerce_label()
     assert e_commerce_label.is_displayed()
 
-    driver.execute_script("window.scrollBy(0, 700);")
-    time.sleep(0.5)
-
     e_commerce_button = home_page.apply_for_finance_button()
     e_commerce_button[1].click()
     time.sleep(0.5)
@@ -166,9 +163,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     list_buttons[2].click()
     time.sleep(0.5)
 
-    driver.execute_script("window.scrollBy(0, 700);")
-    time.sleep(0.5)
-
     saas_label = home_page.saas_label()
     assert saas_label.is_displayed()
 
@@ -182,7 +176,7 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     driver.back()
     time.sleep(1)
 
-    driver.execute_script("window.scrollBy(0, 1200);")
+    driver.execute_script("window.scrollBy(0, 1300);")
     time.sleep(1)
 
     articles_label = home_page.what_stenn_label()
@@ -202,8 +196,6 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     useful_guides_label = home_page.what_stenn_label()
     assert useful_guides_label[1].is_displayed()
 
-    driver.execute_script("window.scrollBy(0, 1800);")
-    time.sleep(1)
     useful_guides_button = home_page.what_stenn_button()
     useful_guides_button[1].click()
     time.sleep(0.5)
