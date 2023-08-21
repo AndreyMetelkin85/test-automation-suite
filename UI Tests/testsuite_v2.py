@@ -5,6 +5,7 @@ from revenue_based_financing_page import RevenueBasedFinancing
 from home_page import HomePage
 from invoice_financing_page import InvoiceFinancing
 from news_page import News
+from conftest import driver
 
 
 def test_invoice_financing_page(driver):
