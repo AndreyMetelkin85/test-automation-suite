@@ -6,6 +6,7 @@ from header_button_page import HeaderButtons
 from home_page import HomePage
 from news_page import News
 from saas_page import Saas
+from conftest import driver
 
 
 def test_for_trade_page(driver):
@@ -18,7 +19,6 @@ def test_for_trade_page(driver):
 
     for_trade_page = for_trade.get_heading_label()
     assert for_trade_page.is_displayed()
-    highlight(for_trade_page)
 
     close_popup = for_trade.accept_all_pop_up_button()
     close_popup.click()
@@ -28,7 +28,6 @@ def test_for_trade_page(driver):
 
     sign_up_page = for_trade.convert_your_invoices_label()
     assert sign_up_page.is_displayed()
-    highlight(sign_up_page)
 
     driver.back()
     time.sleep(1)
@@ -45,22 +44,18 @@ def test_for_trade_page(driver):
         if button == 0:
             how_it_works_label = for_trade.how_it_works_label()
             assert how_it_works_label.is_displayed()
-            highlight(how_it_works_label)
             asked_questions[button].click()
         elif button == 1:
             almost_any_company_label = for_trade.almost_any_company_label()
             assert almost_any_company_label.is_displayed()
-            highlight(almost_any_company_label)
             asked_questions[button].click()
         elif button == 2:
             six_benefits_label = for_trade.six_benefits_label()
             assert six_benefits_label.is_displayed()
-            highlight(six_benefits_label)
             asked_questions[button].click()
         elif button == 3:
             we_finance_label = for_trade.we_finance_label()
             assert we_finance_label[0].is_displayed()
-            highlight(we_finance_label[0])
 
         driver.execute_script("window.scrollBy(0, 90);")
         time.sleep(1)
@@ -72,7 +67,6 @@ def test_for_trade_page(driver):
     driver.switch_to.window(driver.window_handles[-1])
     sign_up_page = for_trade.convert_your_invoices_label()
     assert sign_up_page.is_displayed()
-    highlight(sign_up_page)
 
     driver.switch_to.window(current_window)
 
@@ -85,7 +79,6 @@ def test_for_trade_page(driver):
 
     learn_more_label = for_trade.learn_more_label()
     assert learn_more_label.is_displayed()
-    highlight(learn_more_label)
 
     driver.back()
     time.sleep(1)
@@ -101,7 +94,6 @@ def test_for_trade_page(driver):
     page_articles_label = News(driver)
     articles_label = page_articles_label.get_heading_label()
     assert articles_label.is_displayed()
-    highlight(articles_label)
 
 
 def test_e_commerce(driver):
@@ -120,7 +112,6 @@ def test_e_commerce(driver):
 
     e_commerce_page_label = e_commerce.get_heading_label()
     assert e_commerce_page_label.is_displayed()
-    highlight(e_commerce_page_label)
 
     check_my_limit_button = e_commerce.check_my_limit_button()
     check_my_limit_button.click()
@@ -142,7 +133,6 @@ def test_e_commerce(driver):
 
     learn_more_label = e_commerce.learn_more_label()
     assert learn_more_label.is_displayed()
-    highlight(learn_more_label)
 
     driver.back()
     time.sleep(1)
@@ -158,27 +148,22 @@ def test_e_commerce(driver):
         if buttons == 0:
             what_revenue_label = e_commerce.revenue_based_financing_label()
             assert what_revenue_label.is_displayed()
-            highlight(what_revenue_label)
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 1:
             what_can_i_use_label = e_commerce.typically_our_customers_label()
             assert what_can_i_use_label.is_displayed()
-            highlight(what_can_i_use_label)
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 2:
             how_do_repayments_work = e_commerce.repayments_for_your_draw_label()
             assert how_do_repayments_work.is_displayed()
-            highlight(how_do_repayments_work)
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 3:
             what_information_label = e_commerce.in_order_to_accurately_label()
             assert what_information_label.is_displayed()
-            highlight(what_information_label)
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 4:
             who_is_stenn_label = e_commerce.sten_is_uk_label()
             assert who_is_stenn_label.is_displayed()
-            highlight(who_is_stenn_label)
             frequent_lyasked_questions_button[buttons].click()
 
             driver.execute_script("window.scrollBy(0, 100);")
@@ -195,7 +180,6 @@ def test_e_commerce(driver):
     page_articles_label = News(driver)
     articles_label = page_articles_label.get_heading_label()
     assert articles_label.is_displayed()
-    highlight(articles_label)
 
 
 def test_saas_page(driver):
@@ -215,7 +199,6 @@ def test_saas_page(driver):
 
     saas_label = saas_page.get_heading_label()
     assert saas_label.is_displayed()
-    highlight(saas_label)
 
     privacy_policy_button = saas_page.privacy_policy_button()
     privacy_policy_button.click()
@@ -224,7 +207,6 @@ def test_saas_page(driver):
     driver.switch_to.window(driver.window_handles[-1])
     privacy_policy_label = saas_page.privacy_policy_label()
     assert privacy_policy_label.is_displayed()
-    highlight(privacy_policy_label)
 
     driver.switch_to.window(current_window)
 
@@ -233,7 +215,6 @@ def test_saas_page(driver):
 
     contact_us_label = saas_page.contact_us_label()
     assert contact_us_label.is_displayed()
-    highlight(contact_us_label)
 
     join_the_beta_button = saas_page.join_the_beta_button()
     join_the_beta_button.click()
@@ -241,7 +222,6 @@ def test_saas_page(driver):
 
     saas_label = saas_page.get_heading_label()
     assert saas_label.is_displayed()
-    highlight(saas_label)
 
     driver.execute_script("window.scrollBy(0, 2000);")
     time.sleep(2)
@@ -252,7 +232,6 @@ def test_saas_page(driver):
 
     learn_more_label = saas_page.learn_more_label()
     assert learn_more_label.is_displayed()
-    highlight(learn_more_label)
 
     driver.back()
     time.sleep(1)
@@ -269,27 +248,22 @@ def test_saas_page(driver):
         if buttons == 0:
             what_revenue_label = saas_page.revenue_based_financing_label()
             assert what_revenue_label.is_displayed()
-            highlight(what_revenue_label)
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 1:
             what_can_i_use_label = saas_page.typically_our_customers_label()
             assert what_can_i_use_label.is_displayed()
-            highlight(what_can_i_use_label)
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 2:
             how_do_repayments_work = saas_page.repayments_for_your_draw_label()
             assert how_do_repayments_work.is_displayed()
-            highlight(how_do_repayments_work)
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 3:
             what_information_label = saas_page.in_order_to_accurately_label()
             assert what_information_label.is_displayed()
-            highlight(what_information_label)
             frequent_lyasked_questions_button[buttons].click()
         elif buttons == 4:
             who_is_stenn_label = saas_page.sten_is_uk_label()
             assert who_is_stenn_label.is_displayed()
-            highlight(who_is_stenn_label)
             frequent_lyasked_questions_button[buttons].click()
 
             driver.execute_script("window.scrollBy(0, 100);")
@@ -306,4 +280,3 @@ def test_saas_page(driver):
     page_articles_label = News(driver)
     articles_label = page_articles_label.get_heading_label()
     assert articles_label.is_displayed()
-    highlight(articles_label)
