@@ -10,6 +10,7 @@ from glossary_page import Glossary
 from articles_page import Articles
 from useful_guides_page import UsefulGuides
 from collections import namedtuple
+from conftest import driver
 
 Page = namedtuple('Page', ['page_name', 'is_need_to_go_back'])
 
