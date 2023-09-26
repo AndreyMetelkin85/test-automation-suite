@@ -20,3 +20,9 @@ class ApiMethods(BaseApi):
         response = requests.get(url, params=params)
         return response
 
+    def get_users_list(self, limit, offset):
+        url = f"{self.base_url}/api/users/"
+        params = {"limit": limit,
+                  "offset": offset}
+        response = requests.get(url, params=params)
+        return response
