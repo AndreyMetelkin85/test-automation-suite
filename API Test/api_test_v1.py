@@ -154,3 +154,12 @@ def test_accept_language_header(api_client):
 
     print("Response data:")
     print(json.dumps(companies_data, indent=4))
+
+
+@pytest.mark.parametrize("limit, offset", [(0, 1)])
+def test_get_users_limit(api_client, limit, offset):
+    response = api_client.send_get_request(endpoint="api/users/",
+                                           params={"limit": limit,
+                                                   "offset": offset})
+    assert response.status_code == 200
+    print(json.dumps(response.json(), indent=4))
