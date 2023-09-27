@@ -1,13 +1,13 @@
 import time
-from header_button_page import HeaderButtons
+from framework.pages.website_stenn.header_button_page import HeaderButtons
 from base_page import highlight
-from social_networks_page import SocialNetworks
-from home_page import HomePage
-from invoice_financing_page import InvoiceFinancing
-from for_trade_page import ForTrade
-from news_page import News
-from contact_us_page import ContactUs
-from finance_option_page import FinanceOption
+from framework.pages.website_stenn.social_networks_page import SocialNetworks
+from framework.pages.website_stenn.home_page import HomePage
+from framework.pages.website_stenn.invoice_financing_page import InvoiceFinancing
+from framework.pages.website_stenn.for_trade_page import ForTrade
+from framework.pages.website_stenn.news_page import News
+from framework.pages.website_stenn.contact_us_page import ContactUs
+from framework.pages.website_stenn.finance_option_page import FinanceOption
 from conftest import driver, slow_scroll
 
 
