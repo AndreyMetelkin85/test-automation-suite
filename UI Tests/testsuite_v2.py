@@ -1,10 +1,10 @@
 import time
-from header_button_page import HeaderButtons
+from framework.pages.website_stenn.header_button_page import HeaderButtons
 from base_page import highlight
-from revenue_based_financing_page import RevenueBasedFinancing
-from home_page import HomePage
-from invoice_financing_page import InvoiceFinancing
-from news_page import News
+from framework.pages.website_stenn.revenue_based_financing_page import RevenueBasedFinancing
+from framework.pages.website_stenn.home_page import HomePage
+from framework.pages.website_stenn.invoice_financing_page import InvoiceFinancing
+from framework.pages.website_stenn.news_page import News
 from conftest import driver
 
 

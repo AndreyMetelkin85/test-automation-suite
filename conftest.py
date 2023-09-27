@@ -2,7 +2,7 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from main_page import MainPage
+from framework.pages.website_stenn.main_page import MainPage
 from api_base_page import BaseApi
 
 

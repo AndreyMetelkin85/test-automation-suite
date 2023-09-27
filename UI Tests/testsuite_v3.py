@@ -1,11 +1,10 @@
 import time
-from for_e_commerce_page import ForECommerce
-from base_page import highlight
-from for_trade_page import ForTrade
-from header_button_page import HeaderButtons
-from home_page import HomePage
-from news_page import News
-from saas_page import Saas
+from framework.pages.website_stenn.for_e_commerce_page import ForECommerce
+from framework.pages.website_stenn.for_trade_page import ForTrade
+from framework.pages.website_stenn.header_button_page import HeaderButtons
+from framework.pages.website_stenn.home_page import HomePage
+from framework.pages.website_stenn.news_page import News
+from framework.pages.website_stenn.saas_page import Saas
 from conftest import driver
 
 
