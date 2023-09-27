@@ -1,14 +1,13 @@
 import time
-from header_button_page import HeaderButtons
-from base_page import highlight
-from news_page import News
-from resources_page import Resources
-from careers_page import Careers
-from questions_answers_page import QuestionsAnswers
-from factoring_works_page import FactoringWorks
-from glossary_page import Glossary
-from articles_page import Articles
-from useful_guides_page import UsefulGuides
+from framework.pages.website_stenn.header_button_page import HeaderButtons
+from framework.pages.website_stenn.news_page import News
+from framework.pages.website_stenn.resources_page import Resources
+from framework.pages.website_stenn.careers_page import Careers
+from framework.pages.website_stenn.questions_answers_page import QuestionsAnswers
+from framework.pages.website_stenn.factoring_works_page import FactoringWorks
+from framework.pages.website_stenn.glossary_page import Glossary
+from framework.pages.website_stenn.articles_page import Articles
+from framework.pages.website_stenn.useful_guides_page import UsefulGuides
 from collections import namedtuple
 from conftest import driver
 
