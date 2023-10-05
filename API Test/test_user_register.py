@@ -38,3 +38,18 @@ class TestUserRegistry(ApiHelper):
         ApiHelper.assert_code_status(response, 400)
         assert response.content.decode(
             "utf-8") == f"Users with email '{email}' already exists", f"Unexpected response content {response.content}"
+
+    def test_registration_without_at_symbol_should_fail(self):
+        invalid_email = self.email.replace("@", "")
+        data = {
+            'username': 'learnqa',
+            'firstName': 'learnqa',
+            'lastName': 'learnqa',
+            'password': '123',
+            'email': invalid_email
+        }
+
+        response = requests.post('https://playground.learnqa.ru/api/user/', data=data)
+
+        ApiHelper.assert_code_status(response, 400)
+        assert response.content.decode("utf-8") == "Invalid email format"
