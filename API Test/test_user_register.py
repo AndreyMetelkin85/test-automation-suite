@@ -1,4 +1,6 @@
 import requests
+import pytest
+
 from lib.api_helper import ApiHelper
 from datetime import datetime
 
@@ -47,6 +49,22 @@ class TestUserRegistry(ApiHelper):
             'lastName': 'learnqa',
             'password': '123',
             'email': invalid_email
+        }
+
+        response = requests.post('https://playground.learnqa.ru/api/user/', data=data)
+
+        ApiHelper.assert_code_status(response, 400)
+        assert response.content.decode("utf-8") == "Invalid email format"
+
+    @pytest.mark.parametrize("invalid_email", ["@example.com", "example@"])
+    def test_registration_with_invalid_email(self, invalid_email):
+        local_part_invalid_email = self.email.split("@")[0] + invalid_email
+        data = {
+            'username': 'learnqa',
+            'firstName': 'learnqa',
+            'lastName': 'learnqa',
+            'password': '123',
+            'email': f"{local_part_invalid_email}@example.com"
         }
 
         response = requests.post('https://playground.learnqa.ru/api/user/', data=data)
