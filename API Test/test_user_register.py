@@ -1,3 +1,6 @@
+import random
+import string
+
 import requests
 import pytest
 
@@ -11,6 +14,7 @@ class TestUserRegistry(ApiHelper):
         domain = "example.com"
         random_part = datetime.now().strftime("%m%d%Y%H%M%S")
         self.email = f"{base_part}{random_part}@{domain}"
+        self.username = f""
 
     def test_create_user_successfully(self):
         data = {
@@ -71,3 +75,31 @@ class TestUserRegistry(ApiHelper):
 
         ApiHelper.assert_code_status(response, 400)
         assert response.content.decode("utf-8") == "Invalid email format"
+
+    @pytest.mark.parametrize('username', ['a', 'A', 1])
+    def test_create_user_with_single_char_name(self, username):
+        data = {
+            'username': username,
+            'firstName': 'learnqa',
+            'lastName': 'learnqa',
+            'password': '123',
+            'email': self.email
+        }
+
+        response = requests.post('https://playground.learnqa.ru/api/user/', data=data)
+        ApiHelper.assert_code_status(response, 400)
+        assert response.content.decode("utf-8") == "The value of 'username' field is too short"
+
+    def test_create_user_with_long_and_complex_username(self):
+        data = {
+            'username': ''.join(random.choice(string.ascii_letters) for _ in range(300)),
+            'firstName': 'learnqa',
+            'lastName': 'learnqa',
+            'password': '123',
+            'email': self.email
+        }
+
+        response = requests.post('https://playground.learnqa.ru/api/user/', data=data)
+
+        ApiHelper.assert_code_status(response, 400)
+        assert response.content.decode("utf-8") == "The value of 'username' field is too long"
