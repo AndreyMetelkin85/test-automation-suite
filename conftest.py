@@ -3,13 +3,6 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from framework.pages.website_stenn.main_page import MainPage
-from api_base_page import BaseApi
-
-
-@pytest.fixture(scope="session")
-def api_client():
-    base_url = 'https://send-request.me'
-    return BaseApi(base_url)
 
 
 @pytest.fixture(scope="session")

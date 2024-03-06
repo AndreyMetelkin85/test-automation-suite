@@ -9,7 +9,7 @@ class RevenueBasedFinancing(BasePage):
 
     def get_heading_label(self):
         return self.find_element((By.XPATH,
-                                  '//div[text()="Are you an E-commerce or SaaS business looking for a financing solution?"]'))
+                                  '//h1[text()="Are you an E-commerce or SaaS business looking for a financing solution?"]'))
 
     def check_my_limit_button(self):
         return self.find_element((By.XPATH, '//span[text()="Check my limit"]'))

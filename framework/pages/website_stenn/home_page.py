@@ -54,4 +54,4 @@ class HomePage(BasePage):
         return self.find_element((By.XPATH, '//span[text()="Apply online"]'))
 
     def accept_all_pop_up_button(self):
-        return self.find_element((By.XPATH, '//*[text()="Accept All"]'))
+        return self.find_element((By.XPATH, '//*[text()="Accept all"]'))

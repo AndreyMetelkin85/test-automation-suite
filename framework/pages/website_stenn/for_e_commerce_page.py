@@ -8,7 +8,7 @@ class ForECommerce(BasePage):
         return self.find_element((By.XPATH, '//a[@class="styles_tabsTab__2bOpf"]'))
 
     def get_heading_label(self):
-        return self.find_element((By.XPATH, '//div[@class="styles_blockTextWrapper__jxmTm"]'))
+        return self.find_element((By.XPATH, '//div[@class="header84_card-content-top"]'))
 
     def check_my_limit_button(self):
         return self.find_element((By.XPATH, '//span[text()="Check my limit"]'))
