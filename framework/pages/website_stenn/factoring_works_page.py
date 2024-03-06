@@ -4,5 +4,5 @@ from base_page import BasePage
 
 class FactoringWorks(BasePage):
     def get_heading_label(self):
-        return self.find_element((By.XPATH, '//p[contains(., "Everything You Need")]'))
+        return self.find_element((By.XPATH, '//h1[contains(., "Everything You Need")]'))
    

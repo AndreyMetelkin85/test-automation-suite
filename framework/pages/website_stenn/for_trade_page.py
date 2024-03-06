@@ -5,10 +5,10 @@ from base_page import BasePage
 class ForTrade(BasePage):
 
     def get_heading_label(self):
-        return self.find_element((By.XPATH, '//div[text()="Boost your cash flow with streamlined invoice financing"]'))
+        return self.find_element((By.XPATH, '//h1[text()="Boost your cash flow with streamlined invoice financing"]'))
 
     def accept_all_pop_up_button(self):
-        return self.find_element((By.XPATH, '//*[text()="Accept All"]'))
+        return self.find_element((By.XPATH, '//*[text()="Accept all"]'))
 
     def apply_for_finance_button(self):
         return self.find_element((By.XPATH, '//span[text()="Apply for finance"]'))

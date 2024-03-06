@@ -8,7 +8,7 @@ class Saas(BasePage):
         return self.find_elements((By.XPATH, '//div[@class= "styles_tabsWrapper__xUv97"]//a'))
 
     def get_heading_label(self):
-        return self.find_element((By.XPATH, '//div[@class= "styles_saasHeaderTitle__8NTLf"]'))
+        return self.find_element((By.XPATH, '//div[@class= "header84_card-content-top"]'))
 
     def privacy_policy_button(self):
         return self.find_element((By.XPATH, '//a[text()="Privacy Policy"]'))
