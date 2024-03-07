@@ -1,7 +1,5 @@
 import time
-
 from selenium.webdriver.common.action_chains import ActionChains
-
 from framework.pages.website_stenn.articles_page import Articles
 from framework.pages.website_stenn.careers_page import Careers
 from framework.pages.website_stenn.factoring_works_page import FactoringWorks
@@ -45,7 +43,6 @@ def test_buttons_in_header(driver):
     assert convert_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_buttons = HeaderButtons(driver)
     products_button = page_header_buttons.products_button()
@@ -60,7 +57,6 @@ def test_buttons_in_header(driver):
     assert revenue_based_financing_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     solutions_button = page_header_button.solutions_button()
@@ -75,7 +71,6 @@ def test_buttons_in_header(driver):
     assert boost_your_cash_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     solutions_button = page_header_button.solutions_button()
@@ -90,7 +85,6 @@ def test_buttons_in_header(driver):
     assert boost_your_cash_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     solutions_button = page_header_button.solutions_button()
@@ -105,7 +99,6 @@ def test_buttons_in_header(driver):
     assert boost_your_cash_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     resources_button = page_header_button.resources_button()
@@ -120,7 +113,6 @@ def test_buttons_in_header(driver):
     assert articles_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     resources_button = page_header_button.resources_button()
@@ -135,7 +127,6 @@ def test_buttons_in_header(driver):
     assert careers_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     resources_button = page_header_button.resources_button()
@@ -150,7 +141,6 @@ def test_buttons_in_header(driver):
     assert faq_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     resources_button = page_header_button.resources_button()
@@ -165,7 +155,6 @@ def test_buttons_in_header(driver):
     assert useful_guides_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     resources_button = page_header_button.resources_button()
@@ -180,7 +169,6 @@ def test_buttons_in_header(driver):
     assert how_factoring_works_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     resources_button = page_header_button.resources_button()
@@ -195,7 +183,6 @@ def test_buttons_in_header(driver):
     assert glossary_label.is_displayed()
 
     driver.back()
-    time.sleep(2)
 
     page_header_button = HeaderButtons(driver)
     resources_button = page_header_button.resources_button()
@@ -206,6 +193,20 @@ def test_buttons_in_header(driver):
     actions.click(articles_button[2]).perform()
 
     page_news = Articles(driver)
+    articles_label = page_news.get_heading_label()
+    assert articles_label.is_displayed()
+
+    driver.back()
+
+    page_header_button = HeaderButtons(driver)
+    contact_us_label = page_header_button.contact_us_button()
+    actions = ActionChains(driver)
+    actions.move_to_element(contact_us_label).perform()
+    contact_us_button = page_header_buttons.contact_us_button()
+    actions.move_to_element(contact_us_button)
+    actions.click(contact_us_button).perform()
+
+    page_news = ContactUs(driver)
     articles_label = page_news.get_heading_label()
     assert articles_label.is_displayed()
 
