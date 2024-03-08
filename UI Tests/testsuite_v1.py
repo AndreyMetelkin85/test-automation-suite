@@ -224,44 +224,43 @@ def test_opening_social_networks(driver, slow_scroll):
 
     linkedin_button = home_page.social_networks()
     linkedin_button[0].click()
+    time.sleep(3)
 
-    current_window = driver.current_window_handle
-    driver.switch_to.window(driver.window_handles[-1])
     current_url = driver.current_url
-    expected_url_prefix = "https://www.linkedin.com"
+    expected_url_prefix = "https://www.linkedin.com/company/stenn-financial-services"
     assert current_url.startswith(expected_url_prefix)
 
-    driver.switch_to.window(current_window)
-
-    facebook_button = SocialNetworks(driver)
-    facebook_button.social_networks()[2].click()
-
-    current_window = driver.current_window_handle
-    driver.switch_to.window(driver.window_handles[-1])
-    current_url = driver.current_url
-    expected_url_prefix = "https://www.facebook.com"
-    assert current_url.startswith(expected_url_prefix)
-
-    driver.switch_to.window(current_window)
+    driver.back()
 
     twitter_button = SocialNetworks(driver)
     twitter_button.social_networks()[1].click()
+    time.sleep(3)
 
-    current_window = driver.current_window_handle
-    driver.switch_to.window(driver.window_handles[-1])
     current_url = driver.current_url
-    expected_url_prefix = "https://twitter.com"
+    expected_url_prefix = "https://twitter.com/i/flow/login?redirect_after_login=%2FStenn_Intl"
     assert current_url.startswith(expected_url_prefix)
 
-    driver.switch_to.window(current_window)
+    driver.back()
+
+    facebook_button = home_page.social_networks()
+    facebook_button[2].click()
+    time.sleep(3)
+
+    current_url = driver.current_url
+    expected_url_prefix = "https://www.facebook.com/StennIntl"
+    assert current_url.startswith(expected_url_prefix)
+
+    driver.back()
 
     youtube_button = SocialNetworks(driver)
     youtube_button.social_networks()[3].click()
+    time.sleep(3)
 
-    driver.switch_to.window(driver.window_handles[-1])
     current_url = driver.current_url
     expected_url = "https://www.youtube.com/channel/UCVsztAj0QmhKkfu4IKMHUOA"
     assert current_url == expected_url
+
+    driver.back()
 
 
 def test_сlick_and_transitions_home_page(driver, slow_scroll):
