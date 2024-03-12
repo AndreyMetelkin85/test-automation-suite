@@ -8,7 +8,7 @@ class HomePage(BasePage):
         return self.find_element((By.XPATH, '//h1[text()="Your working capital platform"]'))
 
     def apply_for_finance_button(self):
-        return self.find_elements((By.XPATH, '(//span[text()="Apply for Finance"])'))
+        return self.find_elements((By.XPATH, '(//a[@class="button w-button" and text()="Apply for Finance"])'))
 
     def navi_bar_button(self):
         return self.find_elements((By.XPATH, '//div[@id="navBarWrapper"]/div'))

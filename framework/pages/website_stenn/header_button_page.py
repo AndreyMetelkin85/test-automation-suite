@@ -45,3 +45,6 @@ class HeaderButtons(BasePage):
 
     def apply_for_finance_button(self):
         return self.find_element((By.XPATH, '//*[@id = "portal-apply-top-right"]'))
+
+    def partner_with_us_button(self):
+        return self.find_element((By.XPATH, '//div[@class="div-block-109"]//a[text()="Partner With Us"]'))

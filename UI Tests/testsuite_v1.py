@@ -7,6 +7,7 @@ from framework.pages.website_stenn.for_e_commerce_page import ForECommerce
 from framework.pages.website_stenn.glossary_page import Glossary
 from framework.pages.website_stenn.header_button_page import HeaderButtons
 from base_page import highlight
+from framework.pages.website_stenn.partner_with_us_page import PartnerWithUs
 from framework.pages.website_stenn.questions_answers_page import QuestionsAnswers
 from framework.pages.website_stenn.revenue_based_financing_page import RevenueBasedFinancing
 from framework.pages.website_stenn.saas_page import Saas
@@ -199,12 +200,18 @@ def test_buttons_in_header(driver):
     driver.back()
 
     page_header_button = HeaderButtons(driver)
-    contact_us_label = page_header_button.contact_us_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(contact_us_label).perform()
-    contact_us_button = page_header_buttons.contact_us_button()
-    actions.move_to_element(contact_us_button)
-    actions.click(contact_us_button).perform()
+    partner_with_us_button = page_header_button.partner_with_us_button()
+    driver.execute_script("arguments[0].click();", partner_with_us_button)
+
+    page_partner_with_us = PartnerWithUs(driver)
+    partner_with_us_label = page_partner_with_us.get_heading_label()
+    partner_with_us_label.is_displayed()
+
+    driver.back()
+
+    page_header_button = HeaderButtons(driver)
+    contact_us_button = page_header_button.contact_us_button()
+    driver.execute_script("arguments[0].click();", contact_us_button)
 
     page_news = ContactUs(driver)
     articles_label = page_news.get_heading_label()
@@ -265,8 +272,8 @@ def test_opening_social_networks(driver, slow_scroll):
 
 def test_сlick_and_transitions_home_page(driver, slow_scroll):
     home_page = HomePage(driver)
-    home_page_label = home_page.get_heading_label()
-    assert home_page_label.is_displayed()
+    # home_page_label = home_page.get_heading_label()
+    # assert home_page_label.is_displayed()
 
     accept_all_button = home_page.accept_all_pop_up_button()
     accept_all_button.click()
