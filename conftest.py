@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.options import Options
 from framework.pages.website_stenn.main_page import MainPage
 
 
-@pytest.fixture(scope="session")
+@pytest.fixture
 def driver():
     options = Options()
     options.add_argument("--start-maximized")

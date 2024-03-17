@@ -1,21 +1,21 @@
 import time
-from framework.pages.website_stenn.header_button_page import HeaderButtons
+from framework.pages.website_stenn.header_button_page import header_buttons_fixture
 from base_page import highlight
-from framework.pages.website_stenn.revenue_based_financing_page import RevenueBasedFinancing
+from framework.pages.website_stenn.revenue_based_financing_page import revenue_based_financing_page_fixture
 from framework.pages.website_stenn.home_page import HomePage
-from framework.pages.website_stenn.invoice_financing_page import InvoiceFinancing
+from framework.pages.website_stenn.invoice_financing_page import invoice_financing_page_fixture
 from framework.pages.website_stenn.news_page import News
 from conftest import driver
 
 
 def test_invoice_financing_page(driver):
-    home_page = HeaderButtons(driver)
+    home_page = header_buttons_fixture(driver)
 
     products_button = home_page.products_button()
     products_button.click()
     highlight(products_button)
 
-    invoice_financing_page = InvoiceFinancing(driver)
+    invoice_financing_page = invoice_financing_page_fixture(driver)
     convert_your_invoices_label = invoice_financing_page.heading_convert_your_invoices_label()
     convert_your_invoices_label.is_displayed()
     highlight(convert_your_invoices_label)
@@ -28,7 +28,7 @@ def test_invoice_financing_page(driver):
         apply_finance_button = invoice_financing_page.apply_for_finance_button()
         apply_finance_button[finance_option_button].click()
 
-        sign_up_page = InvoiceFinancing(driver)
+        sign_up_page = invoice_financing_page_fixture(driver)
         convert_your_invoices = sign_up_page.get_heading_label()
         assert convert_your_invoices.is_displayed()
         highlight(convert_your_invoices)
@@ -88,7 +88,7 @@ def test_invoice_financing_page(driver):
 
     current_window = driver.current_window_handle
     driver.switch_to.window(driver.window_handles[-1])
-    sign_up_page = InvoiceFinancing(driver)
+    sign_up_page = invoice_financing_page_fixture(driver)
     convert_your_invoices = sign_up_page.get_heading_label()
     assert convert_your_invoices.is_displayed()
     highlight(convert_your_invoices)
@@ -110,7 +110,7 @@ def test_invoice_financing_page(driver):
 
 
 def test_revenue_based_financing(driver):
-    home_page = HeaderButtons(driver)
+    home_page = header_buttons_fixture(driver)
 
     products_button = home_page.products_button()
     products_button.click()
@@ -119,7 +119,7 @@ def test_revenue_based_financing(driver):
     accept_all_button = home_page.accept_all_pop_up_button()
     accept_all_button.click()
 
-    revenue_based_financing = RevenueBasedFinancing(driver)
+    revenue_based_financing = revenue_based_financing_page_fixture(driver)
     revenue_based_financing_button = revenue_based_financing.revenue_based_financing_button()
     revenue_based_financing_button.click()
 
