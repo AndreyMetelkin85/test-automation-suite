@@ -10,14 +10,14 @@ class HomePage(BasePage):
     def apply_for_finance_button(self):
         return self.find_elements((By.XPATH, '(//a[@class="button w-button" and text()="Apply for Finance"])'))
 
-    def navi_bar_button(self):
-        return self.find_elements((By.XPATH, '//div[@id="navBarWrapper"]/div'))
-
     def right_for_you(self):
         return self.find_element((By.XPATH, '//div[text()="Choose, What’s Right For You?"]'))
 
     def invoice_financing_label(self):
         return self.find_element((By.XPATH, '//h1[text()="International and Domestic Invoice Financing"]'))
+
+    def revenue_based_financing_label(self):
+        return self.find_element((By.XPATH, '//h1[text()="Revenue-based Financing for your business"]'))
 
     def e_commerce_label(self):
         return self.find_element((By.XPATH, '//h1[text()="E-commerce"]'))
@@ -33,10 +33,10 @@ class HomePage(BasePage):
                                   '//div[text()="Looking for a financing solution that helps your SaaS business grow?"]'))
 
     def what_stenn_label(self):
-        return self.find_elements((By.XPATH, '//div[@id="scrollTarget"]/descendant::h1'))
+        return self.find_elements((By.XPATH, '//div[@class="w-layout-grid layout364_row-2"]/descendant::h3'))
 
     def what_stenn_button(self):
-        return self.find_elements((By.XPATH, '//div[@id="scrollTarget"]/descendant::a'))
+        return self.find_elements((By.XPATH, '//div[@class="w-layout-grid layout364_row-2"]/descendant::a'))
 
     def useful_guides_label(self):
         return self.find_element((By.XPATH, '//p[text()="Useful Guides"]'))
