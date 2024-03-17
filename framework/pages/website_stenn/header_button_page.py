@@ -34,8 +34,11 @@ class HeaderButtons(BasePage):
     def accept_all_pop_up_button(self):
         return self.find_element((By.XPATH, '//*[text()="Accept all"]'))
 
-    def login_dropdown(self):
+    def login_button(self):
         return self.find_element((By.XPATH, '//div[text()="Log in"]'))
+
+    def login_dropdown(self):
+        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-11"]//child::a'))
 
     def invoice_fincace_button(self):
         return self.find_element((By.XPATH, '//*[@data-testid = "invoice-fincace"]'))
@@ -44,7 +47,7 @@ class HeaderButtons(BasePage):
         return self.find_element((By.XPATH, '//*[@data-testid = "revenue"]'))
 
     def apply_for_finance_button(self):
-        return self.find_element((By.XPATH, '//*[@id = "portal-apply-top-right"]'))
+        return self.find_elements((By.XPATH, "(//a[contains(text(), 'Apply for Finance')])"))
 
     def partner_with_us_button(self):
         return self.find_element((By.XPATH, '//div[@class="div-block-109"]//a[text()="Partner With Us"]'))

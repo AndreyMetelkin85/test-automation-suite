@@ -1,20 +1,20 @@
 import time
-from framework.pages.website_stenn.for_e_commerce_page import ForECommerce
-from framework.pages.website_stenn.for_trade_page import ForTrade
-from framework.pages.website_stenn.header_button_page import HeaderButtons
+from framework.pages.website_stenn.for_e_commerce_page import for_e_commerce_page_fixture
+from framework.pages.website_stenn.for_trade_page import for_trade_page_fixture
+from framework.pages.website_stenn.header_button_page import header_buttons_fixture
 from framework.pages.website_stenn.home_page import HomePage
 from framework.pages.website_stenn.news_page import News
-from framework.pages.website_stenn.saas_page import Saas
+from framework.pages.website_stenn.saas_page import saas_page_fixture
 from conftest import driver
 
 
 def test_for_trade_page(driver):
-    home_page = HeaderButtons(driver)
+    home_page = header_buttons_fixture(driver)
 
     solutions_button = home_page.solutions_button()
     solutions_button.click()
 
-    for_trade = ForTrade(driver)
+    for_trade = for_trade_page_fixture(driver)
 
     for_trade_page = for_trade.get_heading_label()
     assert for_trade_page.is_displayed()
@@ -96,7 +96,7 @@ def test_for_trade_page(driver):
 
 
 def test_e_commerce(driver):
-    home_page = HeaderButtons(driver)
+    home_page = header_buttons_fixture(driver)
 
     solutions_button = home_page.solutions_button()
     solutions_button.click()
@@ -105,7 +105,7 @@ def test_e_commerce(driver):
     close_popup = home_page.accept_all_pop_up_button()
     close_popup.click()
 
-    e_commerce = ForECommerce(driver)
+    e_commerce = for_e_commerce_page_fixture(driver)
     e_commerce_button = e_commerce.ecommerce_batton()
     e_commerce_button.click()
 
@@ -182,7 +182,7 @@ def test_e_commerce(driver):
 
 
 def test_saas_page(driver):
-    home_page = HeaderButtons(driver)
+    home_page = header_buttons_fixture(driver)
 
     solutions_button = home_page.solutions_button()
     solutions_button.click()
@@ -192,7 +192,7 @@ def test_saas_page(driver):
     close_popup.click()
     time.sleep(1)
 
-    saas_page = Saas(driver)
+    saas_page = saas_page_fixture(driver)
     saas_button = saas_page.saas_button()
     saas_button[2].click()
 

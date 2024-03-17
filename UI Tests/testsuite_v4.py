@@ -1,13 +1,13 @@
 import time
-from framework.pages.website_stenn.header_button_page import HeaderButtons
+from framework.pages.website_stenn.header_button_page import header_buttons_fixture
 from framework.pages.website_stenn.news_page import News
 from framework.pages.website_stenn.resources_page import Resources
-from framework.pages.website_stenn.careers_page import Careers
-from framework.pages.website_stenn.questions_answers_page import QuestionsAnswers
-from framework.pages.website_stenn.factoring_works_page import FactoringWorks
-from framework.pages.website_stenn.glossary_page import Glossary
-from framework.pages.website_stenn.articles_page import Articles
-from framework.pages.website_stenn.useful_guides_page import UsefulGuides
+from framework.pages.website_stenn.careers_page import careers_page_fixture
+from framework.pages.website_stenn.questions_answers_page import questions_answers_page_fixture
+from framework.pages.website_stenn.factoring_works_page import factoring_works_page_fixture
+from framework.pages.website_stenn.glossary_page import glossary_page_fixture
+from framework.pages.website_stenn.articles_page import articles_page_fixture
+from framework.pages.website_stenn.useful_guides_page import useful_guides_page_fixture
 from collections import namedtuple
 from conftest import driver
 
@@ -15,7 +15,7 @@ Page = namedtuple('Page', ['page_name', 'is_need_to_go_back'])
 
 
 def test_buttons_header(driver):
-    home_page = HeaderButtons(driver)
+    home_page = header_buttons_fixture(driver)
 
     resources_button = home_page.resources_button()
     resources_button.click()
@@ -24,12 +24,12 @@ def test_buttons_header(driver):
 
     pages = [
         Page(News, False),
-        Page(Careers, True),
-        Page(QuestionsAnswers, False),
-        Page(UsefulGuides, False),
-        Page(FactoringWorks, False),
-        Page(Glossary, False),
-        Page(Articles, False)
+        Page(careers_page_fixture, True),
+        Page(questions_answers_page_fixture, False),
+        Page(useful_guides_page_fixture, False),
+        Page(factoring_works_page_fixture, False),
+        Page(glossary_page_fixture, False),
+        Page(articles_page_fixture, False)
     ]
 
     for index, current_page in enumerate(pages):
@@ -44,7 +44,7 @@ def test_buttons_header(driver):
 
 
 def test_blog_list_buttons(driver):
-    home_page = HeaderButtons(driver)
+    home_page = header_buttons_fixture(driver)
 
     resources_button = home_page.resources_button()
     resources_button.click()
@@ -83,7 +83,7 @@ def test_blog_list_buttons(driver):
 
 
 def test_careers_page(driver):
-    home_page = HeaderButtons(driver)
+    home_page = header_buttons_fixture(driver)
 
     accept_all_button = home_page.accept_all_pop_up_button()
     accept_all_button.click()
@@ -95,7 +95,7 @@ def test_careers_page(driver):
     careers_buttons = resources_page.list_title_buttons()
     careers_buttons[1].click()
 
-    careers_page = Careers(driver)
+    careers_page = careers_page_fixture(driver)
     careers_page_header_label = careers_page.get_heading_label()
     assert careers_page_header_label.is_displayed()
 
