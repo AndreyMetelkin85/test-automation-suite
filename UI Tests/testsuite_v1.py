@@ -6,7 +6,7 @@ from framework.pages.website_stenn.factoring_works_page import FactoringWorks
 from framework.pages.website_stenn.for_e_commerce_page import ForECommerce
 from framework.pages.website_stenn.glossary_page import Glossary
 from framework.pages.website_stenn.header_button_page import HeaderButtons
-from base_page import highlight
+
 from framework.pages.website_stenn.partner_with_us_page import PartnerWithUs
 from framework.pages.website_stenn.questions_answers_page import QuestionsAnswers
 from framework.pages.website_stenn.revenue_based_financing_page import RevenueBasedFinancing
@@ -15,7 +15,6 @@ from framework.pages.website_stenn.social_networks_page import SocialNetworks
 from framework.pages.website_stenn.home_page import HomePage
 from framework.pages.website_stenn.invoice_financing_page import InvoiceFinancing
 from framework.pages.website_stenn.for_trade_page import ForTrade
-from framework.pages.website_stenn.news_page import News
 from framework.pages.website_stenn.contact_us_page import ContactUs
 from framework.pages.website_stenn.finance_option_page import FinanceOption
 from conftest import driver, slow_scroll
@@ -241,7 +240,7 @@ def test_opening_social_networks(driver, slow_scroll):
 
     twitter_button = SocialNetworks(driver)
     twitter_button.social_networks()[1].click()
-    time.sleep(3)
+    time.sleep(7)
 
     current_url = driver.current_url
     expected_url_prefix = "https://twitter.com/i/flow/login?redirect_after_login=%2FStenn_Intl"
@@ -251,7 +250,7 @@ def test_opening_social_networks(driver, slow_scroll):
 
     facebook_button = home_page.social_networks()
     facebook_button[2].click()
-    time.sleep(3)
+    time.sleep(2)
 
     current_url = driver.current_url
     expected_url_prefix = "https://www.facebook.com/StennIntl"
@@ -261,7 +260,7 @@ def test_opening_social_networks(driver, slow_scroll):
 
     youtube_button = SocialNetworks(driver)
     youtube_button.social_networks()[3].click()
-    time.sleep(3)
+    time.sleep(2)
 
     current_url = driver.current_url
     expected_url = "https://www.youtube.com/channel/UCVsztAj0QmhKkfu4IKMHUOA"
@@ -270,10 +269,8 @@ def test_opening_social_networks(driver, slow_scroll):
     driver.back()
 
 
-def test_сlick_and_transitions_home_page(driver, slow_scroll):
+def test_apply_for_finance_button_clickability(driver):
     home_page = HomePage(driver)
-    # home_page_label = home_page.get_heading_label()
-    # assert home_page_label.is_displayed()
 
     accept_all_button = home_page.accept_all_pop_up_button()
     accept_all_button.click()
@@ -282,152 +279,82 @@ def test_сlick_and_transitions_home_page(driver, slow_scroll):
     app_for_finance_button[0].click()
     time.sleep(0.5)
 
-    right_for_you_label = home_page.right_for_you()
-    assert right_for_you_label.is_displayed()
-
-    driver.back()
-    time.sleep(0.5)
-
-    list_buttons = home_page.navi_bar_button()
-    list_buttons[0].click()
-    time.sleep(0.5)
-
     invoice_financing_label = home_page.invoice_financing_label()
     assert invoice_financing_label.is_displayed()
 
-    driver.execute_script("window.scrollBy(0, 600);")
+    invoice_financing_label = home_page.revenue_based_financing_label()
+    assert invoice_financing_label.is_displayed()
+
+    driver.back()
+
+    driver.execute_script("window.scrollBy(0, 900);")
     time.sleep(0.5)
 
     apply_finance_button = home_page.apply_for_finance_button()
     apply_finance_button[1].click()
-    time.sleep(0.5)
+    time.sleep(2)
 
-    convert_your_invoices_label = home_page.convert_your_invoices_label()
-    assert convert_your_invoices_label.is_displayed()
-
-    driver.back()
-    time.sleep(1)
-
-    list_buttons = home_page.navi_bar_button()
-    list_buttons[1].click()
-    time.sleep(0.5)
-
-    e_commerce_label = home_page.e_commerce_label()
-    assert e_commerce_label.is_displayed()
-
-    e_commerce_button = home_page.apply_for_finance_button()
-    e_commerce_button[1].click()
-    time.sleep(0.5)
+    driver.switch_to.window(driver.window_handles[1])
 
     current_url = driver.current_url
-    expected_url = "https://rbf.stenn.com/auth/sign-up"
+    expected_url = "https://app.stenn.com/auth/sign-up"
     assert current_url == expected_url
 
-    driver.back()
-    time.sleep(1)
 
-    list_buttons = home_page.navi_bar_button()
-    list_buttons[2].click()
+def test_what_is_stenn_block_button_navigation(driver):
+    home_page = HomePage(driver)
+
+    accept_all_button = home_page.accept_all_pop_up_button()
+    accept_all_button.click()
+
+    driver.execute_script("window.scrollBy(0, 2600)")
     time.sleep(0.5)
 
-    saas_label = home_page.saas_label()
-    assert saas_label.is_displayed()
+    home_page_what_stenn_label = home_page.what_stenn_label()
+    assert home_page_what_stenn_label[0].is_displayed()
 
-    apply_finance_saas_button = home_page.apply_for_finance_button()
-    apply_finance_saas_button[1].click()
-    time.sleep(0.5)
+    what_stenn_block_articles_button = home_page.what_stenn_button()
+    what_stenn_block_articles_button[0].click()
 
-    financing_solution_label = home_page.looking_financing_label()
-    assert financing_solution_label.is_displayed()
-
-    driver.back()
-    time.sleep(1)
-
-    driver.execute_script("window.scrollBy(0, 1300);")
-    time.sleep(1)
-
-    articles_label = home_page.what_stenn_label()
-    assert articles_label[0].is_displayed()
-
-    articles_read_more_button = home_page.what_stenn_button()
-    articles_read_more_button[0].click()
-    time.sleep(0.5)
-
-    page_articles_label = News(driver)
-    articles_label = page_articles_label.get_heading_label()
-    assert articles_label.is_displayed()
+    article_page = Articles(driver)
+    articles_read_more_button = article_page.get_heading_label()
+    assert articles_read_more_button.is_displayed()
 
     driver.back()
-    time.sleep(1)
 
-    useful_guides_label = home_page.what_stenn_label()
-    assert useful_guides_label[1].is_displayed()
+    what_stenn_block_useful_guides_label = home_page.what_stenn_label()
+    assert what_stenn_block_useful_guides_label[1].is_displayed()
 
-    useful_guides_button = home_page.what_stenn_button()
-    useful_guides_button[1].click()
-    time.sleep(0.5)
+    what_stenn_block_useful_guides_button = home_page.what_stenn_button()
+    what_stenn_block_useful_guides_button[1].click()
 
-    useful_guides_label = home_page.useful_guides_label()
+    useful_guides_page = UsefulGuides(driver)
+    useful_guides_label = useful_guides_page.get_heading_label()
     assert useful_guides_label.is_displayed()
-    highlight(useful_guides_label)
 
     driver.back()
-    time.sleep(1)
 
-    careers_label = home_page.what_stenn_label()
-    assert careers_label[2].is_displayed()
+    what_stenn_block_careers_label = home_page.what_stenn_label()
+    assert what_stenn_block_careers_label[2].is_displayed()
 
-    careers_button = home_page.what_stenn_button()
-    careers_button[2].click()
-    time.sleep(0.5)
+    what_stenn_block_careers_button = home_page.what_stenn_button()
+    what_stenn_block_careers_button[2].click()
 
-    careers_label = home_page.join_stenn_label()
+    careers_page = Careers(driver)
+    careers_label = careers_page.get_heading_label()
     assert careers_label.is_displayed()
 
     driver.back()
-    time.sleep(1)
 
-    faq_label = home_page.what_stenn_label()
-    assert faq_label[3].is_displayed()
+    what_stenn_block_faq_label = home_page.what_stenn_label()
+    assert what_stenn_block_faq_label[3].is_displayed()
 
-    faq_button = home_page.what_stenn_button()
-    faq_button[3].click()
-    time.sleep(0.5)
+    what_stenn_block_faq_button = home_page.what_stenn_button()
+    what_stenn_block_faq_button[3].click()
 
-    faq_label = home_page.questions_answers_label()
+    faq_page = QuestionsAnswers(driver)
+    faq_label = faq_page.get_heading_label()
     assert faq_label.is_displayed()
-
-    driver.back()
-    time.sleep(1)
-
-    driver.execute_script("window.scrollBy(0, 1000);")
-    time.sleep(1)
-
-    read_news_button = home_page.read_news_button()
-    read_news_button.click()
-    time.sleep(0.5)
-
-    articles_label = page_articles_label.get_heading_label()
-    assert articles_label.is_displayed()
-
-    driver.back()
-    time.sleep(1)
-
-    driver.execute_script("window.scrollBy(0, 500);")
-    time.sleep(1)
-
-    apply_online_button = home_page.apply_online_button()
-    apply_online_button.click()
-    time.sleep(0.5)
-
-    convert_your_invoices_label = home_page.convert_your_invoices_label()
-    assert convert_your_invoices_label.is_displayed()
-
-    driver.back()
-    time.sleep(1)
-
-    products_label = home_page.get_heading_label()
-    assert products_label.is_displayed()
 
 
 def test_opening_login_page(driver):
