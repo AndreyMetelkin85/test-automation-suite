@@ -10,6 +10,7 @@ def driver():
     options = Options()
     options.add_argument("--start-maximized")
     driver = webdriver.Chrome(options=options)
+    driver.implicitly_wait(5)
     base_page = MainPage(driver)
     base_page.go_to_site()
     yield driver
