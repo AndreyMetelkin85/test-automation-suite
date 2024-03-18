@@ -16,8 +16,8 @@ def test_buttons_in_header(
         factoring_works_page_fixture, useful_guides_page_fixture, contact_us_page_fixture, glossary_page_fixture,
         partner_with_us_page_fixture):
 
-    accept_all_button = home_page_fixture.accept_all_pop_up_button()
-    accept_all_button.click()
+    accept_all_cookies_button = home_page_fixture.accept_all_pop_up_button()
+    accept_all_cookies_button.click()
 
     page_products_label = home_page_fixture.get_heading_label()
     assert page_products_label.is_displayed()
@@ -212,8 +212,8 @@ def test_buttons_in_header(
 def test_opening_social_networks(driver, slow_scroll, social_networks_fixture):
     home_page = social_networks_fixture
 
-    accept_all_button = home_page.accept_all_pop_up_button()
-    accept_all_button.click()
+    accept_all_cookies_button = home_page.accept_all_pop_up_button()
+    accept_all_cookies_button.click()
 
     slow_scroll(driver, scroll_step=100, pause_duration=0.1)
 
@@ -263,8 +263,8 @@ def test_opening_social_networks(driver, slow_scroll, social_networks_fixture):
 
 def test_apply_for_finance_button_clickability(driver, home_page_fixture):
 
-    accept_all_button = home_page_fixture.accept_all_pop_up_button()
-    accept_all_button.click()
+    accept_all_cookies_button = home_page_fixture.accept_all_pop_up_button()
+    accept_all_cookies_button.click()
 
     app_for_finance_button = home_page_fixture.apply_for_finance_button()
     app_for_finance_button[0].click()
@@ -294,8 +294,8 @@ def test_apply_for_finance_button_clickability(driver, home_page_fixture):
 
 def test_what_is_stenn_block_button_navigation(driver, home_page_fixture, articles_page_fixture, careers_page_fixture,
                                                useful_guides_page_fixture, questions_answers_page_fixture):
-    accept_all_button = home_page_fixture.accept_all_pop_up_button()
-    accept_all_button.click()
+    accept_all_cookies_button = home_page_fixture.accept_all_pop_up_button()
+    accept_all_cookies_button.click()
 
     driver.execute_script("window.scrollBy(0, 2600)")
     time.sleep(0.5)
@@ -349,8 +349,8 @@ def test_what_is_stenn_block_button_navigation(driver, home_page_fixture, articl
 
 def test_opening_login_page(driver, header_buttons_fixture, home_page_fixture):
 
-    accept_all_button = home_page_fixture.accept_all_pop_up_button()
-    accept_all_button.click()
+    accept_all_cookies_button = home_page_fixture.accept_all_pop_up_button()
+    accept_all_cookies_button.click()
 
     login_button = header_buttons_fixture.login_button()
     actions = ActionChains(driver)
@@ -383,8 +383,8 @@ def test_opening_login_page(driver, header_buttons_fixture, home_page_fixture):
 
 def test_select_your_finance_option(driver, home_page_fixture, header_buttons_fixture):
 
-    accept_all_button = home_page_fixture.accept_all_pop_up_button()
-    accept_all_button.click()
+    accept_all_cookies_button = home_page_fixture.accept_all_pop_up_button()
+    accept_all_cookies_button.click()
 
     apply_for_finance_button = header_buttons_fixture.apply_for_finance_button()
     driver.execute_script("arguments[0].click();", apply_for_finance_button[1])

@@ -48,7 +48,7 @@ class HomePage(BasePage):
         return self.find_element((By.XPATH, '//h1[text()="Questions & Answers"]'))
 
     def read_news_button(self):
-        return self.find_element((By.XPATH, '//span[text()="Read all News"]'))
+        return self.find_element((By.XPATH, '//a[text()="Read all News"]'))
 
     def apply_online_button(self):
         return self.find_element((By.XPATH, '//span[text()="Apply online"]'))

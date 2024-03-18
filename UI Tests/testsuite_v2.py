@@ -1,112 +1,88 @@
 import time
-from framework.pages.website_stenn.header_button_page import header_buttons_fixture
 from base_page import highlight
-from framework.pages.website_stenn.revenue_based_financing_page import revenue_based_financing_page_fixture
-from framework.pages.website_stenn.home_page import HomePage
-from framework.pages.website_stenn.invoice_financing_page import invoice_financing_page_fixture
-from framework.pages.website_stenn.news_page import News
 from conftest import driver
+from selenium.webdriver.common.action_chains import ActionChains
+from framework.page_fixture_provider import header_buttons_fixture, revenue_based_financing_page_fixture, \
+    home_page_fixture, invoice_financing_page_fixture, news_page_fixture, articles_page_fixture
 
 
-def test_invoice_financing_page(driver):
-    home_page = header_buttons_fixture(driver)
+def test_apply_for_finance_button_in_invoice_financing_page(
+        driver, header_buttons_fixture, invoice_financing_page_fixture, home_page_fixture):
+    accept_all_cookies_button = home_page_fixture.accept_all_pop_up_button()
+    accept_all_cookies_button.click()
 
-    products_button = home_page.products_button()
-    products_button.click()
-    highlight(products_button)
-
-    invoice_financing_page = invoice_financing_page_fixture(driver)
-    convert_your_invoices_label = invoice_financing_page.heading_convert_your_invoices_label()
-    convert_your_invoices_label.is_displayed()
-    highlight(convert_your_invoices_label)
-
-    accept_all_button = home_page.accept_all_pop_up_button()
-    accept_all_button.click()
+    products_button = header_buttons_fixture.products_button()
+    actions = ActionChains(driver)
+    actions.move_to_element(products_button).perform()
+    invoice_financing_button = header_buttons_fixture.financing_hover_button()
+    actions.move_to_element(invoice_financing_button[0])
+    actions.click(invoice_financing_button[0]).perform()
 
     apply_finance_button_count = 4
     for finance_option_button in range(apply_finance_button_count):
-        apply_finance_button = invoice_financing_page.apply_for_finance_button()
-        apply_finance_button[finance_option_button].click()
+        apply_finance_button = invoice_financing_page_fixture.apply_for_finance_button()
+        driver.execute_script("arguments[0].click();", apply_finance_button[finance_option_button])
+        time.sleep(1.5)
 
-        sign_up_page = invoice_financing_page_fixture(driver)
-        convert_your_invoices = sign_up_page.get_heading_label()
-        assert convert_your_invoices.is_displayed()
-        highlight(convert_your_invoices)
+        driver.switch_to.window(driver.window_handles[1])
 
-        driver.back()
-        time.sleep(1)
+        current_url = driver.current_url
+        expected_url = "https://app.stenn.com/auth/sign-up"
+        assert current_url == expected_url
+
+        driver.switch_to.window(driver.window_handles[0])
 
         driver.execute_script("window.scrollBy(0, 700);")
         time.sleep(0.5)
 
-    learn_more_button = invoice_financing_page.learn_more_button()
-    learn_more_button.click()
-    time.sleep(1)
 
-    learn_more_label = invoice_financing_page.stenn_named_label()
-    assert learn_more_label.is_displayed()
-    highlight(learn_more_label)
+def test_information_unveiling(driver, invoice_financing_page_fixture, home_page_fixture, news_page_fixture,
+                               articles_page_fixture):
+    driver.get('https://www.stenn.com/product/invoice-financing')
 
-    driver.back()
-    time.sleep(1)
+    accept_all_cookies_button = home_page_fixture.accept_all_pop_up_button()
+    accept_all_cookies_button.click()
 
-    driver.execute_script("window.scrollBy(0, 700);")
+    driver.execute_script("window.scrollBy(0, 3700);")
     time.sleep(1)
 
     asked_questions_button_count = 4
-    for number_buttons in range(asked_questions_button_count):
-        asked_questions_button = invoice_financing_page.asked_questions_button()
-        asked_questions_button[number_buttons].click()
+    for number_count_buttons in range(asked_questions_button_count):
+        asked_questions_button = invoice_financing_page_fixture.asked_questions_button()
+        asked_questions_button[number_count_buttons].click()
         time.sleep(1)
 
-        if number_buttons == 0:
-            how_it_works_label = invoice_financing_page.how_it_works_label()
+        if number_count_buttons == 0:
+            how_it_works_label = invoice_financing_page_fixture.how_it_works_label()
             assert how_it_works_label.is_displayed()
-            highlight(how_it_works_label)
-            asked_questions_button[number_buttons].click()
-        elif number_buttons == 1:
-            almost_any_company_label = invoice_financing_page.almost_any_company_label()
+            how_it_works_button = invoice_financing_page_fixture.how_it_works_button()
+            how_it_works_button.click()
+        elif number_count_buttons == 1:
+            almost_any_company_label = invoice_financing_page_fixture.almost_any_company_label()
             assert almost_any_company_label.is_displayed()
-            highlight(almost_any_company_label)
-            asked_questions_button[number_buttons].click()
-        elif number_buttons == 2:
-            six_benefits_label = invoice_financing_page.six_benefits_label()
+            almost_any_company_button = invoice_financing_page_fixture.almost_any_company_button()
+            almost_any_company_button.click()
+        elif number_count_buttons == 2:
+            six_benefits_label = invoice_financing_page_fixture.six_benefits_label()
             assert six_benefits_label.is_displayed()
-            highlight(six_benefits_label)
-            asked_questions_button[number_buttons].click()
-        elif number_buttons == 3:
-            we_finance_label = invoice_financing_page.we_finance_label()
+            six_benefits_of_stsnn_financing_button = invoice_financing_page_fixture.six_benefits_of_stenn_financing_button()
+            six_benefits_of_stsnn_financing_button.click()
+        elif number_count_buttons == 3:
+            we_finance_label = invoice_financing_page_fixture.stenn_pricing_information()
             assert we_finance_label[0].is_displayed()
-            highlight(we_finance_label[0])
+            fees_starting_button = invoice_financing_page_fixture.fees_starting_button()
+            fees_starting_button.click()
 
-        driver.execute_script(f"window.scrollBy(0, {50 * (number_buttons + 1)});")
+        driver.execute_script(f"window.scrollBy(0, {50 * (number_count_buttons + 1)});")
         time.sleep(1)
-
-    apply_finance = HomePage(driver)
-    apply_finance_button = apply_finance.apply_for_finance_button()
-    apply_finance_button[0].click()
-
-    current_window = driver.current_window_handle
-    driver.switch_to.window(driver.window_handles[-1])
-    sign_up_page = invoice_financing_page_fixture(driver)
-    convert_your_invoices = sign_up_page.get_heading_label()
-    assert convert_your_invoices.is_displayed()
-    highlight(convert_your_invoices)
-
-    driver.switch_to.window(current_window)
 
     driver.execute_script("window.scrollBy(0, 600);")
-    time.sleep(2)
-
-    invoice_financing_page = HomePage(driver)
-    read_news_button = invoice_financing_page.read_news_button()
-    read_news_button.click()
     time.sleep(1)
 
-    page_articles_label = News(driver)
-    articles_label = page_articles_label.get_heading_label()
+    read_all_news_button = home_page_fixture.read_news_button()
+    read_all_news_button.click()
+    articles_label = articles_page_fixture.get_heading_label()
     assert articles_label.is_displayed()
-    highlight(articles_label)
 
 
 def test_revenue_based_financing(driver):
