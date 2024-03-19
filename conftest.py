@@ -3,6 +3,8 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from framework.pages.website_stenn.main_page import MainPage
+from framework.wait_page import Wait
+from framework.page_fixture import PageFixture
 
 
 @pytest.fixture
@@ -29,3 +31,13 @@ def slow_scroll():
             time.sleep(pause_duration)
 
     return scroll
+
+
+@pytest.fixture
+def wait(driver):
+    return Wait(driver)
+
+
+@pytest.fixture
+def page_fixture(driver):
+    return PageFixture(driver)

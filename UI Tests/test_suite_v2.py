@@ -1,8 +1,7 @@
 import time
-from base_page import highlight
 from conftest import driver
 from selenium.webdriver.common.action_chains import ActionChains
-from framework.page_fixture_provider import header_buttons_fixture, revenue_based_financing_page_fixture, \
+from framework.page_fixture import header_buttons_fixture, revenue_based_financing_page_fixture, \
     home_page_fixture, invoice_financing_page_fixture, news_page_fixture, articles_page_fixture
 
 
