@@ -26,7 +26,7 @@ class InvoiceFinancing(BasePage):
         return self.find_element((By.XPATH, '//p[text()="You as an importer..."]'))
 
     def stenn_pricing_information(self):
-        return self.find_elements((By.XPATH, '//div[@class="text-block-47"]'))
+        return self.find_element((By.XPATH, '//div[@class="text-block-47"]'))
 
     def close_live_chat_button(self):
         return self.find_element((By.XPATH, '//*[@class="conversations-visitor-close-icon"]'))
