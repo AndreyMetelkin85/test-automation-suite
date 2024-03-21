@@ -6,6 +6,7 @@ class TestData:
     """
         Класс для создания тестовых данных.
     """
+
     def __init__(self):
         """
             Инициализирует объект класса TestData с экземпляром класса Faker для генерации
@@ -14,7 +15,6 @@ class TestData:
         self.faker = Faker("en_US")
 
     def user_test_data(self):
-
         """Генерирует данные для одного пользователя."""
 
         user = {
@@ -28,3 +28,27 @@ class TestData:
             "userStatus": random.randint(1, 10)
         }
         return user
+
+    def pet_test_data(self):
+        """
+            Генерирует данные для животного.
+        """
+        pet = {
+            "id": random.randint(1, 100),
+            "category": {
+                "id": random.randint(1, 100),
+                "name": self.faker.word()
+            },
+            "name": self.faker.word(),
+            "photoUrls": [
+                self.faker.image_url()
+            ],
+            "tags": [
+                {
+                    "id": random.randint(1, 100),
+                    "name": self.faker.word()
+                }
+            ],
+
+        }
+        return pet
