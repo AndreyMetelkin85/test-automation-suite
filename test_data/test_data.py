@@ -3,7 +3,14 @@ import random
 
 
 class TestData:
+    """
+        Класс для создания тестовых данных.
+    """
     def __init__(self):
+        """
+            Инициализирует объект класса TestData с экземпляром класса Faker для генерации
+            тестовых данных на английском языке.
+        """
         self.faker = Faker("en_US")
 
     def user_test_data(self):
