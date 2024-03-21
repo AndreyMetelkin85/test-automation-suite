@@ -22,12 +22,12 @@ class BaseAPI:
             print(f"HTTP Error: {err}")
             return None
 
-    def post(self, endpoint, data):
+    def post(self, endpoint, data, headers=None, files=None):
         """
             Выполняет POST-запрос к API по указанному endpoint с передачей данных.
         """
         try:
-            response = requests.post(self.base_url + endpoint, json=data)
+            response = requests.post(self.base_url + endpoint, json=data, headers=headers, files=files)
             response.raise_for_status()
             return response.json()
         except requests.exceptions.HTTPError as err:
