@@ -1,3 +1,4 @@
+from datetime import datetime, timezone
 from faker import Faker
 import random
 
@@ -18,7 +19,7 @@ class TestData:
         """Генерирует данные для одного пользователя."""
 
         user = {
-            "id": random.randint(1, 100),
+            "id": random.randint(1, 9999),
             "username": self.faker.user_name(),
             "firstName": self.faker.first_name(),
             "lastName": self.faker.last_name(),
@@ -34,9 +35,9 @@ class TestData:
             Генерирует данные для животного.
         """
         pet = {
-            "id": random.randint(1, 100),
+            "id": random.randint(1, 9999),
             "category": {
-                "id": random.randint(1, 100),
+                "id": random.randint(1, 9999),
                 "name": self.faker.word()
             },
             "name": self.faker.word(),
@@ -45,10 +46,19 @@ class TestData:
             ],
             "tags": [
                 {
-                    "id": random.randint(1, 100),
+                    "id": random.randint(1, 9999),
                     "name": self.faker.word()
                 }
             ],
 
         }
         return pet
+
+    def order_test_data(self):
+        current_datetime = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
+        order = {
+            "id": random.randint(1, 9999),
+            "quantity": random.randint(1, 10),
+            "shipDate": current_datetime,
+        }
+        return order

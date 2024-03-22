@@ -17,10 +17,11 @@ class BaseAPI:
         """
         try:
             response = requests.get(self.base_url + endpoint)
-            return response.json()
+            response.raise_for_status()
+            return response.json(), response.status_code
         except requests.exceptions.HTTPError as err:
             print(f"HTTP Error: {err}")
-            return None
+            return None, response.status_code
 
     def post(self, endpoint, data, headers=None, files=None):
         """
