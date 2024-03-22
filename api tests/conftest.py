@@ -2,6 +2,7 @@ import pytest
 
 from framework.api_page.petstore_user_method import PetStoreUser
 from framework.api_page.petstore_pet_method import PetStorePet
+from framework.api_page.petstore_order_method import PetStoreOrder
 from test_data.test_data import TestData
 
 
@@ -22,6 +23,11 @@ def pet_test_data():
 
 
 @pytest.fixture
+def order_test_data():
+    return TestData()
+
+
+@pytest.fixture
 def pet_store_user_fixture():
     """
          Фикстура для предоставления методов для взаимодействия с API магазина домашних животных.
@@ -35,3 +41,8 @@ def pet_store_pet_fixture():
         Фикстура для предоставления методов для взаимодействия с API магазина домашних животных.
     """
     return PetStorePet()
+
+
+@pytest.fixture
+def order_store_pet_fixture():
+    return PetStoreOrder()
