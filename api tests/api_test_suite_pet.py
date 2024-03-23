@@ -4,19 +4,21 @@ from conftest import pet_test_data, pet_store_pet_fixture
 
 
 # Проверяет добавление нового животного в магазин домашних животных.
-def test_add_new_pet_in_store(pet_store_pet_fixture, pet_test_data):
+@pytest.mark.parametrize("status", ["available", "pending", "sold"])
+def test_add_new_pet_in_store(pet_store_pet_fixture, pet_test_data, status):
     test_data = pet_test_data.pet_test_data()
-    add_new_pet = pet_store_pet_fixture.add_new_pet_store(pet_test_data=test_data, status="available")
-    assert add_new_pet["id"] == test_data["id"]
+    add_new_pet = pet_store_pet_fixture.add_new_pet_store(pet_test_data=test_data, status=status)
+    assert add_new_pet["status"] == status
 
 
 # Тест для проверки обновления информации о питомце в зоомагазине.
-def test_updates_pet_store(pet_store_pet_fixture, pet_test_data):
+@pytest.mark.parametrize("status", ["available", "pending", "sold"])
+def test_updates_pet_store(pet_store_pet_fixture, pet_test_data, status):
     test_data = pet_test_data.pet_test_data()
     new_name = pet_test_data.pet_test_data()
-    pet_store_pet_fixture.add_new_pet_store(pet_test_data=test_data, status="available")
+    pet_store_pet_fixture.add_new_pet_store(pet_test_data=test_data, status=status)
     update_pet = pet_store_pet_fixture.updates_pet_store(id=test_data["id"], pet_test_data=new_name,
-                                                         status="available")
+                                                         status=status)
     assert update_pet["code"] == 200
 
 
