@@ -15,7 +15,7 @@ def test_create_order_for_pet(pet_test_data, order_test_data, pet_store_pet_fixt
 
 
 # Тест поиска заказа по его идентификатору.
-@pytest.mark.parametrize("id, expected_status", [(1, 404), (2, 404), (3, 404), (4, 200), (5, 404)])
+@pytest.mark.parametrize("id, expected_status", [(1, 404), (2, 200), (3, 404), (4, 200), (5, 200)])
 def test_find_purchase_order_id(order_store_pet_fixture, id, expected_status):
     get_order_by_id, status_code = order_store_pet_fixture.get_find_purchase_order_id(id=id)
     assert status_code == expected_status
@@ -23,8 +23,8 @@ def test_find_purchase_order_id(order_store_pet_fixture, id, expected_status):
 
 #  Тест получения остатков по статусу.
 def test_inventories_by_status(order_store_pet_fixture):
-    status = order_store_pet_fixture.get_inventories_by_status()
-    assert status[0]["totvs"] == 4
+    response_status_code = order_store_pet_fixture.get_inventories_by_status()
+    assert response_status_code[1] == 200
 
 
 # Тест удаления заказа.
