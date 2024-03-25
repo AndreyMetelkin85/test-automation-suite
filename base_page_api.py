@@ -13,7 +13,7 @@ class BaseAPI:
 
     def get(self, endpoint):
         """
-            Выполняет GET-запрос к API по указанному endpoint.
+            Выполняет GET-запрос к API по-указанному endpoint.
         """
         try:
             response = requests.get(self.base_url + endpoint)
@@ -25,7 +25,7 @@ class BaseAPI:
 
     def post(self, endpoint, data, headers=None, files=None):
         """
-            Выполняет POST-запрос к API по указанному endpoint с передачей данных.
+            Выполняет POST-запрос к API по-указанному endpoint с передачей данных.
         """
         try:
             response = requests.post(self.base_url + endpoint, json=data, headers=headers, files=files)
@@ -37,7 +37,7 @@ class BaseAPI:
 
     def put(self, endpoint, data):
         """
-            Выполняет PUT-запрос к API по указанному endpoint с передачей данных.
+            Выполняет PUT-запрос к API по-указанному endpoint с передачей данных.
         """
         try:
             response = requests.put(self.base_url + endpoint, json=data)
@@ -49,7 +49,7 @@ class BaseAPI:
 
     def delete(self, endpoint):
         """
-            Выполняет DELETE-запрос к API по указанному endpoint.
+            Выполняет DELETE-запрос к API по-указанному endpoint.
         """
         try:
             response = requests.delete(self.base_url + endpoint)

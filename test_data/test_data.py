@@ -55,6 +55,9 @@ class TestData:
         return pet
 
     def order_test_data(self):
+        """
+            Генерирует тестовые данные для заказа.
+        """
         current_datetime = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
         order = {
             "id": random.randint(1, 9999),
