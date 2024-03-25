@@ -9,19 +9,42 @@ from framework.page_fixture import PageFixture
 
 @pytest.fixture
 def driver():
+    # Создание экземпляра объекта Options для управления параметрами запуска браузера
     options = Options()
     options.add_argument("--start-maximized")
+
+    # Инициализация веб-драйвера Chrome с переданными опциями
     driver = webdriver.Chrome(options=options)
+
+    # Установка неявного ожидания в 5 секунд
     driver.implicitly_wait(5)
+
+    # Создание экземпляра главной страницы, передавая веб-драйвер
     base_page = MainPage(driver)
-    base_page.go_to_site()
+    base_page.go_to_site()  # Переход на сайт
+
+    # Возвращение драйвера для использования в тестах
     yield driver
+
+    # Закрытие веб-драйвера после завершения теста
     driver.quit()
 
 
 @pytest.fixture
 def slow_scroll():
+    """
+        Фикстура slow_scroll предназначена для медленной прокрутки страницы вниз.
+        Эта фикстура создает функцию scroll, которая прокручивает страницу вниз с заданным шагом и паузой
+        между прокрутками.
+    """
     def scroll(driver, scroll_step=150, pause_duration=0.3):
+        """
+            Функция scroll прокручивает страницу вниз.
+
+            :param driver - Драйвер браузера Selenium.
+            :param scroll_step - Величина прокрутки страницы вниз на каждом шаге (по умолчанию 150 пикселей).
+            :param pause_duration - Длительность паузы между прокрутками (по умолчанию 0.3 секунды).
+        """
         current_position = driver.execute_script('return window.pageYOffset')
         page_height = driver.execute_script('return document.body.scrollHeight')
 
@@ -35,9 +58,19 @@ def slow_scroll():
 
 @pytest.fixture
 def wait(driver):
+    """
+        Фикстура wait создает объект ожидания (WebDriverWait) для ожидания определенного условия веб-элемента.
+
+        :param driver: Драйвер браузера Selenium.
+    """
     return Wait(driver)
 
 
 @pytest.fixture
 def page_fixture(driver):
+    """
+        Фикстура page_fixture создает экземпляр объекта PageFixture, который представляет страницу веб-приложения.
+
+        :param driver: Драйвер браузера Selenium.
+    """
     return PageFixture(driver)
