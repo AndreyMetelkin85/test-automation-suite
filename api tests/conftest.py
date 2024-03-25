@@ -24,6 +24,9 @@ def pet_test_data():
 
 @pytest.fixture
 def order_test_data():
+    """
+        Фикстура для предоставления тестовых данных для заказа.
+    """
     return TestData()
 
 
@@ -45,4 +48,8 @@ def pet_store_pet_fixture():
 
 @pytest.fixture
 def order_store_pet_fixture():
+    """
+        Фикстура для создания экземпляра класса PetStoreOrder для тестирования операций заказа.
+    """
+
     return PetStoreOrder()
