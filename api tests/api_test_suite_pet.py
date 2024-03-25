@@ -44,14 +44,14 @@ def test_get_pet_id(pet_store_pet_fixture, pet_test_data):
     test_data = pet_test_data.pet_test_data()
     pet_store_pet_fixture.add_new_pet_store(pet_test_data=test_data, status="available")
     get_pet = pet_store_pet_fixture.get_pet_id(id=test_data["id"])
-    assert get_pet["id"] == test_data['id']
+    assert get_pet[0]["id"] == test_data['id']
 
 
 # Тест проверяет, что метод get_finds_pets_by_status возвращает животных с указанным статусом.
 @pytest.mark.parametrize("status", ["available", "pending", "sold"])
 def test_get_finds_pets_by_status(pet_store_pet_fixture, pet_test_data, status):
     found_pets = pet_store_pet_fixture.get_finds_pets_by_status(status=status)
-    for pet in found_pets:
+    for pet in found_pets[0]:
         assert pet["status"] == status
 
 
