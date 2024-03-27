@@ -48,21 +48,18 @@ def test_information_unveiling_frequently_asked_questions_block_invoice_financin
 
         if number_count_buttons == 0:
             how_it_works_label = page_fixture.invoice_financing_page.how_it_works_label()
-
             assert how_it_works_label.is_displayed()
             how_it_works_button = page_fixture.invoice_financing_page.how_it_works_button()
             how_it_works_button.click()
 
         elif number_count_buttons == 1:
             almost_any_company_label = page_fixture.invoice_financing_page.almost_any_company_label()
-
             assert almost_any_company_label.is_displayed()
             almost_any_company_button = page_fixture.invoice_financing_page.almost_any_company_button()
             almost_any_company_button.click()
 
         elif number_count_buttons == 2:
             six_benefits_label = page_fixture.invoice_financing_page.six_benefits_label()
-
             assert six_benefits_label.is_displayed()
             six_benefits_of_stenn_financing_button = \
                 page_fixture.invoice_financing_page.six_benefits_of_stenn_financing_button()
