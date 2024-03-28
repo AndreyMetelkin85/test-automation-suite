@@ -7,9 +7,6 @@ class ForTrade(BasePage):
     def get_heading_label(self):
         return self.find_element((By.XPATH, '//h1[text()="Boost your cash flow with streamlined invoice financing"]'))
 
-    def accept_all_pop_up_button(self):
-        return self.find_element((By.XPATH, '//*[text()="Accept all"]'))
-
     def apply_for_finance_button(self):
         return self.find_element((By.XPATH, '//a[text()="Apply for finance"]'))
 
@@ -20,10 +17,10 @@ class ForTrade(BasePage):
         return self.find_element((By.XPATH, '//p[contains(., "If you have any invoices waiting")]'))
 
     def almost_any_company_label(self):
-        return self.find_element((By.XPATH, '//div[text()="More About Applicants"]'))
+        return self.find_element((By.XPATH, '//h1[text()="More About Applicants"]'))
 
     def six_benefits_label(self):
-        return self.find_element((By.XPATH, '//div[text()="You as an importer..."]'))
+        return self.find_element((By.XPATH, '//div[text()="Six benefits of Stenn financing"]'))
 
     def we_finance_label(self):
         return self.find_elements((By.XPATH, '//*[@class="cost-calc__bottom-half-suppliers"]//*'))
