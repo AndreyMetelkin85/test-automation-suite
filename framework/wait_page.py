@@ -31,3 +31,24 @@ class Wait(WebDriverWait):
             :param element: Элемент, который нужно дождаться.
         """
         return self.until(ES.visibility_of(element))
+
+    def wait_until_the_elements_are_visible(self, elements):
+        """
+            Ожидает, пока все элементы не станут видимыми на странице.
+            :param elements: Список элементов, которые нужно дождаться.
+        """
+        return self.until(ES.visibility_of_all_elements_located(elements))
+
+    def wait_until_element_is_not_visible(self, element):
+        """
+            Ожидает, пока элемент не перестанет быть видимым на странице.
+            :param element: Элемент, который нужно дождаться.
+        """
+        return self.until(ES.invisibility_of_element(element))
+
+    def wait_until_element_is_clickable(self, element):
+        """
+            Ожидает, пока элемент не станет кликабельным на странице.
+            :param element: Элемент, который нужно дождаться.
+        """
+        return self.until(ES.element_to_be_clickable(element))
