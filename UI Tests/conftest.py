@@ -37,6 +37,7 @@ def slow_scroll():
         Эта фикстура создает функцию scroll, которая прокручивает страницу вниз с заданным шагом и паузой
         между прокрутками.
     """
+
     def scroll(driver, scroll_step=150, pause_duration=0.3):
         """
             Функция scroll прокручивает страницу вниз.
@@ -54,6 +55,24 @@ def slow_scroll():
             time.sleep(pause_duration)
 
     return scroll
+
+
+@pytest.fixture
+def scroll_down(driver):
+    """
+       Фикстура для прокрутки страницы вниз на заданное количество пикселей.
+    """
+
+    def _scroll(pixels):
+        """
+            Функция _scroll - которая прокручивает страницу на указанное количество пикселей.
+
+            :param pixels: Количество пикселей, на которое следует прокрутить страницу.
+        """
+        driver.execute_script(f"window.scrollBy(0, {pixels});")
+        time.sleep(1.5)
+
+    return _scroll
 
 
 @pytest.fixture

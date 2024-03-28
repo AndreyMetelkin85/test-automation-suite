@@ -11,7 +11,7 @@ class Saas(BasePage):
         return self.find_element((By.XPATH, '//div[@class= "header84_card-content-top"]'))
 
     def privacy_policy_button(self):
-        return self.find_element((By.XPATH, '//a[text()="Privacy Policy"]'))
+        return self.find_element((By.XPATH, '//div[@class="text-block-43"]//a'))
 
     def privacy_policy_label(self):
         return self.find_element((By.XPATH, '//h2[text()="STENN INTERNATIONAL LTD"]'))
@@ -29,7 +29,7 @@ class Saas(BasePage):
         return self.find_element((By.XPATH, '//h1[contains(., "Stenn named")]'))
 
     def frequently_asked_questions(self):
-        return self.find_elements((By.XPATH, '(//p[@class="styles_questionLinkAccordionTitle___aB8Q"])'))
+        return self.find_elements((By.XPATH, '//div[@class="faq1_accordion-2"]'))
 
     def revenue_based_financing_label(self):
         return self.find_element((By.XPATH, '//p[contains(., "Revenue based financing")]'))
