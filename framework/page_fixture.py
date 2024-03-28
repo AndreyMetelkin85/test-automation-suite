@@ -1,5 +1,3 @@
-import pytest
-
 from framework.pages.website_stenn.articles_page import Articles
 from framework.pages.website_stenn.careers_page import Careers
 from framework.pages.website_stenn.contact_us_page import ContactUs

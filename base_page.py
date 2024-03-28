@@ -40,6 +40,13 @@ class BasePage(ABC):
         return WebDriverWait(self.driver, time).until(EC.presence_of_all_elements_located(locator),
                                                       message=f"Can't find elements by locator {locator}")
 
+    def go_to_element(self, element):
+        """
+            Прокручивает страницу к указанному элементу.
+            :param element: Элемент, к которому нужно прокрутить страницу.
+        """
+        return self.driver.execute_script("arguments[0].scrollIntoView();", element)
+
     def go_to_site(self):
         """
             Метод для перехода на главную страницу сайта.
