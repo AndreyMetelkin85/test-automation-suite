@@ -1,6 +1,6 @@
 import pytest
 
-from conftest import pet_test_data, order_test_data, pet_store_pet_fixture, order_store_pet_fixture
+from test_api.conftest import pet_test_data, order_test_data, pet_store_pet_fixture, order_store_pet_fixture
 
 
 # Тест создания заказа на питомца.

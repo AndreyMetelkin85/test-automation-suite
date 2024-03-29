@@ -1,5 +1,5 @@
 import time
-from conftest import driver, page_fixture, wait, scroll_down
+from test_ui.conftest import driver, page_fixture, wait, scroll_down
 
 
 def test_trade_page_functionality(driver, page_fixture, wait, scroll_down):
