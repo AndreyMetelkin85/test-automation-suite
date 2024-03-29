@@ -2,7 +2,7 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from framework.pages.website_stenn.main_page import MainPage
+from framework.website_stenn_page.main_page import MainPage
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
 

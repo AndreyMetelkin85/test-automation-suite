@@ -1,3 +1,5 @@
+import allure
+
 from conftest import user_test_data, pet_store_user_fixture
 
 
