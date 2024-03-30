@@ -1,7 +1,10 @@
-from conftest import user_test_data, pet_store_user_fixture
+import allure
+
+from test_api.conftest import user_test_data, pet_store_user_fixture
 
 
 # Проверяет создание пользователя в магазине домашних животных.
+@allure.feature("add user")
 def test_create_user(user_test_data, pet_store_user_fixture):
     test_data = user_test_data.user_test_data()
     user = pet_store_user_fixture.create_user(user_test_data=test_data, password="12345")
@@ -9,6 +12,7 @@ def test_create_user(user_test_data, pet_store_user_fixture):
 
 
 # Проверяет создание пользователей с использованием массива данных.
+@allure.feature("add user")
 def test_create_user_with_array(user_test_data, pet_store_user_fixture):
     test_data_1 = user_test_data.user_test_data()
     test_data_2 = user_test_data.user_test_data()
@@ -19,6 +23,7 @@ def test_create_user_with_array(user_test_data, pet_store_user_fixture):
 
 
 # Проверяет создание пользователя с использованием списка данных.
+@allure.feature("add a user to the store system")
 def test_create_user_with_list(user_test_data, pet_store_user_fixture):
     test_data = user_test_data.user_test_data()
     user_array = pet_store_user_fixture.create_user_with_list(user_test_data=test_data, password="12345")
@@ -26,6 +31,7 @@ def test_create_user_with_list(user_test_data, pet_store_user_fixture):
 
 
 # Проверяет получение информации о пользователе по его имени.
+@allure.feature("add a user to the store system")
 def test_get_user_name(user_test_data, pet_store_user_fixture):
     test_data = user_test_data.user_test_data()
     pet_store_user_fixture.create_user(user_test_data=test_data, password="12345")
@@ -34,6 +40,7 @@ def test_get_user_name(user_test_data, pet_store_user_fixture):
 
 
 # Проверяет обновление имени пользователя.
+@allure.feature("add a user to the store system")
 def test_put_user_name(user_test_data, pet_store_user_fixture):
     test_data = user_test_data.user_test_data()
     new_user_name = user_test_data.user_test_data()
@@ -44,6 +51,7 @@ def test_put_user_name(user_test_data, pet_store_user_fixture):
 
 
 # Проверяет удаление пользователя.
+@allure.feature("add a user to the store system")
 def test_user_delete(user_test_data, pet_store_user_fixture):
     test_data = user_test_data.user_test_data()
     pet_store_user_fixture.create_user(user_test_data=test_data, password="12345")
@@ -52,6 +60,7 @@ def test_user_delete(user_test_data, pet_store_user_fixture):
 
 
 # Проверяет вход пользователя в систему.
+@allure.feature("add a user to the store system")
 def test_user_login(user_test_data, pet_store_user_fixture):
     test_data = user_test_data.user_test_data()
     pet_store_user_fixture.create_user(user_test_data=test_data, password="12345")
@@ -60,6 +69,7 @@ def test_user_login(user_test_data, pet_store_user_fixture):
 
 
 # Проверяет выход пользователя из системы.
+@allure.feature("add a user to the store system")
 def test_user_logout(user_test_data, pet_store_user_fixture):
     test_data = user_test_data.user_test_data()
     pet_store_user_fixture.create_user(user_test_data=test_data, password="12345")
