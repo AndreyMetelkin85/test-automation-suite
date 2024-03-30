@@ -17,7 +17,7 @@ def highlight(func):
                :param **kwargs - Именованные аргументы, переданные в исходную функцию.
         """
         element = func(*args, **kwargs)
-        parent = element._parent
+        parent = element.parent
         parent.execute_script("arguments[0].style.border='5px solid blue'", element)
         return element
 
@@ -44,7 +44,7 @@ def highlights(func):
         """
         elements = func(*args, **kwargs)
         for element in elements:
-            parent = element._parent
+            parent = element.parent
             parent.execute_script("arguments[0].style.border='5px solid blue'", element)
         return elements
 
