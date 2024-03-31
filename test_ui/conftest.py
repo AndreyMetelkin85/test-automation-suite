@@ -1,20 +1,42 @@
 import time
 import pytest
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.edge.options import Options as EdgeOptions
 from framework.website_stenn_page.main_page import MainPage
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
 
 
-@pytest.fixture
-def driver():
-    # Создание экземпляра объекта Options для управления параметрами запуска браузера
-    options = Options()
-    options.add_argument("--start-maximized")
-
-    # Инициализация веб-драйвера Chrome с переданными опциями
-    driver = webdriver.Chrome(options=options)
+@pytest.fixture(params=["chrome", "firefox", "edge"])
+def driver(request):
+    """
+       Фикстура для создания веб-драйвера для различных браузеров.
+       :param request: Параметр request фикстуры pytest, который содержит информацию о запрошенном параметре.
+       :return: Экземпляр веб-драйвера для указанного браузера.
+    """
+    if request.param == "chrome":
+        # Настройка параметров для Chrome
+        options = ChromeOptions()
+        # Создание экземпляра веб-драйвера Chrome
+        driver = webdriver.Chrome(options=options)
+        # Создание экземпляра веб-драйвера Firefox
+        driver.maximize_window()
+    elif request.param == "firefox":
+        # Настройка параметров для Firefox
+        options = FirefoxOptions()
+        # Создание экземпляра веб-драйвера Firefox
+        driver = webdriver.Firefox(options=options)
+        driver.maximize_window()
+    elif request.param == "edge":
+        # Настройка параметров для Edge
+        options = EdgeOptions()
+        # Использование Chromium для Edge (по умолчанию в новых версиях)
+        options.use_chromium = True
+        # Создание экземпляра веб-драйвера Edge
+        driver = webdriver.Edge(options=options)
+        driver.maximize_window()
 
     # Установка неявного ожидания в 5 секунд
     driver.implicitly_wait(5)
@@ -42,9 +64,9 @@ def slow_scroll():
         """
             Функция scroll прокручивает страницу вниз.
 
-            :param driver - Драйвер браузера Selenium.
-            :param scroll_step - Величина прокрутки страницы вниз на каждом шаге (по умолчанию 150 пикселей).
-            :param pause_duration - Длительность паузы между прокрутками (по умолчанию 0.3 секунды).
+            :param driver: Драйвер браузера Selenium.
+            :param scroll_step: Величина прокрутки страницы вниз на каждом шаге (по умолчанию 150 пикселей).
+            :param pause_duration: Длительность паузы между прокрутками (по умолчанию 0.3 секунды).
         """
         current_position = driver.execute_script('return window.pageYOffset')
         page_height = driver.execute_script('return document.body.scrollHeight')
@@ -65,9 +87,10 @@ def scroll_down(driver):
 
     def _scroll(pixels):
         """
-            Функция _scroll - которая прокручивает страницу на указанное количество пикселей.
+            Функция _scroll: которая прокручивает страницу на указанное количество пикселей.
 
             :param pixels: Количество пикселей, на которое следует прокрутить страницу.
+            :return: Функция _scroll, которая прокручивает страницу на указанное количество пикселей.
         """
         driver.execute_script(f"window.scrollBy(0, {pixels});")
         time.sleep(1.5)
@@ -81,6 +104,7 @@ def wait(driver):
         Фикстура wait создает объект ожидания (WebDriverWait) для ожидания определенного условия веб-элемента.
 
         :param driver: Драйвер браузера Selenium.
+        :return: Объект ожидания (WebDriverWait).
     """
     return Wait(driver)
 
@@ -91,5 +115,6 @@ def page_fixture(driver):
         Фикстура page_fixture создает экземпляр объекта PageFixture, который представляет страницу веб-приложения.
 
         :param driver: Драйвер браузера Selenium.
+        :return: Экземпляр объекта PageFixture.
     """
     return PageFixture(driver)
