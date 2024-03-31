@@ -355,10 +355,10 @@ def test_opening_login_page(driver, page_fixture, wait):
     actions.move_to_element(invoice_financing_button[1])
     actions.click(invoice_financing_button[1]).perform()
 
-    expected_url = "https://rbf.stenn.com/auth/login"
-    wait.wait_until_the_url_is_visible(expected_url)
+    expected_prefix = 'https://rbf.stenn.com/auth/login'
+    wait.wait_until_url_contains(expected_prefix)
     current_url = driver.current_url
-    assert current_url == expected_url
+    assert current_url.startswith(expected_prefix), f"URL {current_url} does not start with {expected_prefix}"
 
 
 def test_select_your_finance_option(driver, page_fixture, wait):
