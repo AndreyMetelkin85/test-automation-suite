@@ -19,6 +19,8 @@ def driver(request):
     if request.param == "chrome":
         # Настройка параметров для Chrome
         options = ChromeOptions()
+        # UI тесты запускаются в фоновом режиме.
+        options.add_argument("--headless=new")
         # Создание экземпляра веб-драйвера Chrome
         driver = webdriver.Chrome(options=options)
         # Создание экземпляра веб-драйвера Firefox
@@ -26,12 +28,16 @@ def driver(request):
     elif request.param == "firefox":
         # Настройка параметров для Firefox
         options = FirefoxOptions()
+        # UI тесты запускаются в фоновом режиме.
+        options.add_argument('--headless')
         # Создание экземпляра веб-драйвера Firefox
         driver = webdriver.Firefox(options=options)
         driver.maximize_window()
     elif request.param == "edge":
         # Настройка параметров для Edge
         options = EdgeOptions()
+        # UI тесты запускаются в фоновом режиме.
+        options.add_argument("--headless=new")
         # Использование Chromium для Edge (по умолчанию в новых версиях)
         options.use_chromium = True
         # Создание экземпляра веб-драйвера Edge
