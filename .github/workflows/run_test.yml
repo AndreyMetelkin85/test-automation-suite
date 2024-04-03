@@ -15,6 +15,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -28,18 +29,3 @@ jobs:
         run: pip install -r requirements.txt
       - name: Run tests
         run: pytest
-
-  deploy:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - name: Deploy Docker container
-        run: |
-          # Ваш скрипт для развертывания Docker контейнера
-          # Например:
-          docker-compose up -d
-      - name: Run tests after deployment
-        run: |
-          # Ваш скрипт для запуска тестов после развертывания
-          # Например:
-          pytest
