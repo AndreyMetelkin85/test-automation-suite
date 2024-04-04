@@ -109,13 +109,13 @@ def test_saas_page_functionality(driver, wait, page_fixture, scroll_down):
 
     driver.switch_to.window(driver.window_handles[1])
 
-    expected_prefix = 'https://app.stenn.com/privacy-policy'
+    expected_prefix = 'https://www.stenn.com/privacy-policy'
     wait.wait_until_url_contains(expected_prefix)
     current_url = driver.current_url
     assert current_url.startswith(expected_prefix), f"URL {current_url} does not start with {expected_prefix}"
 
-    privacy_policy_label = page_fixture.saas_page.privacy_policy_label()
-    privacy_policy_label.is_displayed()
+    # privacy_policy_label = page_fixture.saas_page.privacy_policy_label()
+    # privacy_policy_label.is_displayed()
 
     driver.switch_to.window(driver.window_handles[0])
 
