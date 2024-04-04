@@ -1,7 +1,15 @@
-name: Autotests_runs
+name: Autotests
 
 on:
-  push
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+        type: choice
+        options:
+          - Run tests
 
 jobs:
   test:
