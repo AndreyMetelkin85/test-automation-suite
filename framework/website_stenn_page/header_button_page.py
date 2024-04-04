@@ -8,25 +8,25 @@ class HeaderButtons(BasePage):
         pass
 
     def products_button(self):
-        return self.find_element((By.XPATH, '//div[@id="w-dropdown-toggle-6"]'))
+        return self.find_element((By.XPATH, '//div[text()="Products"]'))
 
     def financing_hover_button(self):
-        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-6"]//a'))
+        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-0"]//a'))
 
     def solutions_button(self):
-        return self.find_element((By.XPATH, '//div[@id="w-dropdown-toggle-7"]'))
+        return self.find_element((By.XPATH, '//div[text()="Solutions"]'))
 
     def solutions_hover_button(self):
-        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-7"]//a'))
+        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-1"]//a'))
 
     def resources_button(self):
-        return self.find_element((By.XPATH, '//div[@id="w-dropdown-toggle-8"]'))
+        return self.find_element((By.XPATH, '//div[text()="Resources"]'))
 
     def resources_hover_button(self):
-        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-8"]//a'))
+        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-2"]//a'))
 
-    def resources_hover_button_right(self):
-        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-8"]//following-sibling::div//a'))
+    # def resources_hover_button_right(self):
+    #     return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-8"]//following-sibling::div//a'))
 
     def contact_us_button(self):
         return self.find_element((By.XPATH, '//a[contains(text(),"Contact Us")]'))

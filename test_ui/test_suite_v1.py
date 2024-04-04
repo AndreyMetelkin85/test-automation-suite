@@ -139,9 +139,9 @@ def test_buttons_in_header(driver, page_fixture, wait):
     resources_button = page_header_button.resources_button()
     actions = ActionChains(driver)
     actions.move_to_element(resources_button).perform()
-    how_factoring_works_button = page_header_buttons.resources_hover_button_right()
-    actions.move_to_element(how_factoring_works_button[0])
-    actions.click(how_factoring_works_button[0]).perform()
+    how_factoring_works_button = page_header_buttons.resources_hover_button()
+    actions.move_to_element(how_factoring_works_button[4])
+    actions.click(how_factoring_works_button[4]).perform()
 
     page_how_factoring_works = page_fixture.factoring_works_page
     how_factoring_works_label = page_how_factoring_works.get_heading_label()
@@ -153,9 +153,9 @@ def test_buttons_in_header(driver, page_fixture, wait):
     resources_button = page_header_button.resources_button()
     actions = ActionChains(driver)
     actions.move_to_element(resources_button).perform()
-    glossary_button = page_header_buttons.resources_hover_button_right()
-    actions.move_to_element(glossary_button[1])
-    actions.click(glossary_button[1]).perform()
+    glossary_button = page_header_buttons.resources_hover_button()
+    actions.move_to_element(glossary_button[5])
+    actions.click(glossary_button[5]).perform()
 
     page_glossary = page_fixture.glossary_page
     glossary_label = page_glossary.get_heading_label()
@@ -167,9 +167,9 @@ def test_buttons_in_header(driver, page_fixture, wait):
     resources_button = page_header_button.resources_button()
     actions = ActionChains(driver)
     actions.move_to_element(resources_button).perform()
-    articles_button = page_header_buttons.resources_hover_button_right()
-    actions.move_to_element(articles_button[2])
-    actions.click(articles_button[2]).perform()
+    articles_button = page_header_buttons.resources_hover_button()
+    actions.move_to_element(articles_button[6])
+    actions.click(articles_button[6]).perform()
 
     page_news = page_fixture.articles_page
     articles_label = page_news.get_heading_label()
