@@ -17,7 +17,7 @@ def driver():
        :return: Экземпляр веб-драйвера для указанного браузера.
     """
     options = ChromeOptions()
-    options.add_argument("--headless=new")
+    # options.add_argument("--headless=new")
     driver = webdriver.Chrome(options=options)
     driver.maximize_window()
 

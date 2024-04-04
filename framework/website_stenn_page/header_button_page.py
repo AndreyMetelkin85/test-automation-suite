@@ -38,7 +38,7 @@ class HeaderButtons(BasePage):
         return self.find_element((By.XPATH, '//div[text()="Log in"]'))
 
     def login_dropdown(self):
-        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-11"]//child::a'))
+        return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-5"]//child::a'))
 
     def invoice_fincace_button(self):
         return self.find_element((By.XPATH, '//*[@data-testid = "invoice-fincace"]'))

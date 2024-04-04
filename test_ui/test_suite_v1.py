@@ -1,3 +1,5 @@
+import time
+
 from selenium.webdriver.common.action_chains import ActionChains
 from test_ui.conftest import driver, slow_scroll, wait, page_fixture
 
@@ -341,12 +343,14 @@ def test_opening_login_page(driver, page_fixture, wait):
     actions.move_to_element(invoice_financing_button[0])
     actions.click(invoice_financing_button[0]).perform()
 
-    expected_prefix = 'https://app.stenn.com/auth/login'
-    wait.wait_until_url_contains(expected_prefix)
-    current_url = driver.current_url
-    assert current_url.startswith(expected_prefix), f"URL {current_url} does not start with {expected_prefix}"
+    driver.switch_to.window(driver.window_handles[1])
 
-    driver.back()
+    expected_url = 'https://app.stenn.com/auth/sign-up'
+    wait.wait_until_the_url_is_visible(expected_url)
+    current_url = driver.current_url
+    assert current_url == expected_url
+
+    driver.switch_to.window(driver.window_handles[0])
 
     login_button = page_fixture.header_buttons.login_button()
     actions = ActionChains(driver)
@@ -355,10 +359,12 @@ def test_opening_login_page(driver, page_fixture, wait):
     actions.move_to_element(invoice_financing_button[1])
     actions.click(invoice_financing_button[1]).perform()
 
-    expected_prefix = 'https://rbf.stenn.com/auth/login'
-    wait.wait_until_url_contains(expected_prefix)
+    driver.switch_to.window(driver.window_handles[2])
+
+    expected_url = 'https://rbf.stenn.com/auth/sign-up'
+    wait.wait_until_the_url_is_visible(expected_url)
     current_url = driver.current_url
-    assert current_url.startswith(expected_prefix), f"URL {current_url} does not start with {expected_prefix}"
+    assert current_url == expected_url
 
 
 def test_select_your_finance_option(driver, page_fixture, wait):
