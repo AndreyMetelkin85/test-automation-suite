@@ -23,7 +23,7 @@ def test_updates_pet_store(pet_store_pet_fixture, pet_test_data, status):
 
 
 #  Тест для загрузки изображения питомца.
-@pytest.mark.xfail
+
 def test_upload_image_pet(pet_store_pet_fixture, pet_test_data):
     test_data = pet_test_data.pet_test_data()
     pet_store_pet_fixture.add_new_pet_store(pet_test_data=test_data, status="available")
