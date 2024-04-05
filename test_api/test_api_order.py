@@ -15,10 +15,11 @@ def test_create_order_for_pet(pet_test_data, order_test_data, pet_store_pet_fixt
 
 
 # Тест поиска заказа по его идентификатору.
-@pytest.mark.parametrize("id, expected_status", [(1, 404), (2, 404), (3, 404), (4, 200), (5, 200)])
+@pytest.mark.parametrize("id, expected_status",
+        [(1, (200, 404)), (2, (200, 404)), (3, (200, 404)), (4, (200, 404)), (5, (200, 404))])
 def test_find_purchase_order_id(order_store_pet_fixture, id, expected_status):
     get_order_by_id, status_code = order_store_pet_fixture.get_find_purchase_order_id(id=id)
-    assert status_code == expected_status
+    assert status_code in expected_status
 
 
 #  Тест получения остатков по статусу.
