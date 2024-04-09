@@ -10,14 +10,15 @@ services:
     volumes:
       - ./results:/root/results
 
-  db_demo-medium:
-    container_name: db_demo-medium
+  db_test_database:
+    container_name: db_test_database
+    image: postgres:15-alpine
     shm_size: 128mb
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_USER=postgres
-    image: postgres:15-alpine
     volumes:
-      - ./demo-medium-20170815.sql:/docker-entrypoint-initdb.d/demo-medium-20170815.sql
+      - C:/Users/metel/PycharmProjects/test-automation-suite/sql_file/demo-medium-20170815.sql:/docker-entrypoint-initdb.d/demo-medium-20170815.sql
+    
