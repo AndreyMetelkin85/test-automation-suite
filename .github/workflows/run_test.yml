@@ -1,11 +1,19 @@
-name: Autotest
+name: Autotests
 
 on:
-  push
+  workflow_dispatch:
+    inputs:
+      deployment_target:
+        description: Choose target
+        required: true
+        default:
+        type: choice
+        options:
+          - Run tests
 
 jobs:
   test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
 
     steps:
@@ -13,10 +21,10 @@ jobs:
         uses: actions/checkout@v3
       - name: setup Python
         uses: actions/setup-python@v4
-#        with:
-#          python-version: "3.9.13"
-#      - name: Install Chrome
-#        run: sudo apt-get install google-chrome-stable
+        with:
+          python-version: "3.9.13"
+      - name: Install Chrome
+        run: sudo apt-get install google-chrome-stable
       - name: install dependencies
         run: pip install -r requirements.txt
       - name: Run tests
