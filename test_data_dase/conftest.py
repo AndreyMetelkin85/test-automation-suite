@@ -1,14 +1,22 @@
+import os
+
 import psycopg2
 import pytest
-
-from config import DB_CONFIG
 
 
 @pytest.fixture
 def db_connection():
     connection = None
     try:
-        connection = psycopg2.connect(**DB_CONFIG)
+        db_config = {
+            "dbname": os.environ["dbname"],
+            "user": os.environ["user"],
+            "password": os.environ["password"],
+            "host": os.environ["host"],
+            "port": os.environ["port"]
+        }
+        connection = psycopg2.connect(**db_config)
+        # connection = psycopg2.connect(**DB_CONFIG)
         yield connection
     except Exception as ex:
         print("[INFO] Error while working with PostgreSQL:", ex)
