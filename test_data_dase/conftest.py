@@ -1,5 +1,5 @@
 import os
-import socket
+
 import psycopg2
 import pytest
 from dotenv import load_dotenv
@@ -7,9 +7,6 @@ from dotenv import load_dotenv
 
 @pytest.fixture
 def db_connection():
-    if not is_local_machine():
-        pytest.skip("Fixture skipped: Not running on local machine")
-
     connection = None
     load_dotenv()
     try:
@@ -21,6 +18,7 @@ def db_connection():
             "port": os.environ["PORT"]
         }
         connection = psycopg2.connect(**db_config)
+        # connection = psycopg2.connect(**DB_CONFIG)
         yield connection
     except Exception as ex:
         print("[INFO] Error while working with PostgreSQL:", ex)
@@ -28,14 +26,3 @@ def db_connection():
         if connection:
             connection.close()
             print("[INFO] PostgreSQL connection closed")
-
-
-def is_local_machine():
-    try:
-        s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-        s.connect(("127.0.0.1", 1))
-        return True
-    except socket.error:
-        return False
-    finally:
-        s.close()
