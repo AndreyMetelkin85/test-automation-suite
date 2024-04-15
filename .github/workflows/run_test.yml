@@ -28,10 +28,4 @@ jobs:
       - name: install dependencies
         run: pip install -r requirements.txt
       - name: Run tests
-        env:
-          DBNAME: ${{ secrets.DBNAME }}
-          USER: ${{ secrets.USER }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
         run: pytest
