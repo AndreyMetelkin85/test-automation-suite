@@ -65,3 +65,17 @@ class TestData:
             "shipDate": current_datetime,
         }
         return order
+
+    def db_test_data(self):
+        """
+            Генерирует тестовые данные для использования в тестах базы данных.
+        """
+        db_data = {
+            "first_name": self.faker.first_name(),
+            "last_name": self.faker.last_name(),
+            "department": self.faker.job(),
+            "position": self.faker.job(),
+            "phone": self.faker.phone_number(),
+            "email": self.faker.email()
+        }
+        return db_data

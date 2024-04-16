@@ -34,4 +34,4 @@ jobs:
           PASSWORD: ${{ secrets.PASSWORD }}
           HOST: ${{ secrets.HOST }}
           PORT: ${{ secrets.PORT }}
-        run: pytest
+        run: pytest -m "not db_test"
