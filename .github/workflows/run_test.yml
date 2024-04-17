@@ -26,7 +26,7 @@ jobs:
           python-version: "3.9.13"
 
       - name: Update APT
-        run: sudo apt update && sudo apt install -y wget
+        run: apt update && apt install -y wget
       - name: Chrome
         run:
           sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
