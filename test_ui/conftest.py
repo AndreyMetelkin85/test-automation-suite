@@ -7,6 +7,8 @@ from selenium.webdriver.edge.options import Options as EdgeOptions
 from framework.website_stenn_page.main_page import MainPage
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
+from selenium.webdriver.chrome.webdriver import WebDriver
+from seleniumbase import Driver
 
 
 @pytest.fixture
@@ -16,10 +18,14 @@ def driver():
        :param request: Параметр request фикстуры pytest, который содержит информацию о запрошенном параметре.
        :return: Экземпляр веб-драйвера для указанного браузера.
     """
-    options = ChromeOptions()
-    options.add_argument("--headless=new")
-    driver = webdriver.Chrome(options=options)
+    # TODO Пока не найдено решения установки Chrome на Ubuntu, использую библиотеку seleniumbase
+    # options = ChromeOptions()
+    # options.add_argument("--headless=new")
+    # driver = webdriver.Chrome(options=options)
+    # driver.maximize_window()
+    driver = Driver(headless=True)
     driver.maximize_window()
+
 
     # TODO Пока нет нужды проводить кросбраузерное тестирование!!!!!!
     # if request.param == "chrome":
