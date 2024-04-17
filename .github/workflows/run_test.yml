@@ -13,25 +13,25 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
-
-
+    runs-on: ubuntu-22.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.9.13"
-      - name: Install Chrome
-        run: sudo apt-get install google-chrome-stable
-      - name: install dependencies
+
+      - name: Update APT
+        run:  apt update && apt install -y wget
+      - name: Chrome
+        run:
+             wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb &&
+             apt install -y ./google-chrome-stable_current_amd64.deb
+      - name: Install dependencies
         run: pip install -r requirements.txt
+
       - name: Run tests
-        env:
-          DBNAME: ${{ secrets.DBNAME }}
-          USER: ${{ secrets.USER }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          HOST: ${{ secrets.HOST }}
-          PORT: ${{ secrets.PORT }}
         run: pytest -m "not db_test"
+
