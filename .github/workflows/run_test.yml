@@ -23,6 +23,8 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.9.13"
+      - name: APT update
+        run: apt update && apt install -y wget
       - name: Install Chrome
         run: apt-get install google-chrome-stable
       - name: install dependencies
