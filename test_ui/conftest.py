@@ -2,66 +2,25 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.firefox.options import Options as FirefoxOptions
-from selenium.webdriver.edge.options import Options as EdgeOptions
-from framework.website_stenn_page.main_page import MainPage
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
-from selenium.webdriver.chrome.webdriver import WebDriver
-from seleniumbase import Driver
+from test_data.test_data import TestData
 
 
 @pytest.fixture
 def driver():
     """
-       Фикстура для создания веб-драйвера для различных браузеров.
-       :param request: Параметр request фикстуры pytest, который содержит информацию о запрошенном параметре.
-       :return: Экземпляр веб-драйвера для указанного браузера.
+    Фикстура для создания веб-драйвера Chrome с опцией headless.
+    Returns: webdriver.Chrome: Экземпляр веб-драйвера Chrome.
     """
-    # TODO Пока не найдено решения установки Chrome на Ubuntu, использую библиотеку seleniumbase
-    # options = ChromeOptions()
-    # options.add_argument("--headless=new")
-    # driver = webdriver.Chrome(options=options)
-    # driver.maximize_window()
-    driver = Driver(headless=True)
+
+    options = ChromeOptions()
+    options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
     driver.maximize_window()
-
-
-    # TODO Пока нет нужды проводить кросбраузерное тестирование!!!!!!
-    # if request.param == "chrome":
-    #     # Настройка параметров для Chrome
-    #     options = ChromeOptions()
-    #     # UI тесты запускаются в фоновом режиме.
-    #     options.add_argument("--headless=new")
-    #     # Создание экземпляра веб-драйвера Chrome
-    #     driver = webdriver.Chrome(options=options)
-    #     # Создание экземпляра веб-драйвера Firefox
-    #     driver.maximize_window()
-    # elif request.param == "firefox":
-    #     # Настройка параметров для Firefox
-    #     options = FirefoxOptions()
-    #     # UI тесты запускаются в фоновом режиме.
-    #     options.add_argument('--headless')
-    #     # Создание экземпляра веб-драйвера Firefox
-    #     driver = webdriver.Firefox(options=options)
-    #     driver.maximize_window()
-    # elif request.param == "edge":
-    #     # Настройка параметров для Edge
-    #     options = EdgeOptions()
-    #     # UI тесты запускаются в фоновом режиме.
-    #     options.add_argument("--headless=new")
-    #     # Использование Chromium для Edge (по умолчанию в новых версиях)
-    #     options.use_chromium = True
-    #     # Создание экземпляра веб-драйвера Edge
-    #     driver = webdriver.Edge(options=options)
-    #     driver.maximize_window()
 
     # Установка неявного ожидания в 5 секунд
     driver.implicitly_wait(5)
-
-    # Создание экземпляра главной страницы, передавая веб-драйвер
-    base_page = MainPage(driver)
-    base_page.go_to_site()  # Переход на сайт
 
     # Возвращение драйвера для использования в тестах
     yield driver
@@ -136,3 +95,12 @@ def page_fixture(driver):
         :return: Экземпляр объекта PageFixture.
     """
     return PageFixture(driver)
+
+
+@pytest.fixture
+def text_box_form_data(driver):
+    """
+        :param Фикстура для получения тестовых данных для формы с данными.
+        :returns: TestData: Экземпляр класса TestData с тестовыми данными.
+    """
+    return TestData()

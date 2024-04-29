@@ -5,6 +5,7 @@ from test_ui.conftest import driver, slow_scroll, wait, page_fixture
 
 
 def test_buttons_in_header(driver, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 
@@ -199,6 +200,7 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
 
 def test_opening_social_networks(driver, slow_scroll, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 
@@ -207,15 +209,15 @@ def test_opening_social_networks(driver, slow_scroll, page_fixture, wait):
     footer_logo = page_fixture.social_networks.footer_logo_sten()
     assert footer_logo.is_displayed()
 
-    linkedin_button = page_fixture.social_networks.social_networks()
-    linkedin_button[0].click()
-
     expected_urls = {
         "linkedin.com": "https://www.linkedin.com/company/stenn-financial-services",
         "twitter.com": "https://twitter.com/i/flow/login?redirect_after_login=%2FStenn_Intl",
         "facebook.com": "https://www.facebook.com/StennIntl",
         "youtube.com": "https://www.youtube.com/channel/UCVsztAj0QmhKkfu4IKMHUOA"
     }
+
+    linkedin_button = page_fixture.social_networks.social_networks()
+    linkedin_button[0].click()
 
     expected_url = expected_urls["linkedin.com"]
     wait.wait_until_the_url_is_visible(expected_url)
@@ -232,6 +234,7 @@ def test_opening_social_networks(driver, slow_scroll, page_fixture, wait):
     current_url = driver.current_url
     assert current_url == expected_url
 
+    driver.back()
     driver.back()
 
     facebook_button = page_fixture.social_networks.social_networks()
@@ -256,6 +259,7 @@ def test_opening_social_networks(driver, slow_scroll, page_fixture, wait):
 
 
 def test_apply_for_finance_button_clickability(driver, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 
@@ -284,6 +288,7 @@ def test_apply_for_finance_button_clickability(driver, page_fixture, wait):
 
 
 def test_what_is_stenn_block_button_navigation(driver, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 
@@ -333,6 +338,7 @@ def test_what_is_stenn_block_button_navigation(driver, page_fixture, wait):
 
 
 def test_opening_login_page(driver, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 
@@ -368,6 +374,7 @@ def test_opening_login_page(driver, page_fixture, wait):
 
 
 def test_select_your_finance_option(driver, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 

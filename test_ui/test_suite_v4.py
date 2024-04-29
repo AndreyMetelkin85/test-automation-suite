@@ -2,6 +2,7 @@ from test_ui.conftest import driver, wait, page_fixture
 
 
 def test_navigation_buttons_clickability(driver, wait, page_fixture):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/resources/articles/news')
 
     pages = {

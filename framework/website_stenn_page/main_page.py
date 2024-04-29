@@ -1,6 +1,4 @@
-from base_page import BasePage
-
-
-class MainPage(BasePage):
-    def get_heading_label(self):
+class MainPage:
+    def get_heading_label(self, driver):
+        # Ваш код для выполнения операций с driver
         pass
