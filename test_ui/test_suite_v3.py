@@ -3,6 +3,7 @@ from test_ui.conftest import driver, page_fixture, wait, scroll_down
 
 
 def test_trade_page_functionality(driver, page_fixture, wait, scroll_down):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/solutions/trade')
 
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
@@ -51,6 +52,7 @@ def test_trade_page_functionality(driver, page_fixture, wait, scroll_down):
 
 
 def test_e_commerce_page_functionality(driver, wait, page_fixture, scroll_down):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/solutions/ecommerce-financing')
 
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
@@ -99,6 +101,7 @@ def test_e_commerce_page_functionality(driver, wait, page_fixture, scroll_down):
 
 
 def test_saas_page_functionality(driver, wait, page_fixture, scroll_down):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/solutions/saas')
 
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()

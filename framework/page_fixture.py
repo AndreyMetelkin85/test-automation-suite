@@ -1,3 +1,4 @@
+from base_page import BasePage
 from framework.website_stenn_page.articles_page import Articles
 from framework.website_stenn_page.careers_page import Careers
 from framework.website_stenn_page.contact_us_page import ContactUs
@@ -17,6 +18,8 @@ from framework.website_stenn_page.revenue_based_financing_page import RevenueBas
 from framework.website_stenn_page.saas_page import Saas
 from framework.website_stenn_page.social_networks_page import SocialNetworks
 from framework.website_stenn_page.useful_guides_page import UsefulGuides
+from framework.toils_qa_page.demo_qa_home_page import ToolsQaHome
+from framework.toils_qa_page.text_box_page import TextBox
 
 
 class PageFixture:
@@ -40,3 +43,7 @@ class PageFixture:
         self.saas_page = Saas(driver)
         self.social_networks = SocialNetworks(driver)
         self.useful_guides_page = UsefulGuides(driver)
+        self.demo_qa_home_page = ToolsQaHome(driver)
+        self.text_box_page = TextBox(driver)
+        self.go_to_web_site_stenn = BasePage(driver)
+        self.go_to_web_site_demo_qa = BasePage(driver)

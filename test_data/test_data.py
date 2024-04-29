@@ -79,3 +79,13 @@ class TestData:
             "email": self.faker.email()
         }
         return db_data
+
+    @property
+    def text_box_form_data(self):
+        text_box = {
+            "fullname": self.faker.name(),
+            "email": self.faker.email(),
+            "current address": self.faker.address(),
+            "permanent address": self.faker.address()
+        }
+        return text_box

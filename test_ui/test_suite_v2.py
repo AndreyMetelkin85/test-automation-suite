@@ -5,6 +5,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 
 def test_apply_for_finance_button_in_invoice_financing_page(driver, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 
@@ -33,6 +34,7 @@ def test_apply_for_finance_button_in_invoice_financing_page(driver, page_fixture
 
 
 def test_information_unveiling_frequently_asked_questions_block_invoice_financing_page(driver, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/product/invoice-financing')
 
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
@@ -85,6 +87,7 @@ def test_information_unveiling_frequently_asked_questions_block_invoice_financin
 
 
 def test_apply_for_finance_button_in_revenue_based_financing_page(driver, page_fixture, wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/product/revenue-based-financing')
 
     accept_all_button = page_fixture.home_page.accept_all_pop_up_button()
@@ -137,6 +140,7 @@ def test_apply_for_finance_button_in_revenue_based_financing_page(driver, page_f
 
 def test_information_unveiling_frequently_asked_questions_block_revenue_based_financing_page(driver, page_fixture,
                                                                                              wait):
+    page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/product/revenue-based-financing')
 
     accept_all_button = page_fixture.home_page.accept_all_pop_up_button()

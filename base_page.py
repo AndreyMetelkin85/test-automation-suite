@@ -16,7 +16,8 @@ class BasePage(ABC):
 
     def __init__(self, driver):
         self.driver = driver
-        self.base_url = "https://stenn.com/"
+        self.stenn_url = "https://stenn.com/"
+        self.demo_qa_url = 'https://demoqa.com/'
 
     @highlight
     def find_element(self, locator, time=10):
@@ -47,13 +48,18 @@ class BasePage(ABC):
         """
         return self.driver.execute_script("arguments[0].scrollIntoView();", element)
 
-    def go_to_site(self):
+    def go_to_web_site_stenn(self):
         """
-            Метод для перехода на главную страницу сайта.
+            Метод для перехода на главную страницу сайта "https://stenn.com/".
         """
-        return self.driver.get(self.base_url)
+        return self.driver.get(self.stenn_url)
 
-    @abstractmethod
+    def go_to_web_site_demo_qa(self):
+        """
+            Метод для перехода на главную страницу сайта 'https://demoqa.com/'.
+        """
+        return self.driver.get(self.demo_qa_url)
+
     def get_heading_label(self):
         """
             Абстрактный метод для получения заголовка страницы.
