@@ -44,3 +44,11 @@ class ElementsPage(BasePage):
     def dropdown_arrow_home_button(self):
         return self.find_element((By.XPATH, '//div[@id="tree-node"]/descendant::button'))
 
+    def radio_button_yes(self):
+        return self.find_element((By.XPATH, '//input[@id="yesRadio"]'))
+
+    def radio_button_impressive(self):
+        return self.find_element((By.XPATH, '//input[@id="impressiveRadio"]'))
+
+    def selected_result(self):
+        return self.find_element((By.XPATH, '//p[@class="mt-3"]'))
