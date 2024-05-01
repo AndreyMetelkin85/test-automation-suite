@@ -1,5 +1,6 @@
 import pytest
 from test_ui.conftest import page_fixture, text_box_form_data
+from selenium.webdriver.support import expected_conditions as EC
 
 
 def test_element_text_box(driver, page_fixture, text_box_form_data):
@@ -74,3 +75,25 @@ def test_check_box_home_click(driver, page_fixture):
 
     chose_result = page_fixture.elements_page.you_have_selected_results()
     chose_result.is_displayed()
+
+
+def test_radio_button_check(driver, page_fixture):
+    page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
+
+    elements_button = page_fixture.demo_qa_home_page.category_cards_home_page()
+    elements_button[0].click()
+
+    elements_button_check_box = page_fixture.demo_qa_home_page.left_panel_buttons()
+    elements_button_check_box[2].click()
+
+    radio_button_yes = page_fixture.elements_page.radio_button_yes()
+    driver.execute_script("arguments[0].click();", radio_button_yes)
+
+    radio_button_result = page_fixture.elements_page.selected_result()
+    assert radio_button_result.is_displayed()
+
+    radio_button_impressive = page_fixture.elements_page.radio_button_impressive()
+    driver.execute_script("arguments[0].click();", radio_button_impressive)
+
+    radio_button_result = page_fixture.elements_page.selected_result()
+    assert radio_button_result.is_displayed()
