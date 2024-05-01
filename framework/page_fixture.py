@@ -19,7 +19,7 @@ from framework.website_stenn_page.saas_page import Saas
 from framework.website_stenn_page.social_networks_page import SocialNetworks
 from framework.website_stenn_page.useful_guides_page import UsefulGuides
 from framework.toils_qa_page.demo_qa_home_page import ToolsQaHome
-from framework.toils_qa_page.text_box_page import TextBox
+from framework.toils_qa_page.elements_page import ElementsPage
 
 
 class PageFixture:
@@ -44,6 +44,6 @@ class PageFixture:
         self.social_networks = SocialNetworks(driver)
         self.useful_guides_page = UsefulGuides(driver)
         self.demo_qa_home_page = ToolsQaHome(driver)
-        self.text_box_page = TextBox(driver)
+        self.elements_page = ElementsPage(driver)
         self.go_to_web_site_stenn = BasePage(driver)
         self.go_to_web_site_demo_qa = BasePage(driver)
