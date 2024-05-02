@@ -89,3 +89,14 @@ class TestData:
             "permanent address": self.faker.address()
         }
         return text_box
+
+    def registration_form_data(self):
+        registration_form = {
+            "first_name": self.faker.first_name(),
+            "last_name": self.faker.last_name(),
+            "email": self.faker.email(),
+            "age": random.randint(18, 60),
+            "salary": random.randint(1000, 5000),
+            "department": self.faker.job()
+        }
+        return registration_form
