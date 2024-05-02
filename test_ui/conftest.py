@@ -2,6 +2,8 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+
+from framework.toils_qa_page.registration_form_page import RegistrationForm
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
 from test_data.test_data import TestData
@@ -99,6 +101,15 @@ def page_fixture(driver):
 
 @pytest.fixture
 def text_box_form_data(driver):
+    """
+        :param Фикстура для получения тестовых данных для формы с данными.
+        :returns: TestData: Экземпляр класса TestData с тестовыми данными.
+    """
+    return TestData()
+
+
+@pytest.fixture
+def registration_form_data(driver):
     """
         :param Фикстура для получения тестовых данных для формы с данными.
         :returns: TestData: Экземпляр класса TestData с тестовыми данными.

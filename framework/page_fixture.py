@@ -1,4 +1,5 @@
 from base_page import BasePage
+from framework.toils_qa_page.registration_form_page import RegistrationForm
 from framework.website_stenn_page.articles_page import Articles
 from framework.website_stenn_page.careers_page import Careers
 from framework.website_stenn_page.contact_us_page import ContactUs
@@ -47,3 +48,5 @@ class PageFixture:
         self.elements_page = ElementsPage(driver)
         self.go_to_web_site_stenn = BasePage(driver)
         self.go_to_web_site_demo_qa = BasePage(driver)
+        self.registration_form = RegistrationForm(driver)
+

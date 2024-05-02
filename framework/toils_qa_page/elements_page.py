@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-
+from framework.page_fixture import RegistrationForm
 from base_page import BasePage
 
 
@@ -52,3 +52,13 @@ class ElementsPage(BasePage):
 
     def selected_result(self):
         return self.find_element((By.XPATH, '//p[@class="mt-3"]'))
+
+    def add_button(self):
+        return self.find_element((By.XPATH, '//button[@id="addNewRecordButton"]')).click()
+
+    def click_add_button_and_open_registration_form(self):
+        self.add_button().click()
+        return RegistrationForm(self.driver)
+
+    def results_table(self):
+        return self.find_elements((By.XPATH, '//div[@class="rt-tbody"]/div'))
