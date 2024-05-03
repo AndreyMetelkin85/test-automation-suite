@@ -61,4 +61,12 @@ class ElementsPage(BasePage):
         return RegistrationForm(self.driver)
 
     def results_table(self):
-        return self.find_elements((By.XPATH, '//div[@class="rt-tbody"]/div'))
+        return self.find_elements((By.XPATH, '//div[@class="rt-tbody"]/div/div'))
+
+    def update_data_button(self):
+        return self.find_elements(
+            (By.XPATH, '//div[@class="ReactTable -striped -highlight"]/descendant::span[@class="mr-2"]'))
+
+    def delete_user(self):
+        return self.find_elements(
+            (By.XPATH, '//div[@class="ReactTable -striped -highlight"]/descendant::span[@title="Delete"]'))
