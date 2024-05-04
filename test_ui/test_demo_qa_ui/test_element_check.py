@@ -1,5 +1,4 @@
 import allure
-
 from test_ui.conftest import page_fixture, text_box_form_data, registration_form_data
 from test_ui.conftest import wait
 

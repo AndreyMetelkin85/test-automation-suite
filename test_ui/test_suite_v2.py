@@ -1,5 +1,4 @@
 import time
-
 from test_ui.conftest import driver, wait, page_fixture
 from selenium.webdriver.common.action_chains import ActionChains
 

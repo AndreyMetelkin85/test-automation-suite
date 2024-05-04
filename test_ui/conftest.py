@@ -2,8 +2,6 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-
-from framework.toils_qa_page.registration_form_page import RegistrationForm
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
 from test_data.test_data import TestData
@@ -12,22 +10,20 @@ from test_data.test_data import TestData
 @pytest.fixture
 def driver():
     """
-    Фикстура для создания веб-драйвера Chrome с опцией headless.
-    Returns: webdriver.Chrome: Экземпляр веб-драйвера Chrome.
+        Фикстура для создания веб-драйвера Chrome с опцией headless.
+
+        Фикстура создает экземпляр веб-драйвера Chrome с опцией headless, что означает,
+        что браузер будет работать в фоновом режиме без графического интерфейса.
+        Устанавливается неявное ожидание в 5 секунд для ожидания элементов на странице.
+        После выполнения тестов веб-драйвер закрывается.
     """
 
     options = ChromeOptions()
     options.add_argument("--headless=new")
     driver = webdriver.Chrome(options=options)
     driver.maximize_window()
-
-    # Установка неявного ожидания в 5 секунд
     driver.implicitly_wait(5)
-
-    # Возвращение драйвера для использования в тестах
     yield driver
-
-    # Закрытие веб-драйвера после завершения теста
     driver.quit()
 
 

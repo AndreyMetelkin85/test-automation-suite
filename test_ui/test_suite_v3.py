@@ -1,4 +1,3 @@
-import time
 from test_ui.conftest import driver, page_fixture, wait, scroll_down
 
 

@@ -82,6 +82,9 @@ class TestData:
 
     @property
     def text_box_form_data(self):
+        """
+            Генерирует тестовые данные для использования в тестах, связанных с заполнением формы.
+        """
         text_box = {
             "fullname": self.faker.name(),
             "email": self.faker.email(),
@@ -91,6 +94,9 @@ class TestData:
         return text_box
 
     def registration_form_data(self):
+        """
+           Генерирует тестовые данные для использования в тестах регистрации.
+        """
         registration_form = {
             "first_name": self.faker.first_name(),
             "last_name": self.faker.last_name(),

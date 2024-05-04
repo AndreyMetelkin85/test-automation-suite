@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.common.action_chains import ActionChains
 from test_ui.conftest import driver, slow_scroll, wait, page_fixture
 
