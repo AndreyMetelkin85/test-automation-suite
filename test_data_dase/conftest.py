@@ -24,7 +24,6 @@ def db_connection():
             "port": os.environ["PORT"]
         }
         connection = psycopg2.connect(**db_config)
-        # connection = psycopg2.connect(**DB_CONFIG)
         yield connection
     except Exception as ex:
         print("[INFO] Error while working with PostgreSQL:", ex)
