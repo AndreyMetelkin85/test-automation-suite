@@ -1,3 +1,6 @@
+import time
+
+
 def highlight(func):
     """
         Декоратор для добавления визуального выделения к элементам веб-страницы.
@@ -19,6 +22,8 @@ def highlight(func):
         element = func(*args, **kwargs)
         parent = element.parent
         parent.execute_script("arguments[0].style.border='5px solid blue'", element)
+        time.sleep(0.2)
+        parent.execute_script("arguments[0].style.border='none'", element)
         return element
 
     return inner
@@ -46,6 +51,8 @@ def highlights(func):
         for element in elements:
             parent = element.parent
             parent.execute_script("arguments[0].style.border='5px solid blue'", element)
+            time.sleep(0.2)
+            parent.execute_script("arguments[0].style.border='none'", element)
         return elements
 
     return inner
