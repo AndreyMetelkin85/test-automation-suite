@@ -194,3 +194,50 @@ def test_update_user_data(driver, page_fixture, registration_form_data, wait):
             continue
 
     assert name_updated, "[INFO!!!] Обновленное имя не найдено в элементах таблицы"
+
+
+@allure.story("Elements")
+@allure.title("Тест проверяет удаление пользователя")
+def test_delete_user_data(driver, page_fixture, registration_form_data, wait):
+    registration_form_data = registration_form_data.registration_form_data()
+    page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
+
+    elements_button = page_fixture.demo_qa_home_page.category_cards_home_page()
+    elements_button[0].click()
+
+    elements_button_check_box = page_fixture.demo_qa_home_page.left_panel_buttons()
+    elements_button_check_box[3].click()
+
+    page_fixture.elements_page.add_button()
+
+    registration_form_label = page_fixture.registration_form.registration_form_label()
+    wait.wait_until_the_element_is_visible(registration_form_label)
+    assert registration_form_label.is_displayed()
+
+    page_fixture.registration_form.fill_form_and_submit(
+        first_name=registration_form_data["first_name"],
+        last_name=registration_form_data["last_name"],
+        email=registration_form_data["email"],
+        age=registration_form_data["age"],
+        salary=registration_form_data["salary"],
+        department=registration_form_data["department"])
+
+    result = page_fixture.elements_page.results_table()
+    result_text = [custom.text for custom in result]
+    element_results = [text.replace('\n', ' ').split() for text in result_text]
+
+    user_delete = True
+    for idx, values in enumerate(element_results):
+        if len(values) >= 1:
+            for reg_value in registration_form_data.values():
+                if values[0] == reg_value:
+                    delete_buttons = page_fixture.elements_page.delete_user()
+                    delete_buttons[idx].click()  # Используем индексацию
+                    user_delete = False
+                    break
+            if not user_delete:
+                break
+        else:
+            continue
+
+    assert not user_delete, "[INFO!!!], Пользователь не удалён из таблицы"

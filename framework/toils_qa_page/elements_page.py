@@ -70,3 +70,4 @@ class ElementsPage(BasePage):
     def delete_user(self):
         return self.find_elements(
             (By.XPATH, '//div[@class="ReactTable -striped -highlight"]/descendant::span[@title="Delete"]'))
+
