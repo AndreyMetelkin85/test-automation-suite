@@ -2,6 +2,7 @@ import time
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
+from selenium.webdriver.common.action_chains import ActionChains
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
 from test_data.test_data import TestData
@@ -111,3 +112,21 @@ def registration_form_data(driver):
         :returns: TestData: Экземпляр класса TestData с тестовыми данными.
     """
     return TestData()
+
+
+@pytest.fixture
+def perform_double_click(driver):
+    def double_click(element):
+        action_chains = ActionChains(driver)
+        action_chains.double_click(element).perform()
+
+    return double_click
+
+
+@pytest.fixture
+def perform_right_click(driver):
+    def right_click(element):
+        action_chains = ActionChains(driver)
+        action_chains.context_click(element).perform()
+
+    return right_click
