@@ -1,5 +1,7 @@
 import allure
-from test_ui.conftest import page_fixture, text_box_form_data, registration_form_data
+import pytest
+from test_ui.conftest import page_fixture, text_box_form_data, registration_form_data, perform_double_click, \
+    perform_right_click
 from test_ui.conftest import wait
 
 
@@ -232,7 +234,7 @@ def test_delete_user_data(driver, page_fixture, registration_form_data, wait):
             for reg_value in registration_form_data.values():
                 if values[0] == reg_value:
                     delete_buttons = page_fixture.elements_page.delete_user()
-                    delete_buttons[idx].click()  # Используем индексацию
+                    delete_buttons[idx].click()
                     user_delete = False
                     break
             if not user_delete:
@@ -241,3 +243,35 @@ def test_delete_user_data(driver, page_fixture, registration_form_data, wait):
             continue
 
     assert not user_delete, "[INFO!!!], Пользователь не удалён из таблицы"
+
+
+@pytest.mark.parametrize("click_parameter, expected_text",
+                         [
+                             ("double_click_button", "You have done a double click"),
+                             ("right_click_button", "You have done a right click"),
+                             ("click_me_button", "You have done a dynamic click")
+                         ])
+def test_button_clickability_check(driver, page_fixture, perform_right_click, perform_double_click, click_parameter,
+                                   expected_text):
+    page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
+
+    elements_button = page_fixture.demo_qa_home_page.category_cards_home_page()
+    elements_button[0].click()
+
+    elements_button_check_box = page_fixture.demo_qa_home_page.left_panel_buttons()
+    elements_button_check_box[4].click()
+
+    click_buttons = getattr(page_fixture.elements_page, click_parameter)()
+
+    if click_parameter == "double_click_button":
+        perform_double_click(click_buttons)
+    elif click_parameter == "right_click_button":
+        perform_right_click(click_buttons)
+    else:
+        click_buttons.click()
+
+    info_after_click = page_fixture.elements_page.results_button_click()
+    info_text = [custom.text for custom in info_after_click]
+
+    assert any(expected_text in text for text in
+               info_text), f"Expected text '{expected_text}' not found in info text: {info_text}"

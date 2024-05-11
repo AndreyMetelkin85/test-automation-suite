@@ -71,3 +71,14 @@ class ElementsPage(BasePage):
         return self.find_elements(
             (By.XPATH, '//div[@class="ReactTable -striped -highlight"]/descendant::span[@title="Delete"]'))
 
+    def double_click_button(self):
+        return self.find_element((By.XPATH, '//button[@id="doubleClickBtn"]'))
+
+    def right_click_button(self):
+        return self.find_element((By.XPATH, '//button[@id="rightClickBtn"]'))
+
+    def click_me_button(self):
+        return self.find_element((By.XPATH, '//button[text()="Click Me"]'))
+
+    def results_button_click(self):
+        return self.find_elements((By.XPATH, '//div[@class="col-12 mt-4 col-md-6"]/descendant::p'))
