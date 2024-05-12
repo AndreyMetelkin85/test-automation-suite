@@ -245,6 +245,9 @@ def test_delete_user_data(driver, page_fixture, registration_form_data, wait):
     assert not user_delete, "[INFO!!!], Пользователь не удалён из таблицы"
 
 
+@allure.story("Elements")
+@allure.title("Тест проверяет клики по кнопкам с разными параметрами такими как :"
+              " Двойной клик, клик правой кнопкой, динамический клик")
 @pytest.mark.parametrize("click_parameter, expected_text",
                          [
                              ("double_click_button", "You have done a double click"),
@@ -275,3 +278,29 @@ def test_button_clickability_check(driver, page_fixture, perform_right_click, pe
 
     assert any(expected_text in text for text in
                info_text), f"Expected text '{expected_text}' not found in info text: {info_text}"
+
+
+@allure.story("Elements")
+@allure.title("Тест проверяет две кнопки которые открывают новую вкладку с домашней страницей.")
+@pytest.mark.parametrize("following_links", ["open_new_tab_home_page", "open_new_tab_dynamic_link_home_page"])
+def test_open_new_tab_home_page(driver, page_fixture, wait, following_links):
+    page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
+
+    elements_button = page_fixture.demo_qa_home_page.category_cards_home_page()
+    elements_button[0].click()
+
+    elements_button_check_box = page_fixture.demo_qa_home_page.left_panel_buttons()
+    elements_button_check_box[5].click()
+
+    home_page_button = getattr(page_fixture.elements_page, following_links)()
+    if home_page_button == "open_new_tab_home_page":
+        home_page_button.click()
+    else:
+        home_page_button.click()
+
+    driver.switch_to.window(driver.window_handles[1])
+
+    expected_url = "https://demoqa.com/"
+    wait.wait_until_the_url_is_visible(expected_url)
+    current_url = driver.current_url
+    assert current_url == expected_url
