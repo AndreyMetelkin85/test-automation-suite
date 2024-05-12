@@ -82,3 +82,33 @@ class ElementsPage(BasePage):
 
     def results_button_click(self):
         return self.find_elements((By.XPATH, '//div[@class="col-12 mt-4 col-md-6"]/descendant::p'))
+
+    def open_new_tab_home_page(self):
+        return self.find_element((By.XPATH, '//a[@id="simpleLink"]'))
+
+    def open_new_tab_dynamic_link_home_page(self):
+        return self.find_element((By.XPATH, '//a[@id="dynamicLink"]'))
+
+    def created_send_api_call(self):
+        return self.find_element((By.XPATH, '//a[@id="created"]'))
+
+    def no_content_send_api_call(self):
+        return self.find_element((By.XPATH, '//a[@id="no-content"]'))
+
+    def moved_send_api_call(self):
+        return self.find_element((By.XPATH, '//a[@id="moved"]'))
+
+    def bad_request_send_api_call(self):
+        return self.find_element((By.XPATH, '//a[@id="bad-request"]'))
+
+    def unauthorized_send_api_call(self):
+        return self.find_element((By.XPATH, '//a[@id="unauthorized"]'))
+
+    def forbidden_send_api_call(self):
+        return self.find_element((By.XPATH, '//a[@id="forbidden"]'))
+
+    def invalid_url_send_api_call(self):
+        return self.find_element((By.XPATH, '//a[@id="invalid-url"]'))
+
+    def response_text(self):
+        return self.find_element((By.XPATH, '//p[@id="linkResponse"]'))
