@@ -111,4 +111,4 @@ class ElementsPage(BasePage):
         return self.find_element((By.XPATH, '//a[@id="invalid-url"]'))
 
     def response_text(self):
-        return self.find_element((By.XPATH, '//p[@id="linkResponse"]'))
+        return self.find_elements((By.XPATH, '//p[@id="linkResponse"]'))
