@@ -112,3 +112,12 @@ class ElementsPage(BasePage):
 
     def response_text(self):
         return self.find_elements((By.XPATH, '//p[@id="linkResponse"]'))
+
+    def download_button(self):
+        return self.find_element((By.XPATH, '//a[@id="downloadButton"]'))
+
+    def upload_file(self):
+        return self.find_element((By.XPATH, '//input[@id="uploadFile"]'))
+
+    def result_upload_file(self):
+        return self.find_element((By.XPATH, '//p[@id="uploadedFilePath"]'))
