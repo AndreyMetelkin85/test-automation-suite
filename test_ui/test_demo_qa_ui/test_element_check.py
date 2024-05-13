@@ -310,47 +310,24 @@ def test_open_new_tab_home_page(driver, page_fixture, wait, following_links):
 
 @allure.story("Elements")
 @allure.title("Тест проверяет сообщение из ответ от бэкенда.")
-@pytest.mark.parametrize("click_link_button",
-                         ["created_send_api_call", "no_content_send_api_call", "moved_send_api_call",
-                          "bad_request_send_api_call", "unauthorized_send_api_call", "forbidden_send_api_call",
-                          "invalid_url_send_api_call"])
-def test_links_will_send_api_call(driver, page_fixture, wait, click_link_button):
+@pytest.mark.parametrize("click_link_button, expected_message", [
+    ("created_send_api_call", "Link has responded with staus 201 and status text Created"),
+    ("no_content_send_api_call", "Link has responded with staus 204 and status text No Content"),
+    ("moved_send_api_call", "Link has responded with staus 301 and status text Moved Permanently"),
+    ("bad_request_send_api_call", "Link has responded with staus 400 and status text Bad Request"),
+    ("unauthorized_send_api_call", "Link has responded with staus 401 and status text Unauthorized"),
+    ("forbidden_send_api_call", "Link has responded with staus 403 and status text Forbidden"),
+    ("invalid_url_send_api_call", "Link has responded with staus 404 and status text Not Found")
+])
+def test_links_will_send_api_call(driver, page_fixture, wait, click_link_button, expected_message):
     page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
-
     elements_button = page_fixture.demo_qa_home_page.category_cards_home_page()
     elements_button[0].click()
-
     elements_button_check_box = page_fixture.demo_qa_home_page.left_panel_buttons()
     elements_button_check_box[5].click()
 
     following_links_buttons = getattr(page_fixture.elements_page, click_link_button)()
+    following_links_buttons.click()
 
-    if click_link_button == "created_send_api_call":
-        following_links_buttons.click()
-        results_message_and_code = page_fixture.elements_page.response_text()[0]
-        assert results_message_and_code.text == "Link has responded with staus 201 and status text Created"
-
-    elif click_link_button == "no_content_send_api_call":
-        following_links_buttons.click()
-        results_message_and_code = page_fixture.elements_page.response_text()[0]
-        assert results_message_and_code.text == "Link has responded with staus 204 and status text No Content"
-    elif click_link_button == "moved_send_api_call":
-        following_links_buttons.click()
-        results_message_and_code = page_fixture.elements_page.response_text()[0]
-        assert results_message_and_code.text == "Link has responded with staus 301 and status text Moved Permanently"
-    elif click_link_button == "bad_request_send_api_call":
-        following_links_buttons.click()
-        results_message_and_code = page_fixture.elements_page.response_text()[0]
-        assert results_message_and_code.text == "Link has responded with staus 400 and status text Bad Request"
-    elif click_link_button == "unauthorized_send_api_call":
-        following_links_buttons.click()
-        results_message_and_code = page_fixture.elements_page.response_text()[0]
-        assert results_message_and_code.text == "Link has responded with staus 401 and status text Unauthorized"
-    elif click_link_button == "forbidden_send_api_call":
-        following_links_buttons.click()
-        results_message_and_code = page_fixture.elements_page.response_text()[0]
-        assert results_message_and_code.text == "Link has responded with staus 403 and status text Forbidden"
-    elif click_link_button == "invalid_url_send_api_call":
-        following_links_buttons.click()
-        results_message_and_code = page_fixture.elements_page.response_text()[0]
-        assert results_message_and_code.text == "Link has responded with staus 404 and status text Not Found"
+    results_message_and_code = page_fixture.elements_page.response_text()[0]
+    assert results_message_and_code.text == expected_message
