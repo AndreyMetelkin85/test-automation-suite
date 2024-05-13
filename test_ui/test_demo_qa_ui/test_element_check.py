@@ -1,10 +1,9 @@
-import time
-
 import allure
 import pytest
 from test_ui.conftest import page_fixture, text_box_form_data, registration_form_data, perform_double_click, \
-    perform_right_click
+    perform_right_click, perform_normal_click
 from test_ui.conftest import wait
+from file.constants import PATH_TO_FILE
 
 
 @allure.story("Elements")
@@ -305,7 +304,7 @@ def test_open_new_tab_home_page(driver, page_fixture, wait, following_links):
     expected_url = "https://demoqa.com/"
     wait.wait_until_the_url_is_visible(expected_url)
     current_url = driver.current_url
-    assert current_url == expected_url
+    assert current_url == expected_url, "[INFO!!!] URL адрес не был найден!!! "
 
 
 @allure.story("Elements")
@@ -330,4 +329,35 @@ def test_links_will_send_api_call(driver, page_fixture, wait, click_link_button,
     following_links_buttons.click()
 
     results_message_and_code = page_fixture.elements_page.response_text()[0]
-    assert results_message_and_code.text == expected_message
+    assert results_message_and_code.text == expected_message, "[INFO!!!] Сообщения отсутствуют!!!"
+
+
+@allure.story("Elements")
+@allure.title("Тест функциональности загрузки файла")
+def test_file_upload_functionali(driver, page_fixture):
+    page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
+    elements_button = page_fixture.demo_qa_home_page.category_cards_home_page()
+    elements_button[0].click()
+
+    elements_button_check_box = page_fixture.demo_qa_home_page.left_panel_buttons()
+    elements_button_check_box[7].click()
+
+    download_button = page_fixture.elements_page.download_button()
+    download_button.click()
+
+
+@allure.story("Elements")
+@allure.title("Тест функциональности загрузки файла")
+def test_download_functionali(driver, page_fixture, perform_normal_click):
+    page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
+    elements_button = page_fixture.demo_qa_home_page.category_cards_home_page()
+    elements_button[0].click()
+
+    elements_button_check_box = page_fixture.demo_qa_home_page.left_panel_buttons()
+    elements_button_check_box[7].click()
+
+    download_button = page_fixture.elements_page.upload_file()
+    download_button.send_keys(PATH_TO_FILE)
+
+    result_message = page_fixture.elements_page.result_upload_file()
+    assert result_message.text == "{}\\file.pdf".format("C:\\fakepath"), "[INFO!!!] Файл не загружен!!!"

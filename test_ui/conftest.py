@@ -130,3 +130,12 @@ def perform_right_click(driver):
         action_chains.context_click(element).perform()
 
     return right_click
+
+
+@pytest.fixture
+def perform_normal_click(driver):
+    def normal_click_action(element):
+        action_chains = ActionChains(driver)
+        action_chains.click(element).perform()
+
+    return normal_click_action
