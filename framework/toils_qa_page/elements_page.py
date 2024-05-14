@@ -121,3 +121,16 @@ class ElementsPage(BasePage):
 
     def result_upload_file(self):
         return self.find_element((By.XPATH, '//p[@id="uploadedFilePath"]'))
+
+    def will_enable_button(self):
+        return self.find_element((By.XPATH, '//button[@id="enableAfter"]'))
+
+    def color_change_button(self):
+        return self.find_element((By.XPATH, '//button[@id="colorChange" and @class="mt-4 btn btn-primary"]'))
+
+    def color_change_button_result(self):
+        return self.find_element(
+            (By.XPATH, '//button[@id="colorChange" and @class="mt-4 text-danger btn btn-primary"]'))
+
+    def visible_after_button(self):
+        return self.find_element((By.XPATH, '//button[@id="visibleAfter"]'))
