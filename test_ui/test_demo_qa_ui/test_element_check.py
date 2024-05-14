@@ -361,3 +361,23 @@ def test_download_functionali(driver, page_fixture, perform_normal_click):
 
     result_message = page_fixture.elements_page.result_upload_file()
     assert result_message.text == "{}\\file.pdf".format("C:\\fakepath"), "[INFO!!!] Файл не загружен!!!"
+
+
+@allure.story("Elements")
+@allure.title("Проверка динамического нажатия на кнопки")
+@pytest.mark.parametrize("buttons", ["will_enable_button", "color_change_button", "visible_after_button"])
+def test_check_dynamic_click_button(driver, page_fixture, wait, buttons):
+    page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
+    elements_button = page_fixture.demo_qa_home_page.category_cards_home_page()
+    elements_button[0].click()
+
+    elements_button_check_box = page_fixture.demo_qa_home_page.left_panel_buttons()
+    elements_button_check_box[8].click()
+
+    dynamic_button = getattr(page_fixture.elements_page, buttons)()
+    wait.wait_until_element_is_clickable(dynamic_button)
+    dynamic_button.click()
+
+    if buttons == "color_change_button":
+        result_button_change_color = page_fixture.elements_page.color_change_button_result()
+        assert result_button_change_color, "[INFO!!!] Цвет кнопки не изменился"
