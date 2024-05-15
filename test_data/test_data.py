@@ -3,7 +3,7 @@ from faker import Faker
 import random
 
 
-class TestData:
+class DataGenerator:
     """
         Класс для создания тестовых данных.
     """

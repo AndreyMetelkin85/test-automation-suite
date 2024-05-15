@@ -1,4 +1,4 @@
-from test_ui.conftest import driver, wait, page_fixture
+from plugins.tools_plugin import driver, wait, page_fixture
 
 
 def test_navigation_buttons_clickability(driver, wait, page_fixture):

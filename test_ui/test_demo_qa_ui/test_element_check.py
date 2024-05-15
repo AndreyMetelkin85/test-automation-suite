@@ -1,8 +1,7 @@
 import allure
 import pytest
-from test_ui.conftest import page_fixture, text_box_form_data, registration_form_data, perform_double_click, \
-    perform_right_click, perform_normal_click
-from test_ui.conftest import wait
+from plugins.tools_plugin import page_fixture, text_box_form_data, registration_form_data, perform_double_click, \
+    perform_right_click, perform_normal_click, wait
 from file.constants import PATH_TO_FILE
 
 
