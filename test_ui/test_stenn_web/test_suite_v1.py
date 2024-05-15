@@ -1,5 +1,5 @@
 from selenium.webdriver.common.action_chains import ActionChains
-from test_ui.conftest import driver, slow_scroll, wait, page_fixture
+from plugins.tools_plugin import driver, slow_scroll, wait, page_fixture
 
 
 def test_buttons_in_header(driver, page_fixture, wait):

@@ -1,4 +1,4 @@
-from test_ui.conftest import driver, page_fixture, wait, scroll_down
+from plugins.tools_plugin import driver, page_fixture, wait, scroll_down
 
 
 def test_trade_page_functionality(driver, page_fixture, wait, scroll_down):
