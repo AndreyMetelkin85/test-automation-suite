@@ -209,7 +209,7 @@ def test_opening_social_networks(driver, slow_scroll, page_fixture, wait):
 
     expected_urls = {
         "linkedin.com": "https://www.linkedin.com/company/stenn-financial-services",
-        "twitter.com": "https://twitter.com/i/flow/login?redirect_after_login=%2FStenn_Intl",
+        "twitter.com": "https://x.com/i/flow/login?redirect_after_login=%2FStenn_Intl",
         "facebook.com": "https://www.facebook.com/StennIntl",
         "youtube.com": "https://www.youtube.com/channel/UCVsztAj0QmhKkfu4IKMHUOA"
     }
