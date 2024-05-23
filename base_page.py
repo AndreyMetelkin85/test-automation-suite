@@ -1,7 +1,11 @@
+import logging
+
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from abc import ABC
-import logging
+from framework.logger_config import setup_logger
+
+from framework.selenium_utils.elements import BaseElement
 from utils import highlight, highlights
 
 
@@ -19,8 +23,7 @@ class BasePage(ABC):
         self.driver = driver
         self.stenn_url = "https://stenn.com/"
         self.demo_qa_url = 'https://demoqa.com/'
-        self.logger = logging.getLogger(self.__class__.__name__)
-        self.logger.setLevel(logging.DEBUG)
+        self.logger = setup_logger(self.__class__.__name__)
 
         console_handler = logging.StreamHandler()
         console_handler.setLevel(logging.DEBUG)
@@ -32,30 +35,20 @@ class BasePage(ABC):
 
     @highlight
     def find_element(self, locator, time=10):
-        """
-            Метод для поиска одного элемента на странице.
-
-            :param locator: Локатор элемента.
-            :param time: Время ожидания (по умолчанию 10 секунд).
-        """
         self.logger.info(f"Поиск элемента с локатором: {locator}, время ожидания: {time} секунд")
         try:
-            element = WebDriverWait(self.driver, time).until(EC.presence_of_element_located(locator),
-                                                             message=f"Не удалось найти элемент с локатором {locator}")
+            element = WebDriverWait(self.driver, time).until(
+                EC.presence_of_element_located(locator),
+                message=f"Не удалось найти элемент с локатором {locator}"
+            )
             self.logger.info(f"Элемент найден: {locator}")
-            return element
+            return BaseElement(element, locator)
         except Exception as e:
             self.logger.error(f"Ошибка при поиске элемента с локатором {locator}: {e}")
             raise
 
     @highlights
     def find_elements(self, locator, time=10):
-        """
-            Метод для поиска всех элементов на странице.
-
-            :param locator: Локатор элементов.
-            :param time: Время ожидания (по умолчанию 10 секунд).
-        """
         self.logger.info(f"Поиск всех элементов с локатором: {locator}, время ожидания: {time} секунд")
         try:
             elements = WebDriverWait(self.driver, time).until(
@@ -63,7 +56,7 @@ class BasePage(ABC):
                 message=f"Не удалось найти элементы с локатором {locator}"
             )
             self.logger.info(f"Элементы найдены: {locator}")
-            return elements
+            return [BaseElement(element, locator) for element in elements]
         except Exception as e:
             self.logger.error(f"Ошибка при поиске элементов с локатором {locator}: {e}")
             raise
