@@ -1,24 +1,24 @@
 import time
-from plugins.tools_plugin import driver, wait, page_fixture
+from plugins.tools_plugin import driver, wait, page_fixture, scroll_down
 from selenium.webdriver.common.action_chains import ActionChains
 
 
-def test_apply_for_finance_button_in_invoice_financing_page(driver, page_fixture, wait):
+def test_apply_for_finance_button_in_invoice_financing_page(driver, page_fixture, scroll_down, wait):
     page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 
     products_button = page_fixture.header_buttons.products_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(products_button).perform()
+    products_button.mouse_hover()
+
     invoice_financing_button = page_fixture.header_buttons.financing_hover_button()
-    actions.move_to_element(invoice_financing_button[0])
-    actions.click(invoice_financing_button[0]).perform()
+    invoice_financing_button[0].mouse_hover()
+    invoice_financing_button[0].click()
 
     apply_finance_button_count = 4
     for finance_option_button in range(apply_finance_button_count):
         apply_finance_button = page_fixture.invoice_financing_page.apply_for_finance_button()
-        driver.execute_script("arguments[0].click();", apply_finance_button[finance_option_button])
+        apply_finance_button[finance_option_button].javascript_click()
 
         driver.switch_to.window(driver.window_handles[1])
 
@@ -29,10 +29,11 @@ def test_apply_for_finance_button_in_invoice_financing_page(driver, page_fixture
 
         driver.switch_to.window(driver.window_handles[0])
 
-        driver.execute_script("window.scrollBy(0, 700);")
+        scroll_down(700)
 
 
-def test_information_unveiling_frequently_asked_questions_block_invoice_financing_page(driver, page_fixture, wait):
+def test_information_unveiling_frequently_asked_questions_block_invoice_financing_page(
+        driver, page_fixture, wait, scroll_down):
     page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/product/invoice-financing')
 
@@ -76,7 +77,7 @@ def test_information_unveiling_frequently_asked_questions_block_invoice_financin
         driver.execute_script(f"window.scrollBy(0, {55 * (number_count_buttons + 1)});")
         time.sleep(1)
 
-    driver.execute_script("window.scrollBy(0, 600);")
+    scroll_down(600)
 
     read_all_news_button = page_fixture.home_page.read_news_button()
     read_all_news_button.click()
@@ -85,7 +86,7 @@ def test_information_unveiling_frequently_asked_questions_block_invoice_financin
     assert articles_label.is_displayed()
 
 
-def test_apply_for_finance_button_in_revenue_based_financing_page(driver, page_fixture, wait):
+def test_apply_for_finance_button_in_revenue_based_financing_page(driver, page_fixture, wait, scroll_down):
     page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/product/revenue-based-financing')
 
@@ -104,7 +105,7 @@ def test_apply_for_finance_button_in_revenue_based_financing_page(driver, page_f
 
     driver.switch_to.window(driver.window_handles[0])
 
-    driver.execute_script("window.scrollBy(0, 1000);")
+    scroll_down(1000)
 
     flexible_financing_options_label = page_fixture.revenue_based_financing_page.flexible_financing_options_label()
     wait.wait_until_the_element_is_visible(flexible_financing_options_label)
@@ -121,7 +122,7 @@ def test_apply_for_finance_button_in_revenue_based_financing_page(driver, page_f
 
     driver.switch_to.window(driver.window_handles[0])
 
-    driver.execute_script("window.scrollBy(0, 1200);")
+    scroll_down(1200)
 
     unlock_e_commerce_label = page_fixture.revenue_based_financing_page.unlock_e_commerce_label()
     wait.wait_until_the_element_is_visible(unlock_e_commerce_label)
@@ -137,15 +138,15 @@ def test_apply_for_finance_button_in_revenue_based_financing_page(driver, page_f
     assert current_url == expected_url
 
 
-def test_information_unveiling_frequently_asked_questions_block_revenue_based_financing_page(driver, page_fixture,
-                                                                                             wait):
+def test_information_unveiling_frequently_asked_questions_block_revenue_based_financing_page(
+        driver, page_fixture, wait, scroll_down):
     page_fixture.go_to_web_site_stenn.go_to_web_site_stenn()
     driver.get('https://www.stenn.com/product/revenue-based-financing')
 
     accept_all_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_button.click()
 
-    driver.execute_script("window.scrollBy(0, 4700);")
+    scroll_down(4700)
 
     frequently_asked_questions_count = 5
     for number_buttons in range(frequently_asked_questions_count):
@@ -183,7 +184,7 @@ def test_information_unveiling_frequently_asked_questions_block_revenue_based_fi
             who_is_stenn = page_fixture.revenue_based_financing_page.who_is_stenn()
             who_is_stenn.click()
 
-    driver.execute_script("window.scrollBy(0, 650);")
+    scroll_down(650)
 
     read_news_button = page_fixture.revenue_based_financing_page.read_news_button()
     read_news_button.click()

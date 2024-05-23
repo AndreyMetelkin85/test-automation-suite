@@ -1,4 +1,3 @@
-from selenium.webdriver.common.action_chains import ActionChains
 from plugins.tools_plugin import driver, slow_scroll, wait, page_fixture
 
 

@@ -1,12 +1,9 @@
 import logging
-
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from abc import ABC
 from framework.logger_config import setup_logger
-
 from framework.selenium_utils.elements import BaseElement
-from utils import highlight, highlights
 
 
 class BasePage(ABC):
@@ -33,7 +30,6 @@ class BasePage(ABC):
         if not self.logger.handlers:
             self.logger.addHandler(console_handler)
 
-    @highlight
     def find_element(self, locator, time=10):
         self.logger.info(f"Поиск элемента с локатором: {locator}, время ожидания: {time} секунд")
         try:
@@ -47,7 +43,6 @@ class BasePage(ABC):
             self.logger.error(f"Ошибка при поиске элемента с локатором {locator}: {e}")
             raise
 
-    @highlights
     def find_elements(self, locator, time=10):
         self.logger.info(f"Поиск всех элементов с локатором: {locator}, время ожидания: {time} секунд")
         try:
