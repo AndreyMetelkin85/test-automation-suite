@@ -97,13 +97,13 @@ def test_radio_button_check(driver, page_fixture):
     elements_button_check_box[2].click()
 
     radio_button_yes = page_fixture.elements_page.radio_button_yes()
-    driver.execute_script("arguments[0].click();", radio_button_yes)
+    radio_button_yes.javascript_click()
 
     radio_button_result = page_fixture.elements_page.selected_result()
     assert radio_button_result.is_displayed()
 
     radio_button_impressive = page_fixture.elements_page.radio_button_impressive()
-    driver.execute_script("arguments[0].click();", radio_button_impressive)
+    radio_button_impressive.javascript_click()
 
     radio_button_result = page_fixture.elements_page.selected_result()
     assert radio_button_result.is_displayed()

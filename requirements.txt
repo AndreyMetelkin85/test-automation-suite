@@ -9,6 +9,7 @@ cffi==1.16.0
 chardet==5.2.0
 charset-normalizer==3.3.2
 colorama==0.4.6
+colorlog==6.8.2
 cssselect==1.2.0
 enum34==1.1.10
 exceptiongroup==1.2.1

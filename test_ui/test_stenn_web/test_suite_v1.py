@@ -12,11 +12,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_buttons = page_fixture.header_buttons
     products_button = page_header_buttons.products_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(products_button).perform()
+    products_button.mouse_hover()
+
     financing_hover_button = page_header_buttons.financing_hover_button()
-    actions.move_to_element(financing_hover_button[0])
-    actions.click(financing_hover_button[0]).perform()
+    financing_hover_button[0].mouse_hover()
+    financing_hover_button[0].click()
 
     page_invoice_financing = page_fixture.invoice_financing_page
     convert_label = page_invoice_financing.get_heading_label()
@@ -26,11 +26,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_buttons = page_fixture.header_buttons
     products_button = page_header_buttons.products_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(products_button).perform()
+    products_button.mouse_hover()
+
     financing_hover_button = page_header_buttons.financing_hover_button()
-    actions.move_to_element(financing_hover_button[1])
-    actions.click(financing_hover_button[1]).perform()
+    financing_hover_button[1].mouse_hover()
+    financing_hover_button[1].click()
 
     page_revenue_based_financing = page_fixture.revenue_based_financing_page
     revenue_based_financing_label = page_revenue_based_financing.get_heading_label()
@@ -40,11 +40,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     solutions_button = page_header_button.solutions_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(solutions_button).perform()
+    solutions_button.mouse_hover()
+
     for_trade_button = page_header_buttons.solutions_hover_button()
-    actions.move_to_element(for_trade_button[0])
-    actions.click(for_trade_button[0]).perform()
+    for_trade_button[0].mouse_hover()
+    for_trade_button[0].click()
 
     page_for_trade = page_fixture.for_trade_page
     boost_your_cash_label = page_for_trade.get_heading_label()
@@ -54,11 +54,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     solutions_button = page_header_button.solutions_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(solutions_button).perform()
+    solutions_button.mouse_hover()
+
     for_e_commerce_button = page_header_buttons.solutions_hover_button()
-    actions.move_to_element(for_e_commerce_button[1])
-    actions.click(for_e_commerce_button[1]).perform()
+    for_e_commerce_button[1].mouse_hover()
+    for_e_commerce_button[1].click()
 
     page_for_trade = page_fixture.for_e_commerce_page
     boost_your_cash_label = page_for_trade.get_heading_label()
@@ -68,11 +68,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     solutions_button = page_header_button.solutions_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(solutions_button).perform()
+    solutions_button.mouse_hover()
+
     for_saas_button = page_header_buttons.solutions_hover_button()
-    actions.move_to_element(for_saas_button[2])
-    actions.click(for_saas_button[2]).perform()
+    for_saas_button[2].mouse_hover()
+    for_saas_button[2].click()
 
     page_for_trade = page_fixture.saas_page
     boost_your_cash_label = page_for_trade.get_heading_label()
@@ -82,11 +82,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     resources_button = page_header_button.resources_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(resources_button).perform()
+    resources_button.mouse_hover()
+
     news_button = page_header_buttons.resources_hover_button()
-    actions.move_to_element(news_button[0])
-    actions.click(news_button[0]).perform()
+    news_button[0].mouse_hover()
+    news_button[0].click()
 
     page_news = page_fixture.articles_page
     articles_label = page_news.get_heading_label()
@@ -96,11 +96,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     resources_button = page_header_button.resources_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(resources_button).perform()
+    resources_button.mouse_hover()
+
     careers_button = page_header_buttons.resources_hover_button()
-    actions.move_to_element(careers_button[1])
-    actions.click(careers_button[1]).perform()
+    careers_button[1].mouse_hover()
+    careers_button[1].click()
 
     page_careers = page_fixture.careers_page
     careers_label = page_careers.get_heading_label()
@@ -110,11 +110,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     resources_button = page_header_button.resources_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(resources_button).perform()
+    resources_button.mouse_hover()
+
     faq_button = page_header_buttons.resources_hover_button()
-    actions.move_to_element(faq_button[2])
-    actions.click(faq_button[2]).perform()
+    faq_button[2].mouse_hover()
+    faq_button[2].click()
 
     page_faq = page_fixture.questions_answers_page
     faq_label = page_faq.get_heading_label()
@@ -124,11 +124,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     resources_button = page_header_button.resources_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(resources_button).perform()
+    resources_button.mouse_hover()
+
     useful_guides_button = page_header_buttons.resources_hover_button()
-    actions.move_to_element(useful_guides_button[3])
-    actions.click(useful_guides_button[3]).perform()
+    useful_guides_button[3].mouse_hover()
+    useful_guides_button[3].click()
 
     page_useful_guides = page_fixture.useful_guides_page
     useful_guides_label = page_useful_guides.get_heading_label()
@@ -138,11 +138,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     resources_button = page_header_button.resources_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(resources_button).perform()
+    resources_button.mouse_hover()
+
     how_factoring_works_button = page_header_buttons.resources_hover_button()
-    actions.move_to_element(how_factoring_works_button[4])
-    actions.click(how_factoring_works_button[4]).perform()
+    how_factoring_works_button[4].mouse_hover()
+    how_factoring_works_button[4].click()
 
     page_how_factoring_works = page_fixture.factoring_works_page
     how_factoring_works_label = page_how_factoring_works.get_heading_label()
@@ -152,11 +152,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     resources_button = page_header_button.resources_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(resources_button).perform()
+    resources_button.mouse_hover()
+
     glossary_button = page_header_buttons.resources_hover_button()
-    actions.move_to_element(glossary_button[5])
-    actions.click(glossary_button[5]).perform()
+    glossary_button[5].mouse_hover()
+    glossary_button[5].click()
 
     page_glossary = page_fixture.glossary_page
     glossary_label = page_glossary.get_heading_label()
@@ -166,11 +166,11 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     resources_button = page_header_button.resources_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(resources_button).perform()
+    resources_button.mouse_hover()
+
     articles_button = page_header_buttons.resources_hover_button()
-    actions.move_to_element(articles_button[6])
-    actions.click(articles_button[6]).perform()
+    articles_button[6].mouse_hover()
+    articles_button[6].click()
 
     page_news = page_fixture.articles_page
     articles_label = page_news.get_heading_label()
@@ -180,7 +180,7 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     partner_with_us_button = page_header_button.partner_with_us_button()
-    driver.execute_script("arguments[0].click();", partner_with_us_button)
+    partner_with_us_button.javascript_click()
 
     page_partner_with_us = page_fixture.partner_with_us_page
     partner_with_us_label = page_partner_with_us.get_heading_label()
@@ -190,7 +190,7 @@ def test_buttons_in_header(driver, page_fixture, wait):
 
     page_header_button = page_fixture.header_buttons
     contact_us_button = page_header_button.contact_us_button()
-    driver.execute_script("arguments[0].click();", contact_us_button)
+    contact_us_button.javascript_click()
 
     contact_us_page = page_fixture.contact_us_page
     articles_label = contact_us_page.get_heading_label()
@@ -341,11 +341,11 @@ def test_opening_login_page(driver, page_fixture, wait):
     accept_all_cookies_button.click()
 
     login_button = page_fixture.header_buttons.login_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(login_button).perform()
+    login_button.mouse_hover()
+
     invoice_financing_button = page_fixture.header_buttons.login_dropdown()
-    actions.move_to_element(invoice_financing_button[0])
-    actions.click(invoice_financing_button[0]).perform()
+    invoice_financing_button[0].mouse_hover()
+    invoice_financing_button[0].click()
 
     driver.switch_to.window(driver.window_handles[1])
 
@@ -357,11 +357,11 @@ def test_opening_login_page(driver, page_fixture, wait):
     driver.switch_to.window(driver.window_handles[0])
 
     login_button = page_fixture.header_buttons.login_button()
-    actions = ActionChains(driver)
-    actions.move_to_element(login_button).perform()
+    login_button.mouse_hover()
+
     invoice_financing_button = page_fixture.header_buttons.login_dropdown()
-    actions.move_to_element(invoice_financing_button[1])
-    actions.click(invoice_financing_button[1]).perform()
+    invoice_financing_button[1].mouse_hover()
+    invoice_financing_button[1].click()
 
     driver.switch_to.window(driver.window_handles[2])
 
@@ -377,7 +377,7 @@ def test_select_your_finance_option(driver, page_fixture, wait):
     accept_all_cookies_button.click()
 
     apply_for_finance_button = page_fixture.header_buttons.apply_for_finance_button()
-    driver.execute_script("arguments[0].click();", apply_for_finance_button[1])
+    apply_for_finance_button[1].javascript_click()
 
     invoice_financing_label = page_fixture.home_page.invoice_financing_label()
     assert invoice_financing_label.is_displayed()

@@ -25,9 +25,6 @@ class HeaderButtons(BasePage):
     def resources_hover_button(self):
         return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-2"]//a'))
 
-    # def resources_hover_button_right(self):
-    #     return self.find_elements((By.XPATH, '//nav[@id="w-dropdown-list-8"]//following-sibling::div//a'))
-
     def contact_us_button(self):
         return self.find_element((By.XPATH, '//a[contains(text(),"Contact Us")]'))
 
