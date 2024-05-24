@@ -1,6 +1,5 @@
 import logging
 import time
-
 from selenium.common import TimeoutException, StaleElementReferenceException, ElementClickInterceptedException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
@@ -57,6 +56,24 @@ class BaseElement(WebElement):
         self.logger.debug('Наведение мыши на элемент по локатору %s', self.locator)
 
     def click(self, retries=5, element_backlight=True):
+        """
+            Попытаться выполнить клик по элементу на веб-странице.
+
+            Аргументы:
+            retries (int): Количество попыток выполнения клика в случае неудачи.
+            element_backlight (bool): Флаг для включения/отключения подсветки элемента перед кликом и после него.
+
+            Исключения:
+            Raises:
+                StaleElementReferenceException: Если ссылка на элемент устарела.
+                ElementClickInterceptedException: Если другой элемент перекрывает целевой элемент и клик не может быть выполнен.
+
+            Примечания:
+            Notes:
+                Перед выполнением клика элемент подсвечивается красным цветом для визуального подтверждения его обнаружения.
+                Если клик не удается с первого раза из-за исключений, функция будет повторять попытки до указанного значения retries.
+                Если параметр element_backlight установлен в True, элемент подсвечивается перед кликом и подсветка удаляется после клика.
+        """
         for retry in range(retries):
             try:
                 self.appear_shadow("red")
