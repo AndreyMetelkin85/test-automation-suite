@@ -1,6 +1,5 @@
 import time
 from plugins.tools_plugin import driver, wait, page_fixture, scroll_down
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 def test_apply_for_finance_button_in_invoice_financing_page(driver, page_fixture, scroll_down, wait):
@@ -40,7 +39,7 @@ def test_information_unveiling_frequently_asked_questions_block_invoice_financin
     accept_all_cookies_button = page_fixture.home_page.accept_all_pop_up_button()
     accept_all_cookies_button.click()
 
-    driver.execute_script("window.scrollBy(0, 3600);")
+    scroll_down(3600)
     time.sleep(1)
 
     asked_questions_button_count = 4
