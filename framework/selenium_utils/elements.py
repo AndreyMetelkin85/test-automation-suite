@@ -1,7 +1,7 @@
 import logging
 import time
 from selenium.common import TimeoutException, StaleElementReferenceException, ElementClickInterceptedException, \
-    ElementNotInteractableException
+    ElementNotInteractableException, NoSuchElementException, ElementNotVisibleException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.remote.webelement import WebElement
 
@@ -159,7 +159,7 @@ class BaseElement(WebElement):
 
     def is_displayed(self, retries=5, element_backlight=True):
         """
-            Проверить, отображается ли элемент на веб-странице.
+            Проверить, виден ли элемент пользователю.
 
             Аргументы:
             retries (int): Количество повторных попыток, в случае неудачи.
@@ -179,8 +179,8 @@ class BaseElement(WebElement):
         result = False  # Инициализация переменной для хранения результата проверки видимости элемента
         for retry in range(retries):
             try:
-                if element_backlight:
-                    self.appear_shadow("blue")  # Подсветка элемента синим цветом для визуального подтверждения
+
+                self.appear_shadow("blue")  # Подсветка элемента синим цветом для визуального подтверждения
 
                 if retry == 0:
                     result = super().is_displayed()  # Проверка видимости элемента в первой попытке
@@ -204,8 +204,64 @@ class BaseElement(WebElement):
         if element_backlight:
             try:
                 self.delete_shadow()  # Удаление подсветки элемента
-            except (TimeoutException, StaleElementReferenceException):
+            except (TimeoutException, StaleElementReferenceException, ElementNotVisibleException,
+                    NoSuchElementException):
                 pass
 
         self.logger.debug('Найти элемент по локатору', self.locator)
         return result
+
+    def send_keys(self, keys, retries=5, element_backlight=True):
+        """
+            Имитирует ввод текста в элемент.
+            Используется это для отправки простых событий нажатия клавиш или для заполнения полей формы
+
+            Аргументы:
+            keys (str): Строка символов, которые будут отправлены в элемент.
+            retries (int): Количество попыток выполнения отправки клавиш в случае неудачи. По умолчанию 5.
+            element_backlight (bool): Флаг для включения/отключения подсветки элемента перед отправкой клавиш и
+            после него. По умолчанию True.
+
+            Исключения:
+            Raises:
+                TimeoutException: Если выполнение операции занимает слишком много времени.
+                NoSuchElementException: Если элемент не найден.
+                ElementNotInteractableException: Если элемент не взаимодействуемый.
+
+            Примечания:
+            Перед отправкой клавиш элемент подсвечивается зеленым цветом для визуального подтверждения его обнаружения.
+
+            Если отправка клавиш не удается с первого раза из-за исключений, функция будет повторять попытки
+            до указанного значения retries.
+
+            Если параметр element_backlight установлен в True, элемент подсвечивается перед отправкой клавиш
+            и подсветка удаляется после отправки.
+        """
+        for retry in range(retries):
+            try:
+                self.appear_shadow("green")  # Подсветить элемент зеленым цветом для визуального подтверждения
+
+                if retry == 0:
+                    super().send_keys(keys)  # При первой удачной попытке передавать данные
+                    break
+
+                if self.element_index:
+                    # Если задан индекс элемента, найти элементы и отправить клавиши в указанный элемент по индексу
+                    super(BaseElement, self.parent.find_elements(self.__class__, self.locator))[
+                        self.element_index].send_keys()
+
+                    # Если индекс элемента не задан, найти элемент и отправить клавиши
+                else:
+                    super(BaseElement, self.parent.find_element(self.__class__, self.locator)).send_keys(keys)
+
+                    break
+            except (TimeoutException, NoSuchElementException, ElementNotInteractableException) as error:
+                time.sleep(5)  # Если произошла ошибка, подождать 5 секунд и повторить попытку
+
+                if retry == -1:
+                    raise error  # Если достигнуто максимальное количество попыток, выбросить исключение
+
+        if element_backlight:
+            self.delete_shadow()  # Удалить подсветку элемента, если включена подсветка
+
+        self.logger.debug('Найти элемент по локатору', self.locator)
