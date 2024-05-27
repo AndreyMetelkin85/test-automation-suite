@@ -103,6 +103,9 @@ class DataGenerator:
             "email": self.faker.email(),
             "age": random.randint(18, 60),
             "salary": random.randint(1000, 5000),
-            "department": self.faker.job()
+            "department": self.faker.job(),
+            "mobile_number": self.faker.phone_number(),
+            "permanent address": self.faker.address()
+
         }
         return registration_form
