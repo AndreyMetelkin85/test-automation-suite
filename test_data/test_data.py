@@ -104,5 +104,18 @@ class DataGenerator:
             "age": random.randint(18, 60),
             "salary": random.randint(1000, 5000),
             "department": self.faker.job()
+
         }
         return registration_form
+
+    def student_registration_form(self):
+
+        student_form = {
+            "first_name": self.faker.first_name(),
+            "last_name": self.faker.last_name(),
+            "email": self.faker.email(),
+            "mobile_number": self.faker.phone_number(),
+            "current address": self.faker.address(),
+
+        }
+        return student_form
