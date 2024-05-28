@@ -301,3 +301,8 @@ def db_test_data():
         Фикстура для создания тестовых данных.
     """
     return DataGenerator()
+
+
+@pytest.fixture
+def student_registration_form():
+    return DataGenerator()

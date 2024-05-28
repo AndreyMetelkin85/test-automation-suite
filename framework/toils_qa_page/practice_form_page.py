@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-
 from base_page import BasePage
 
 
@@ -30,7 +29,7 @@ class PracticeForm(BasePage):
         return self.find_element((By.XPATH, '//input[@id="dateOfBirthInput"]'))
 
     def subjects_input(self):
-        return self.find_element((By.XPATH, '//div[@id="subjectsContainer"]'))
+        return self.find_element((By.XPATH, '//div[@id="subjectsContainer"]//div'))
 
     def hobbies_input(self):
         return self.find_elements((By.XPATH, '//div[@id="hobbiesWrapper"]//descendant::div/div'))
@@ -44,6 +43,9 @@ class PracticeForm(BasePage):
     def state_dropdown(self):
         return self.find_element((By.XPATH, '//div[@id="state"]'))
 
+    def state_and_city_dropdown_open(self):
+        return self.find_elements((By.XPATH, '//div[@class=" css-11unzgr"]/descendant::div'))
+
     def city_dropdown(self):
         return self.find_element((By.XPATH, '//div[@id="city"]'))
 
@@ -54,4 +56,4 @@ class PracticeForm(BasePage):
         return self.find_element((By.XPATH, '//div[@id="example-modal-sizes-title-lg"]'))
 
     def result_submitting_form(self):
-        return self.find_element((By.XPATH, '//div[@class="table-responsive"]//child::tr'))
+        return self.find_elements((By.XPATH, '//div[@class="table-responsive"]//descendant::tbody//tr'))
