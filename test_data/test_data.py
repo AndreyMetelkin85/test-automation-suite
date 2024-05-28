@@ -114,8 +114,8 @@ class DataGenerator:
             "first_name": self.faker.first_name(),
             "last_name": self.faker.last_name(),
             "email": self.faker.email(),
-            "mobile_number": self.faker.phone_number(),
-            "current address": self.faker.address(),
+            "mobile_number": ''.join(random.choices('0123456789', k=10)),
+            "current_address": self.faker.address(),
 
         }
         return student_form

@@ -1,4 +1,5 @@
 from base_page import BasePage
+from framework.toils_qa_page.practice_form_page import PracticeForm
 from framework.toils_qa_page.forms_page.registration_form_page import RegistrationForm
 from framework.website_stenn_page.articles_page import Articles
 from framework.website_stenn_page.careers_page import Careers
@@ -52,3 +53,4 @@ class PageFixture:
         self.go_to_web_site_stenn = BasePage(driver)
         self.go_to_web_site_demo_qa = BasePage(driver)
         self.registration_form = RegistrationForm(driver)
+        self.practice_form = PracticeForm(driver)
