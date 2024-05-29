@@ -34,6 +34,39 @@ def driver():
     driver.quit()
 
 
+# Хук для захвата скриншота после каждого теста
+def pytest_runtest_teardown(item, nextitem):
+    """
+        Хук pytest, который выполняется после завершения каждого теста.
+        Если в тесте использовался WebDriver, захватывает скриншот экрана и сохраняет его в директорию 'screenshots'.
+
+        Параметры:
+        - item: объект теста, содержащий информацию о только что выполненном тесте.
+        - nextitem: объект следующего теста (не используется в этой функции).
+
+        Логика работы:
+        1. Извлечение объекта WebDriver из аргументов текущей тестовой функции.
+        2. Проверка, был ли WebDriver использован в тесте.
+        3. Создание директории для скриншотов, если она не существует.
+        4. Формирование имени файла для скриншота на основе имени теста.
+        5. Захват и сохранение скриншота.
+    """
+
+    driver = item.funcargs.get('driver')
+    if driver:
+        # Создаем директорию для сохранения скриншотов, если она не существует
+        screenshots_dir = 'screenshots'
+        if not os.path.exists(screenshots_dir):
+            os.makedirs(screenshots_dir)
+
+        # Создаем имя файла для скриншота
+        test_name = item.name
+        screenshot_file = os.path.join(screenshots_dir, f"{test_name}.png")
+
+        # Захватываем и сохраняем скриншот
+        driver.save_screenshot(screenshot_file)
+
+
 @pytest.fixture
 def slow_scroll():
     """
