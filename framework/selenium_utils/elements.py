@@ -45,7 +45,7 @@ class BaseElement(WebElement):
         self.parent.execute_script('arguments[0].scrollIntoView(); arguments[0].click()', self)
 
         # Логирование нажатия на элемент
-        self.logger.debug('Нажать на элемент по локатору %s', self.locator)
+        self.logger.debug('Нажать на элемент по локатору: %s', self.locator)
 
     def mouse_hover(self):
         """
@@ -54,7 +54,7 @@ class BaseElement(WebElement):
         ActionChains(self.parent).move_to_element(self).perform()
 
         # Логирование наведения мыши на элемент
-        self.logger.debug('Наведение мыши на элемент по локатору %s', self.locator)
+        self.logger.debug('Наведение мыши на элемент по локатору: %s', self.locator)
 
     def double_click(self):
         """
@@ -127,7 +127,7 @@ class BaseElement(WebElement):
             except (TimeoutException, StaleElementReferenceException):
                 pass
 
-        self.logger.debug('Нажать на элемент по локатору', self.locator)
+        self.logger.debug('Выполнить клик по элементу с локатором: %s', self.locator)
 
     def get_text(self, retries=5):
         """
@@ -169,7 +169,7 @@ class BaseElement(WebElement):
                 if retry == retries - 1:
                     raise error  # Если достигнуто максимальное количество попыток, кидаем исключение
 
-        self.logger.debug('Найти элемент по локатору', self.locator)
+        self.logger.debug('Найти элемент по локатору: %s', self.locator)
 
         return None
 
@@ -224,7 +224,7 @@ class BaseElement(WebElement):
                     NoSuchElementException):
                 pass
 
-        self.logger.debug('Найти элемент по локатору', self.locator)
+        self.logger.debug('Найти элемент по локатору: %s', self.locator)
         return result
 
     def send_keys(self, keys, retries=5, element_backlight=True):
@@ -280,4 +280,4 @@ class BaseElement(WebElement):
         if element_backlight:
             self.delete_shadow()  # Удалить подсветку элемента, если включена подсветка
 
-        self.logger.debug('Найти элемент по локатору', self.locator)
+        self.logger.debug('Найти элемент по локатору: %s', self.locator)
