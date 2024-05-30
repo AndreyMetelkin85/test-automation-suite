@@ -56,6 +56,22 @@ class BaseElement(WebElement):
         # Логирование наведения мыши на элемент
         self.logger.debug('Наведение мыши на элемент по локатору %s', self.locator)
 
+    def double_click(self):
+        """
+            Выполняет двойной клик по элементу.
+        """
+        ActionChains(self.parent).double_click(self).perform()
+
+        self.logger.debug('Выполняется двойной клик по элементу с локатором: %s', self.locator)
+
+    def right_click(self):
+        """
+            Выполняет клик правой кнопкой мыши по элементу.
+        """
+        ActionChains(self.parent).context_click(self).perform()
+
+        self.logger.debug('Выполняется клик правой кнопкой по элементу с локатором: %s', self.locator)
+
     def click(self, retries=5, element_backlight=True):
         """
             Попытаться выполнить клик по элементу на веб-странице.

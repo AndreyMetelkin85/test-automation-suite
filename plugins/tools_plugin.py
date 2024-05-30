@@ -1,9 +1,10 @@
 import time
 import os
+
+import allure
 import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-from selenium.webdriver.common.action_chains import ActionChains
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
 from test_data.test_data import DataGenerator
@@ -37,25 +38,27 @@ def driver():
 # Хук для захвата скриншота после каждого теста
 def pytest_runtest_teardown(item, nextitem):
     """
-        Хук pytest, который выполняется после завершения каждого теста.
-        Если в тесте использовался WebDriver, захватывает скриншот экрана и сохраняет его в директорию 'screenshots'.
+    Хук pytest, который выполняется после завершения каждого теста.
+    Если в тесте использовался WebDriver, захватывает скриншот экрана и сохраняет его в директорию 'results/screenshots'
+    и прикрепляет его к отчету Allure.
 
-        Параметры:
-        - item: объект теста, содержащий информацию о только что выполненном тесте.
-        - nextitem: объект следующего теста (не используется в этой функции).
+    Параметры:
+    - item: объект теста, содержащий информацию о только что выполненном тесте.
+    - nextitem: объект следующего теста (не используется в этой функции).
 
-        Логика работы:
-        1. Извлечение объекта WebDriver из аргументов текущей тестовой функции.
-        2. Проверка, был ли WebDriver использован в тесте.
-        3. Создание директории для скриншотов, если она не существует.
-        4. Формирование имени файла для скриншота на основе имени теста.
-        5. Захват и сохранение скриншота.
+    Логика работы:
+    1. Извлечение объекта WebDriver из аргументов текущей тестовой функции.
+    2. Проверка, был ли WebDriver использован в тесте.
+    3. Создание директории для скриншотов, если она не существует.
+    4. Формирование имени файла для скриншота на основе имени теста.
+    5. Захват и сохранение скриншота.
+    6. Прикрепление скриншота к отчету Allure.
     """
 
     driver = item.funcargs.get('driver')
     if driver:
         # Создаем директорию для сохранения скриншотов, если она не существует
-        screenshots_dir = 'screenshots'
+        screenshots_dir = os.path.join('results')
         if not os.path.exists(screenshots_dir):
             os.makedirs(screenshots_dir)
 
@@ -65,6 +68,10 @@ def pytest_runtest_teardown(item, nextitem):
 
         # Захватываем и сохраняем скриншот
         driver.save_screenshot(screenshot_file)
+
+        # Прикрепляем скриншот к отчету Allure
+        with open(screenshot_file, 'rb') as image_file:
+            allure.attach(image_file.read(), name=test_name, attachment_type=allure.attachment_type.PNG)
 
 
 @pytest.fixture
@@ -151,76 +158,6 @@ def registration_form_data(driver):
         :returns: TestData: Экземпляр класса TestData с тестовыми данными.
     """
     return DataGenerator()
-
-
-@pytest.fixture
-def perform_double_click(driver):
-    """
-        Фикстура perform_double_click предназначена для выполнения двойного клика на элементе веб-страницы.
-
-        Данная фикстура создает функцию double_click, которая выполняет двойной клик на указанном элементе.
-        Для этого используется объект ActionChains, который инициализируется с переданным драйвером.
-
-        :param driver: Драйвер браузера Selenium.
-    """
-
-    def double_click(element):
-        """
-                Функция double_click выполняет двойной клик на элементе веб-страницы.
-
-                :param element: Элемент веб-страницы, на который нужно выполнить двойной клик.
-        """
-        action_chains = ActionChains(driver)
-        action_chains.double_click(element).perform()
-
-    return double_click
-
-
-@pytest.fixture
-def perform_right_click(driver):
-    """
-        Фикстура perform_right_click предназначена для выполнения правого клика на элементе веб-страницы.
-
-        Данная фикстура создает функцию right_click, которая выполняет правый клик на указанном элементе.
-        Для этого используется объект ActionChains, который инициализируется с переданным драйвером.
-
-        :param driver: Драйвер браузера Selenium.
-    """
-
-    def right_click(element):
-        """
-            Функция right_click выполняет правый клик на элементе веб-страницы.
-
-            :param element: Элемент веб-страницы, на который нужно выполнить правый клик.
-        """
-        action_chains = ActionChains(driver)
-        action_chains.context_click(element).perform()
-
-    return right_click
-
-
-@pytest.fixture
-def perform_normal_click(driver):
-    """
-        Фикстура perform_normal_click предназначена для выполнения обычного (левого) клика на элементе веб-страницы.
-
-        Данная фикстура создает функцию normal_click_action, которая выполняет обычный (левый) клик на указанном элементе.
-        Для этого используется объект ActionChains, который инициализируется с переданным драйвером.
-
-        :param driver: Драйвер браузера Selenium.
-
-    """
-
-    def normal_click_action(element):
-        """
-            Функция normal_click_action выполняет обычный (левый) клик на элементе веб-страницы.
-
-            :param element: Элемент веб-страницы, на который нужно выполнить обычный (левый) клик.
-        """
-        action_chains = ActionChains(driver)
-        action_chains.click(element).perform()
-
-    return normal_click_action
 
 
 @pytest.fixture
