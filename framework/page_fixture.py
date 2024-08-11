@@ -1,4 +1,4 @@
-from base_page import BasePage
+from base.base_page import BasePage
 from framework.toils_qa_page.practice_form_page import PracticeForm
 from framework.toils_qa_page.forms_page.registration_form_page import RegistrationForm
 from framework.website_stenn_page.articles_page import Articles
