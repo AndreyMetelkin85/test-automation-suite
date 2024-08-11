@@ -1,6 +1,6 @@
 from selenium.webdriver.common.by import By
 from framework.page_fixture import RegistrationForm
-from base_page import BasePage
+from base.base_page import BasePage
 
 
 class ElementsPage(BasePage):

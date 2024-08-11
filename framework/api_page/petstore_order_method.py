@@ -1,4 +1,4 @@
-from base_page_api import BaseAPI
+from base.base_page_api import BaseAPI
 
 
 class PetStoreOrder(BaseAPI):
