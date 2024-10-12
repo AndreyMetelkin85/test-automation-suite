@@ -1,69 +1,69 @@
 from dataclasses import dataclass
-from typing import List
+from typing import List, Optional
 
 
 @dataclass
 class User:
-    id: int = None,
-    username: str = None,
-    firstName: str = None,
-    lastName: str = None,
-    email: str = None,
-    password: str = None,
-    phone: int = None,
-    userStatus: int = None
+    id: Optional[int] = None,
+    username: Optional[str] = None,
+    firstName: Optional[str] = None,
+    lastName: Optional[str] = None,
+    email: Optional[str] = None,
+    password: Optional[str] = None,
+    phone: Optional[int] = None,
+    userStatus: Optional[int] = None
 
 
 @dataclass
 class Category:
-    id: int = None,
-    name: str = None
+    id: Optional[int] = None,
+    name: Optional[str] = None
 
 
 @dataclass
 class Tags:
-    id: int = None,
-    name: str = None
+    id: Optional[int] = None,
+    name: Optional[str] = None
 
 
 @dataclass
 class PetData:
     category: Category
-    id: int = None
-    name: str = None,
+    id: Optional[int] = None
+    name: Optional[str] = None,
     photoUrls: List[str] = None,
     tags: List[Tags] = None
 
 
 @dataclass
 class OrderData:
-    id: int = None,
-    quantity: int = None,
-    shipDate: int = None
+    id: Optional[int] = None,
+    quantity: Optional[int] = None,
+    shipDate: Optional[int] = None
 
 
 @dataclass
 class TextBoxFormData:
-    fullname: str = None,
-    email: str = None,
-    current_address: str = None,
-    permanent_address: str = None
+    fullname: Optional[str] = None,
+    email: Optional[str] = None,
+    current_address: Optional[str] = None,
+    permanent_address: Optional[str] = None
 
 
 @dataclass
 class RegistrationFormData:
-    first_name: str = None,
-    last_name: str = None,
-    email: str = None,
-    age: int = None,
-    salary: int = None,
-    department: str = None
+    first_name: Optional[str] = None,
+    last_name: Optional[str] = None,
+    email: Optional[str] = None,
+    age: Optional[int] = None,
+    salary: Optional[int] = None,
+    department: Optional[str] = None
 
 
 @dataclass
 class StudentRegistrationData:
-    first_name: str = None,
-    last_name: str = None,
-    email: str = None,
-    mobile_number: int = None,
-    current_address: str = None
+    first_name: Optional[str] = None,
+    last_name: Optional[str] = None,
+    email: Optional[str] = None,
+    mobile_number: Optional[int] = None,
+    current_address: Optional[str] = None
