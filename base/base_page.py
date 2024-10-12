@@ -1,12 +1,11 @@
 import logging
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from abc import ABC
 from framework.logger_config import setup_logger
 from framework.selenium_utils.elements import BaseElement
 
 
-class BasePage(ABC):
+class BasePage:
     """
            Базовый класс для страниц веб-сайта.
 
@@ -34,7 +33,6 @@ class BasePage(ABC):
               4. Добавляет обработчик логов для вывода в консоль, если он еще не добавлен.
         """
         self.driver = driver
-        self.stenn_url = "https://stenn.com/"
         self.demo_qa_url = 'https://demoqa.com/'
 
         # Создает и настраивает логгер для текущего класса, используя имя класса в качестве имени логгера.
@@ -134,17 +132,6 @@ class BasePage(ABC):
             self.logger.debug(f"Прокрутка к элементу выполнена успешно: {element}")
         except Exception as e:
             self.logger.error(f"Ошибка при прокрутке к элементу: {e}")
-            raise
-
-    def go_to_web_site_stenn(self):
-        """
-            Метод для перехода на главную страницу сайта "https://stenn.com/".
-        """
-        try:
-            self.driver.get(self.stenn_url)
-            self.logger.debug(f"Успешный переход на сайт: {self.stenn_url}")
-        except Exception as e:
-            self.logger.error(f"Ошибка при переходе на сайт {self.stenn_url}: {e}")
             raise
 
     def go_to_web_site_demo_qa(self):

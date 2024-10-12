@@ -1,6 +1,6 @@
 import random
 import allure
-from plugins.tools_plugin import page_fixture, student_registration_form, scroll_down
+from conftest import page_fixture, student_registration_form, scroll_down
 from file.constants import PATH_TO_PHOTO
 
 

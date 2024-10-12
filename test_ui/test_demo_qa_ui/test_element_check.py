@@ -1,6 +1,6 @@
 import allure
 import pytest
-from plugins.tools_plugin import page_fixture, text_box_form_data, registration_form_data, wait
+from conftest import page_fixture, text_box_form_data, registration_form_data, wait
 from file.constants import PATH_TO_FILE
 
 

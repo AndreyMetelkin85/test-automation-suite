@@ -1,5 +1,5 @@
 import pytest
-from plugins.tools_plugin import db_connection, db_connection_db_postgres
+from conftest import db_connection, db_connection_db_postgres
 
 
 # Тест проверяет, что данные о самолете успешно извлекаются из базы данных по заданному коду.
