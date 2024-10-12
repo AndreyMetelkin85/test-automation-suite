@@ -1,6 +1,6 @@
 import pytest
 
-from plugins.tools_plugin import pet_test_data, pet_store_pet_fixture
+from conftest import pet_test_data, pet_store_pet_fixture
 
 
 # Проверяет добавление нового животного в магазин домашних животных.

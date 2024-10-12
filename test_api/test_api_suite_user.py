@@ -1,5 +1,5 @@
 import allure
-from plugins.tools_plugin import user_test_data, pet_store_user_fixture
+from conftest import user_test_data, pet_store_user_fixture
 
 
 # Проверяет создание пользователя в магазине домашних животных.
