@@ -1,4 +1,5 @@
 from base.base_page_api import BaseAPI
+from test_data.test_data import TestData
 
 
 class PetStoreOrder(BaseAPI):
@@ -7,20 +8,19 @@ class PetStoreOrder(BaseAPI):
 
     """
 
-    def create_order_for_pet(self, order_test_data: dict, pet_test_data: dict, status: str):
+    def create_order_for_pet(self, test_data: TestData, status: str):
         """
             Создать заказ на питомца.
 
-            :param pet_test_data - Словарь с данными о животном.
-            :param order_test_data - Словарь с данными о заказе.
+            :param test_data - Словарь с данными о заказе.
             :param status - Статус заказа.
         """
         create_order = self.post(endpoint='/v2/store/order',
                                  data={
-                                     "id": order_test_data["id"],
-                                     "petId": pet_test_data["id"],
-                                     "quantity": order_test_data["quantity"],
-                                     "shipDate": order_test_data["shipDate"],
+                                     "id": test_data.order_data.id,
+                                     "petId": test_data.pet_data.id,
+                                     "quantity": test_data.order_data.quantity,
+                                     "shipDate": test_data.order_data.shipDate,
                                      "status": status,
                                      "complete": True
                                  })

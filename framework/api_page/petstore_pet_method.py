@@ -1,31 +1,29 @@
 from base.base_page_api import BaseAPI
+from test_data.test_data import TestData
 
 
 class PetStorePet(BaseAPI):
 
-    def add_new_pet_store(self, pet_test_data: dict, status: str):
+    def add_new_pet_store(self, test_data: TestData, status: str):
         """
            Добавляет новое животное в магазин домашних животных.
-
-           :param pet_test_data - Словарь с данными о животном.
+           :param test_data = Генератор тестовых данных.
            :param status - Статус добавляемого животного.
         """
         add_pet = self.post(endpoint='/v2/pet',
                             data=
                             {
-                                "id": pet_test_data["id"],
+                                "id": test_data.pet_data.id,
                                 "category": {
-                                    "id": pet_test_data["category"]["id"],
-                                    "name": pet_test_data["category"]["name"]
+                                    "id": test_data.category.id,
+                                    "name": test_data.category.name,
                                 },
-                                "name": pet_test_data["name"],
-                                "photoUrls": [
-                                    pet_test_data["photoUrls"][0]
-                                ],
+                                "name": test_data.pet_data.name,
+                                "photoUrls": [test_data.pet_data.photoUrls],
                                 "tags": [
                                     {
-                                        "id": pet_test_data["tags"][0]["id"],
-                                        "name": pet_test_data["tags"][0]["name"]
+                                        "id": test_data.tags.id,
+                                        "name": test_data.tags.name
                                     }
                                 ],
                                 "status": status

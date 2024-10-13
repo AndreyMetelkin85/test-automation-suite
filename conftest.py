@@ -1,6 +1,5 @@
 import time
 import os
-
 import allure
 import pytest
 from selenium import webdriver
@@ -164,14 +163,7 @@ def user_test_data():
 
 
 @pytest.fixture
-def pet_test_data():
-    """ Фикстура для предоставления тестовых данных. """
-    return DataGenerator()
-
-
-@pytest.fixture
-def order_test_data():
-    """ Фикстура для предоставления тестовых данных для заказа. """
+def test_data():
     return DataGenerator()
 
 

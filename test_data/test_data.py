@@ -1,70 +1,94 @@
 from datetime import datetime, timezone
-from faker import Faker
+import faker
 import random
+from dataclasses import dataclass
+
+from test_data.default_user_data import User, Category, Tags, PetData, OrderData, TextBoxFormData, \
+    RegistrationFormData, StudentRegistrationData
+
+
+@dataclass
+class TestData:
+    user: User
+    category: Category
+    tags: Tags
+    pet_data: PetData
+    order_data: OrderData
+    text_box_form_data: TextBoxFormData
+    # registration_form_data: RegistrationFormData
+    # student_registration_form_data: StudentRegistrationData
 
 
 class DataGenerator:
-    """
-        Класс для создания тестовых данных.
-    """
+    """ Класс для создания тестовых данных. """
 
     def __init__(self):
         """
             Инициализирует объект класса TestData с экземпляром класса Faker для генерации
             тестовых данных на английском языке.
         """
-        self.faker = Faker("en_US")
+        self.faker = faker.Faker(locale="en_US")
+        self.user = User()
+        self.category = Category()
+        self.tags = Tags()
+        self.pet_data = PetData()
+        self.order_data = OrderData()
+        self.box_form_data = TextBoxFormData()
+        # self.registration_form_data = RegistrationFormData()
+        # self.student_registration_form_data = StudentRegistrationData()
 
-    def user_test_data(self):
+    def create_user_data(self):
         """Генерирует данные для одного пользователя."""
 
-        user = {
-            "id": random.randint(1, 9999),
-            "username": self.faker.user_name(),
-            "firstName": self.faker.first_name(),
-            "lastName": self.faker.last_name(),
-            "email": self.faker.email(),
-            "password": self.faker.password(),
-            "phone": self.faker.phone_number(),
-            "userStatus": random.randint(1, 10)
-        }
-        return user
+        id = random.randint(1, 9999)
+        username = self.faker.user_name()
+        first_name = self.faker.first_name()
+        last_name = self.faker.last_name()
+        email = self.faker.email(domain="google.com")
+        password = self.faker.password()
+        phone = self.faker.numerify("+1 (###) ###-####")
+        user_status = random.randint(1, 10)
+        self.user.id = id
+        self.user.username = username
+        self.user.firstName = first_name
+        self.user.lastName = last_name
+        self.user.email = email
+        self.user.password = password
+        self.user.phone = phone
+        self.user.userStatus = user_status
 
-    def pet_test_data(self):
-        """
-            Генерирует данные для животного.
-        """
-        pet = {
-            "id": random.randint(1, 9999),
-            "category": {
-                "id": random.randint(1, 9999),
-                "name": self.faker.word()
-            },
-            "name": self.faker.word(),
-            "photoUrls": [
-                self.faker.image_url()
-            ],
-            "tags": [
-                {
-                    "id": random.randint(1, 9999),
-                    "name": self.faker.word()
-                }
-            ],
+    def create_pet_data(self):
+        """ Генерирует данные для животного. """
 
-        }
-        return pet
+        id = random.randint(1, 9999)
+        name = self.faker.word()
+        photo_urls = self.faker.image_url()
+        self.pet_data.id = id
+        self.pet_data.name = name
+        self.pet_data.photoUrls = photo_urls
 
-    def order_test_data(self):
-        """
-            Генерирует тестовые данные для заказа.
-        """
+    def create_tags_data(self):
+        id = random.randint(1, 9999)
+        name = self.faker.word()
+        self.tags.id = id
+        self.tags.name = name
+
+    def create_category_data(self):
+        id = random.randint(1, 9999)
+        name = self.faker.word()
+        self.category.id = id
+        self.category.name = name
+
+    def create_order_test_data(self):
+        """ Генерирует тестовые данные для заказа. """
+
         current_datetime = datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3] + 'Z'
-        order = {
-            "id": random.randint(1, 9999),
-            "quantity": random.randint(1, 10),
-            "shipDate": current_datetime,
-        }
-        return order
+        id = random.randint(1, 9999)
+        quantity = random.randint(1, 10)
+        ship_date = current_datetime
+        self.order_data.id = id
+        self.order_data.quantity = quantity
+        self.order_data.shipDate = ship_date
 
     def db_test_data(self):
         """
@@ -80,18 +104,17 @@ class DataGenerator:
         }
         return db_data
 
-    @property
-    def text_box_form_data(self):
-        """
-            Генерирует тестовые данные для использования в тестах, связанных с заполнением формы.
-        """
-        text_box = {
-            "fullname": self.faker.name(),
-            "email": self.faker.email(),
-            "current address": self.faker.address(),
-            "permanent address": self.faker.address()
-        }
-        return text_box
+    def create_text_box_form_data(self):
+        """ Генерирует тестовые данные для использования в тестах, связанных с заполнением формы. """
+
+        fullname = self.faker.name()
+        email = self.faker.email(domain="google.com")
+        current_address = self.faker.address()
+        permanent_address = self.faker.address()
+        self.box_form_data.fullname = fullname
+        self.box_form_data.email = email
+        self.box_form_data.current_address = current_address
+        self.box_form_data.permanent_address = permanent_address
 
     def registration_form_data(self):
         """
@@ -109,7 +132,6 @@ class DataGenerator:
         return registration_form
 
     def student_registration_form(self):
-
         student_form = {
             "first_name": self.faker.first_name(),
             "last_name": self.faker.last_name(),
@@ -119,3 +141,13 @@ class DataGenerator:
 
         }
         return student_form
+
+    def generate_test_data(self):
+        self.create_user_data()
+        self.create_pet_data()
+        self.create_tags_data()
+        self.create_category_data()
+        self.create_order_test_data()
+        self.create_text_box_form_data()
+        return TestData(user=self.user, pet_data=self.pet_data, category=self.category, tags=self.tags,
+                        order_data=self.order_data, text_box_form_data=self.box_form_data)
