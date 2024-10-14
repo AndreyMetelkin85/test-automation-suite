@@ -30,16 +30,16 @@ class PetStorePet(BaseAPI):
                             })
         return add_pet
 
-    def updates_pet_store(self, pet_test_data: dict, id: int, status: str):
+    def updates_pet_store(self, test_data: TestData, id: int, status: str):
         """
                 Отправляет запрос на обновление информации о питомце на сервере.
 
-                :param pet_test_data - Словарь с данными о животном.
+                :param test_data - Словарь с данными о животном.
                 :param id - Идентификатор питомца.
                 :param status - Статус питомца.
         """
         payload = {
-            'name': pet_test_data["name"],
+            'name': test_data.pet_data.name,
             'status': status
         }
         headers = {
@@ -68,29 +68,29 @@ class PetStorePet(BaseAPI):
             upload_image = self.post(endpoint=f'/v2/pet/{id}/uploadImage', files=files, data=payload, headers=headers)
         return upload_image
 
-    def update_an_existing_pet(self, pet_test_data: dict, status: str):
+    def update_an_existing_pet(self, test_data: TestData, status: str):
         """
             Метод для обновления существующего питомца.
 
-            :param pet_test_data - Данные питомца, которые будут использоваться для обновления.
+            :param test_data - Данные питомца, которые будут использоваться для обновления.
             :param status - Новый статус питомца.
         """
         update_an_existing_pet = self.put(endpoint='/v2/pet',
                                           data=
                                           {
-                                              "id": pet_test_data["id"],
+                                              "id": test_data.pet_data.id,
                                               "category": {
-                                                  "id": pet_test_data["category"]["id"],
-                                                  "name": pet_test_data["category"]["name"]
+                                                  "id": test_data.category.id,
+                                                  "name": test_data.category.name,
                                               },
-                                              "name": pet_test_data["name"],
+                                              "name": test_data.pet_data.name,
                                               "photoUrls": [
-                                                  pet_test_data["photoUrls"][0]
+                                                  test_data.pet_data.photoUrls
                                               ],
                                               "tags": [
                                                   {
-                                                      "id": pet_test_data["tags"][0]["id"],
-                                                      "name": pet_test_data["tags"][0]["name"]
+                                                      "id": test_data.tags.id,
+                                                      "name": test_data.tags.name
                                                   }
                                               ],
                                               "status": status

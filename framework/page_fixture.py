@@ -13,7 +13,6 @@ class PageFixture:
 
         self.demo_qa_home_page = ToolsQaHome(driver)
         self.elements_page = ElementsPage(driver)
-        self.go_to_web_site_stenn = BasePage(driver)
         self.go_to_web_site_demo_qa = BasePage(driver)
         self.registration_form = RegistrationForm(driver)
         self.practice_form = PracticeForm(driver)
