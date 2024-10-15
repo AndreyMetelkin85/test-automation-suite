@@ -1,4 +1,5 @@
 from base.base_page_api import BaseAPI
+from test_data.test_data import TestData
 
 
 class PetStoreUser(BaseAPI):
@@ -7,79 +8,79 @@ class PetStoreUser(BaseAPI):
 
     """
 
-    def create_user(self, user_test_data: dict, password: str):
+    def create_user(self, test_data: TestData, password: str):
         """
            Создает нового пользователя в системе и возвращает информацию о нем.
 
-           :param user_test_data - Словарь с данными о пользователе.
+           :param test_data - Словарь с данными о пользователе.
            :param password - Пароль пользователя.
         """
         user_info = self.post(endpoint='/v2/user',
                               data={
-                                  "id": user_test_data["id"],
-                                  "username": user_test_data["username"],
-                                  "firstName": user_test_data["firstName"],
-                                  "lastName": user_test_data["lastName"],
-                                  "email": user_test_data["email"],
+                                  "id": test_data.user.id,
+                                  "username": test_data.user.username,
+                                  "firstName": test_data.user.firstName,
+                                  "lastName": test_data.user.lastName,
+                                  "email": test_data.user.email,
                                   "password": password,
-                                  "phone": user_test_data["phone"],
-                                  "userStatus": user_test_data["userStatus"]
+                                  "phone": test_data.user.phone,
+                                  "userStatus": test_data.user.userStatus
                               })
         return user_info
 
-    def create_user_with_array(self, user_test_data_1: dict, user_test_data_2: dict, password: str):
+    def create_user_with_array(self, test_data_1: TestData, test_data_2: TestData, password: str):
         """
             Создает новых пользователей в системе с использованием массива данных и возвращает
             информацию о созданных пользователях.
 
-            :param user_test_data_1 - Словарь с данными о пользователе.
-            :param user_test_data_2 - Словарь с данными о пользователе.
+            :param test_data_1 - Словарь с данными о пользователе.
+            :param test_data_2 - Словарь с данными о пользователе.
             :param password - Пароль пользователя.
         """
         user_info_with_array = self.post(endpoint='/v2/user/createWithArray',
                                          data=[
                                              {
-                                                 "id": user_test_data_1["id"],
-                                                 "username": user_test_data_1["username"],
-                                                 "firstName": user_test_data_1["firstName"],
-                                                 "lastName": user_test_data_1["lastName"],
-                                                 "email": user_test_data_1["email"],
+                                                 "id": test_data_1.user.id,
+                                                 "username": test_data_1.user.username,
+                                                 "firstName": test_data_1.user.firstName,
+                                                 "lastName": test_data_1.user.lastName,
+                                                 "email": test_data_1.user.email,
                                                  "password": password,
-                                                 "phone": user_test_data_1["phone"],
-                                                 "userStatus": user_test_data_1["userStatus"]
+                                                 "phone": test_data_1.user.phone,
+                                                 "userStatus": test_data_1.user.userStatus
                                              },
                                              {
-                                                 "id": user_test_data_2["id"],
-                                                 "username": user_test_data_2["username"],
-                                                 "firstName": user_test_data_2["firstName"],
-                                                 "lastName": user_test_data_2["lastName"],
-                                                 "email": user_test_data_2["email"],
+                                                 "id": test_data_2.user.id,
+                                                 "username": test_data_2.user.username,
+                                                 "firstName": test_data_2.user.firstName,
+                                                 "lastName": test_data_2.user.lastName,
+                                                 "email": test_data_2.user.email,
                                                  "password": password,
-                                                 "phone": user_test_data_2["phone"],
-                                                 "userStatus": user_test_data_2["userStatus"]
+                                                 "phone": test_data_2.user.phone,
+                                                 "userStatus": test_data_2.user.userStatus
                                              }
                                          ])
         return user_info_with_array
 
-    def create_user_with_list(self, user_test_data: dict, password: str):
+    def create_user_with_list(self, test_data: TestData, password: str):
         """
             Создает нового пользователя в системе с использованием списка данных и возвращает
             информацию о созданном пользователе.
 
-            :param user_test_data - Словарь с данными о пользователе.
+            :param test_data - Словарь с данными о пользователе.
             :param password - Пароль пользователя.
         """
         user_info_with_list = self.post(endpoint='/v2/user/createWithList',
                                         data=[
                                             {
-                                                "id": user_test_data["id"],
-                                                "username": user_test_data["username"],
-                                                "firstName": user_test_data["firstName"],
-                                                "lastName": user_test_data["lastName"],
-                                                "email": user_test_data["email"],
+                                                "id": test_data.user.id,
+                                                "username": test_data.user.username,
+                                                "firstName": test_data.user.firstName,
+                                                "lastName": test_data.user.lastName,
+                                                "email": test_data.user.email,
                                                 "password": password,
-                                                "phone": user_test_data["phone"],
-                                                "userStatus": user_test_data["userStatus"]
+                                                "phone": test_data.user.phone,
+                                                "userStatus": test_data.user.userStatus
                                             }
                                         ])
         return user_info_with_list
@@ -93,24 +94,24 @@ class PetStoreUser(BaseAPI):
         get_user_info = self.get(endpoint=f'/v2/user/{user_name}')
         return get_user_info
 
-    def put_user_name(self, user_name: str, user_test_data: dict, password: str):
+    def put_user_name(self, user_name: str, test_data: TestData, password: str):
         """
            Обновляет информацию о пользователе по его имени пользователя и возвращает обновленную информацию.
 
             :param user_name - Имя пользователя, для которого требуется обновить информацию.
-            :param user_test_data - Словарь с данными о пользователе.
+            :param test_data - Словарь с данными о пользователе.
             :param password - Пароль пользователя.
         """
         put_username = self.put(endpoint=f'/v2/user/{user_name}',
                                 data={
-                                    "id": user_test_data["id"],
-                                    "username": user_test_data["username"],
-                                    "firstName": user_test_data["firstName"],
-                                    "lastName": user_test_data["lastName"],
-                                    "email": user_test_data["email"],
+                                    "id": test_data.user.id,
+                                    "username": test_data.user.username,
+                                    "firstName": test_data.user.firstName,
+                                    "lastName": test_data.user.lastName,
+                                    "email": test_data.user.email,
                                     "password": password,
-                                    "phone": user_test_data["phone"],
-                                    "userStatus": user_test_data["userStatus"]
+                                    "phone": test_data.user.phone,
+                                    "userStatus": test_data.user.userStatus
                                 })
         return put_username
 
