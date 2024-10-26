@@ -11,7 +11,7 @@ from framework.api_page.petstore_user_method import PetStoreUser
 from framework.api_page.petstore_pet_method import PetStorePet
 from framework.api_page.petstore_order_method import PetStoreOrder
 import psycopg2
-from dotenv import load_dotenv
+from settings import database_config
 
 
 @pytest.fixture
@@ -195,14 +195,13 @@ def db_connection():
             psycopg2.extensions.connection: Объект подключения к базе данных PostgreSQL.
     """
     connection = None
-    load_dotenv()
     try:
         db_config = {
-            "dbname": os.environ["DBNAME"],
-            "user": os.environ["USER"],
-            "password": os.environ["PASSWORD"],
-            "host": os.environ["HOST"],
-            "port": os.environ["PORT"]
+            "dbname": database_config.dbname,
+            "user": database_config.user,
+            "password": database_config.password,
+            "host": database_config.host,
+            "port": database_config.port
         }
         connection = psycopg2.connect(**db_config)
         yield connection
@@ -223,14 +222,13 @@ def db_connection_db_postgres():
             psycopg2.extensions.connection: Объект подключения к другой базе данных PostgreSQL.
     """
     connection = None
-    load_dotenv()
     try:
         db_config = {
-            "dbname": os.environ["OTHER_DBNAME"],
-            "user": os.environ["USER"],
-            "password": os.environ["PASSWORD"],
-            "host": os.environ["HOST"],
-            "port": os.environ["PORT"]
+            "dbname": database_config.other_dbname,
+            "user": database_config.user,
+            "password": database_config.password,
+            "host": database_config.host,
+            "port": database_config.port
         }
         connection = psycopg2.connect(**db_config)
         yield connection
