@@ -1,5 +1,6 @@
 from base.base_page_api import BaseAPI
 from test_data.test_data import TestData
+from file.constants import PATH_TO_PHOTO
 
 
 class PetStorePet(BaseAPI):
@@ -56,9 +57,9 @@ class PetStorePet(BaseAPI):
             :param id - Идентификатор питомца.
             :param metadata - Дополнительные метаданные для изображения.
         """
-        with open("../file/test_foto.jpg", "rb") as image_file:
+        with open(PATH_TO_PHOTO, "rb") as image_file:
             files = [
-                ("file", ("test_foto.jpg", image_file, "image/jpeg"))
+                ("file", (PATH_TO_PHOTO, image_file, "image/jpeg"))
             ]
             payload = {'additionalMetadata': metadata}
             headers = {
