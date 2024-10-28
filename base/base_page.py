@@ -3,6 +3,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from framework.logger_config import setup_logger
 from framework.selenium_utils.elements import BaseElement
+from settings import base_config
 
 
 class BasePage:
@@ -33,7 +34,7 @@ class BasePage:
               4. Добавляет обработчик логов для вывода в консоль, если он еще не добавлен.
         """
         self.driver = driver
-        self.demo_qa_url = 'https://demoqa.com/'
+        self.demo_qa_url = base_config.base_url_demoqa
 
         # Создает и настраивает логгер для текущего класса, используя имя класса в качестве имени логгера.
         self.logger = setup_logger(self.__class__.__name__)

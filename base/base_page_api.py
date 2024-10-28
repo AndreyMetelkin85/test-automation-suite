@@ -1,6 +1,7 @@
 import requests
 import logging
 from framework.logger_config import setup_logger
+from settings import base_config
 
 
 class BaseAPI:
@@ -16,7 +17,7 @@ class BaseAPI:
         """
             Инициализирует объект класса BaseAPI с базовым URL API.
         """
-        self.base_url = 'https://petstore.swagger.io'
+        self.base_url = base_config.base_url_petstore
 
         # Создает и настраивает логгер для текущего класса, используя имя класса в качестве имени логгера.
         self.logger = setup_logger(self.__class__.__name__)
