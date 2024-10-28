@@ -1,13 +1,14 @@
 import allure
 import pytest
-from conftest import page_fixture, text_box_form_data, registration_form_data, wait
+from conftest import page_fixture, registration_form_data, wait
 from file.constants import PATH_TO_FILE
+from conftest import test_data
 
 
 @allure.story("Elements")
 @allure.title("Тест проверяет заполнение тестовой формы и как отображаются данные в ответе")
-def test_element_text_box(driver, page_fixture, text_box_form_data):
-    text_box_form_data = text_box_form_data.text_box_form_data
+def test_element_text_box(driver, page_fixture, test_data):
+    text_box_data = test_data.generate_test_data()
     page_fixture.go_to_web_site_demo_qa.go_to_web_site_demo_qa()
     tools_qa_home_page = page_fixture.demo_qa_home_page.tools_qa_label()
     assert tools_qa_home_page.is_displayed()
@@ -22,16 +23,16 @@ def test_element_text_box(driver, page_fixture, text_box_form_data):
     text_box_label.is_displayed()
 
     text_box_form_full_name = page_fixture.elements_page.user_name_input()
-    text_box_form_full_name.send_keys(text_box_form_data["fullname"])
+    text_box_form_full_name.send_keys(text_box_data.text_box_form_data.fullname)
 
     text_box_form_email = page_fixture.elements_page.user_email_input()
-    text_box_form_email.send_keys(text_box_form_data["email"])
+    text_box_form_email.send_keys(text_box_data.text_box_form_data.email)
 
     text_box_form_current_address = page_fixture.elements_page.current_address_input()
-    text_box_form_current_address.send_keys(text_box_form_data["current address"])
+    text_box_form_current_address.send_keys(text_box_data.text_box_form_data.current_address)
 
     text_box_form_permanent_address = page_fixture.elements_page.permanent_address_input()
-    text_box_form_permanent_address.send_keys(text_box_form_data["permanent address"])
+    text_box_form_permanent_address.send_keys(text_box_data.text_box_form_data.permanent_address)
 
     text_box_submit_button = page_fixture.elements_page.submit_button()
     text_box_submit_button.click()
@@ -39,10 +40,12 @@ def test_element_text_box(driver, page_fixture, text_box_form_data):
     result_output = page_fixture.elements_page.output_field()
     output_text = [element.text for element in result_output]
 
-    for key, value in text_box_form_data.items():
-        value_cleaned = value.replace('\n', ' ').strip()
-        assert any(
-            value_cleaned in text for text in output_text), f"[INFO!!!] Ошибка, значение - '{value}' не найдено!!!"
+    assert output_text[0].replace("Name:", "") == text_box_data.text_box_form_data.fullname
+    assert output_text[1].replace("Email:", "") == text_box_data.text_box_form_data.email
+    assert (output_text[2].replace("Current Address :", "").replace("\n", " ").strip() ==
+            text_box_data.text_box_form_data.current_address.replace("\n", " ").strip())
+    assert (output_text[3].replace("Permananet Address :", "").replace("\n", " ").strip() ==
+            text_box_data.text_box_form_data.permanent_address.replace("\n", " ").strip())
 
 
 @allure.story("Elements")

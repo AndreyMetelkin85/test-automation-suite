@@ -139,15 +139,6 @@ def page_fixture(driver):
 
 
 @pytest.fixture
-def text_box_form_data(driver):
-    """
-        :param Фикстура для получения тестовых данных для формы с данными.
-        :returns: TestData: Экземпляр класса TestData с тестовыми данными.
-    """
-    return DataGenerator()
-
-
-@pytest.fixture
 def registration_form_data(driver):
     """
         :param Фикстура для получения тестовых данных для формы с данными.
