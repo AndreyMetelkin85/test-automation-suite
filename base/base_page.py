@@ -145,10 +145,3 @@ class BasePage:
         except Exception as e:
             self.logger.error(f"Ошибка при переходе на сайт {self.demo_qa_url}: {e}")
             raise
-
-    def get_heading_label(self):
-        """
-            Абстрактный метод для получения заголовка страницы.
-        """
-        self.logger.debug("Вызов абстрактного метода get_heading_label")
-        pass

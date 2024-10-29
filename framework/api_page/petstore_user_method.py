@@ -1,5 +1,5 @@
 from base.base_page_api import BaseAPI
-from test_data.test_data import TestData
+from qa_test_data.test_data import TestData
 
 
 class PetStoreUser(BaseAPI):
