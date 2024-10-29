@@ -1,6 +1,6 @@
 import allure
 from conftest import test_data, pet_store_user_fixture
-from test_data.test_data import DataGenerator
+from qa_test_data.test_data import DataGenerator
 
 
 # Проверяет создание пользователя в магазине домашних животных.

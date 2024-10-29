@@ -3,12 +3,13 @@ import faker
 import random
 from dataclasses import dataclass
 
-from test_data.default_user_data import User, Category, Tags, PetData, OrderData, TextBoxFormData, \
+from qa_test_data.default_user_data import User, Category, Tags, PetData, OrderData, TextBoxFormData, \
     RegistrationFormData, StudentRegistrationData
 
 
 @dataclass
 class TestData:
+    __test__ = False
     user: User
     category: Category
     tags: Tags

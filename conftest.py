@@ -6,7 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
-from test_data.test_data import DataGenerator
+from qa_test_data.test_data import DataGenerator
 from framework.api_page.petstore_user_method import PetStoreUser
 from framework.api_page.petstore_pet_method import PetStorePet
 from framework.api_page.petstore_order_method import PetStoreOrder
