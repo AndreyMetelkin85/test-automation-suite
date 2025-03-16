@@ -14,18 +14,28 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    environment: tests
 
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
       - name: setup Python
         uses: actions/setup-python@v4
         with:
           python-version: "3.9.13"
+
       - name: Install Chrome
         run: sudo apt-get install google-chrome-stable
+
       - name: install dependencies
         run: pip install -r requirements.txt
+
+      - name: Set environment variables
+        run: |
+          echo "BASE_URL_DEMOQA=${{ secrets.BASE_URL_DEMOQA }}" >> $GITHUB_ENV
+          echo "BASE_URL_PETSTORE=${{ secrets.BASE_URL_PETSTORE }}" >> $GITHUB_ENV
+
       - name: Run tests
         run: pytest -m "not db_test"
