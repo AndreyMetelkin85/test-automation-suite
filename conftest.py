@@ -190,7 +190,7 @@ def db_connection():
         db_config = {
             "dbname": database_config.dbname,
             "user": database_config.user,
-            "password": database_config.password,
+            "password": database_config.postgres_password,
             "host": database_config.host,
             "port": database_config.port
         }
@@ -217,7 +217,7 @@ def db_connection_db_postgres():
         db_config = {
             "dbname": database_config.other_dbname,
             "user": database_config.user,
-            "password": database_config.password,
+            "password": database_config.postgres_password,
             "host": database_config.host,
             "port": database_config.port
         }

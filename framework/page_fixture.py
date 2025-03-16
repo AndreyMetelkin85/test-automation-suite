@@ -1,8 +1,8 @@
 from base.base_page import BasePage
-from framework.toils_qa_page.practice_form_page import PracticeForm
-from framework.toils_qa_page.forms_page.registration_form_page import RegistrationForm
-from framework.toils_qa_page.demo_qa_home_page import ToolsQaHome
-from framework.toils_qa_page.elements_page import ElementsPage
+from pages.practice_form_page import PracticeForm
+from pages.forms_page.registration_form_page import RegistrationForm
+from pages.demo_qa_home_page import ToolsQaHome
+from pages.elements_page import ElementsPage
 
 
 class PageFixture:
