@@ -22,26 +22,26 @@ class BaseAPI:
         # Создает и настраивает логгер для текущего класса, используя имя класса в качестве имени логгера.
         self.logger = setup_logger(self.__class__.__name__)
 
-        # Создает обработчик логирования, который выводит логи в стандартный поток (обычно консоль).
-        console_handler = logging.StreamHandler()
-
-        # Устанавливает уровень логирования для консольного обработчика на DEBUG, что означает,
-        # что все сообщения уровня DEBUG и выше будут выводиться в консоль.
-        console_handler.setLevel(logging.DEBUG)
-
-        # Создает объект форматирования логов, который определяет формат сообщений логов.
-        # В данном случае формат включает время записи лог-сообщения, имя логгера, уровень логирования и само сообщение.
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-
-        # Применяет созданный форматтер к консольному обработчику.
-        console_handler.setFormatter(formatter)
-
-        # Проверяет, есть ли уже обработчики, присоединенные к логгеру.
-        # Если обработчиков нет, добавляет созданный консольный обработчик к логгеру.
-        # Это предотвращает добавление нескольких одинаковых обработчиков, если инициализация логгера
-        # происходит несколько раз.
-        if not self.logger.handlers:
-            self.logger.addHandler(console_handler)
+        # # Создает обработчик логирования, который выводит логи в стандартный поток (обычно консоль).
+        # console_handler = logging.StreamHandler()
+        #
+        # # Устанавливает уровень логирования для консольного обработчика на DEBUG, что означает,
+        # # что все сообщения уровня DEBUG и выше будут выводиться в консоль.
+        # console_handler.setLevel(logging.DEBUG)
+        #
+        # # Создает объект форматирования логов, который определяет формат сообщений логов.
+        # # В данном случае формат включает время записи лог-сообщения, имя логгера, уровень логирования и само сообщение.
+        # formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        #
+        # # Применяет созданный форматтер к консольному обработчику.
+        # console_handler.setFormatter(formatter)
+        #
+        # # Проверяет, есть ли уже обработчики, присоединенные к логгеру.
+        # # Если обработчиков нет, добавляет созданный консольный обработчик к логгеру.
+        # # Это предотвращает добавление нескольких одинаковых обработчиков, если инициализация логгера
+        # # происходит несколько раз.
+        # if not self.logger.handlers:
+        #     self.logger.addHandler(console_handler)
 
     def get(self, endpoint):
         """
@@ -61,7 +61,7 @@ class BaseAPI:
             response = requests.get(self.base_url + endpoint)
             response.raise_for_status()
 
-            self.logger.info(f'Успешный ответ {response.status_code}')
+            self.logger.debug(f'Успешный ответ {response.status_code}')
 
             return response.json(), response.status_code
 
@@ -92,7 +92,7 @@ class BaseAPI:
             response = requests.post(self.base_url + endpoint, json=data, headers=headers, files=files)
             response.raise_for_status()
 
-            self.logger.info(f'Успешный ответ {response.status_code}')
+            self.logger.debug(f'Успешный ответ {response.status_code}')
 
             return response.json()
 
@@ -121,7 +121,7 @@ class BaseAPI:
             response = requests.put(self.base_url + endpoint, json=data)
             response.raise_for_status()
 
-            self.logger.info(f'Успешный ответ {response.status_code}')
+            self.logger.debug(f'Успешный ответ {response.status_code}')
 
             return response.json()
 
@@ -149,7 +149,7 @@ class BaseAPI:
             response = requests.delete(self.base_url + endpoint)
             response.raise_for_status()
 
-            self.logger.info(f'Успешный ответ {response.status_code}')
+            self.logger.debug(f'Успешный ответ {response.status_code}')
 
             return response.json()
 
