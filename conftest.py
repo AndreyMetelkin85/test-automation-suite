@@ -7,9 +7,9 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from framework.wait_page import Wait
 from framework.page_fixture import PageFixture
 from qa_test_data.test_data import DataGenerator
-from framework.api_page.petstore_user_method import PetStoreUser
-from framework.api_page.petstore_pet_method import PetStorePet
-from framework.api_page.petstore_order_method import PetStoreOrder
+from api_methods.petstore_user_method import PetStoreUser
+from api_methods.petstore_pet_method import PetStorePet
+from api_methods.petstore_order_method import PetStoreOrder
 import psycopg2
 from settings import database_config
 
@@ -196,8 +196,8 @@ def db_connection():
         }
         connection = psycopg2.connect(**db_config)
         yield connection
-    except Exception as ex:
-        print("[INFO] Error while working with PostgreSQL:", ex)
+    except Exception as e:
+        print("[INFO] Error while working with PostgreSQL:", e)
     finally:
         if connection:
             connection.close()
