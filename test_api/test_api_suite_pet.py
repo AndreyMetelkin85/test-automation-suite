@@ -56,10 +56,11 @@ def test_update_an_existing_pet(pet_store_pet_fixture, test_data):
         update_pet_data = test_data.generate_test_data()
 
     with step("Добавляем животное, затем обновляем данные"):
-        pet_store_pet_fixture.add_new_pet_store(test_data=test_data_pet, status="available")
+        add_pet = pet_store_pet_fixture.add_new_pet_store(test_data=test_data_pet, status="available")
         new_pet_data = pet_store_pet_fixture.update_an_existing_pet(test_data=update_pet_data, status="pending")
 
     with step("Сверяем статус"):
+        assert add_pet["id"] != new_pet_data["id"]
         assert new_pet_data["id"] == update_pet_data.pet_data.id
 
 
