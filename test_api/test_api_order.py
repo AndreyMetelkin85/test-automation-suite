@@ -1,17 +1,26 @@
 import pytest
+import allure
+from allure import step
 from conftest import pet_store_pet_fixture, order_store_pet_fixture, test_data
 
 
-# Тест создания заказа на питомца.
+@allure.title("Тест создания заказа на питомца")
 @pytest.mark.parametrize("status", ["placed", "approved", "delivered"])
 def test_create_order_for_pet(pet_store_pet_fixture, order_store_pet_fixture, test_data, status):
-    generated_data = test_data.generate_test_data()
-    pet_store_pet_fixture.add_new_pet_store(test_data=generated_data, status=status)
-    create_pet_order = order_store_pet_fixture.create_order_for_pet(test_data=generated_data, status=status)
-    assert create_pet_order["status"] == status
+
+    with step("Генерируем данные"):
+        generated_data = test_data.generate_test_data()
+
+    with step("Добавляем питомца и создаём заказ"):
+        pet_store_pet_fixture.add_new_pet_store(test_data=generated_data, status=status)
+        create_pet_order = order_store_pet_fixture.create_order_for_pet(test_data=generated_data, status=status)
+
+    with step("Проверяем статус заказа"):
+        assert create_pet_order["status"] == status
 
 
 # Тест поиска заказа по его идентификатору.
+@allure.title()
 def test_find_purchase_order_id(order_store_pet_fixture, pet_store_pet_fixture, test_data):
     generated_data = test_data.generate_test_data()
     pet_store_pet_fixture.add_new_pet_store(test_data=generated_data, status="available")
