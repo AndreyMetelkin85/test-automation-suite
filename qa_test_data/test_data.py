@@ -29,14 +29,6 @@ class DataGenerator:
             тестовых данных на английском языке.
         """
         self.faker = faker.Faker(locale="en_US")
-        # self.user = User()
-        # self.category = Category()
-        # self.tags = Tags()
-        # self.pet_data = PetData()
-        # self.order_data = OrderData()
-        # self.box_form_data = TextBoxFormData()
-        # self.registration_form_data = RegistrationFormData()
-        # self.student_registration_form_data = StudentRegistrationData()
 
     def create_user_data(self):
         """Генерирует данные для одного пользователя."""
