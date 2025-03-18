@@ -45,31 +45,28 @@ class BaseAPI:
 
         except requests.exceptions.HTTPError as err:
             self.logger.error(f"HTTP Error: {err} - Статус-код: {response.status_code}")
-            return None, response.status_code
+            return response.status_code
 
     def post(
-        self,
-        endpoint: str,
-        data: Dict[str, Any],
-        headers: Optional[Dict[str, str]] = None,
-        files: Optional[Dict[str, Any]] = None,
-        expected_status: Optional[list[int]] = None,
-        **kwargs: Any
+            self,
+            endpoint: str,
+            data: Dict[str, Any],
+            headers: Optional[Dict[str, str]] = None,
+            files: Optional[Dict[str, Any]] = None,
+            expected_status: Optional[list[int]] = None,
+            **kwargs: Any
     ) -> Optional[Dict[str, Any]]:
         """
-        Выполняет POST-запрос к API по указанному endpoint с передачей данных.
+            Выполняет POST-запрос к API по указанному endpoint с передачей данных.
 
-        :param endpoint: str - конечная точка API.
-        :param data: Dict[str, Any] - данные для отправки в запросе.
-        :param headers: Optional[Dict[str, str]] - заголовки для запроса (по умолчанию None).
-        :param files: Optional[Dict[str, Any]] - файлы для отправки в запросе (по умолчанию None).
-        :param expected_status: Optional[list[int]] - ожидаемые коды ответа (по умолчанию 200-299).
-        :param kwargs: Дополнительные параметры, передаваемые в requests.post (например, timeout, cookies).
-        :return: Optional[Dict[str, Any]] - JSON-ответ от сервера или None, если запрос неудачный.
+            :param endpoint: str - конечная точка API.
+            :param data: Dict[str, Any] - данные для отправки в запросе.
+            :param headers: Optional[Dict[str, str]] - заголовки для запроса (по умолчанию None).
+            :param files: Optional[Dict[str, Any]] - файлы для отправки в запросе (по умолчанию None).
+            :param expected_status: Optional[list[int]] - ожидаемые коды ответа (по умолчанию 200-299).
+            :param kwargs: Дополнительные параметры, передаваемые в requests.post (например, timeout, cookies).
+            :return: Optional[Dict[str, Any]] - JSON-ответ от сервера или None, если запрос неудачный.
 
-        Логирование:
-        - Информация об успешном ответе.
-        - Ошибка, если запрос завершился неудачно.
         """
         if expected_status is None:
             expected_status = list(range(200, 300))
@@ -87,64 +84,106 @@ class BaseAPI:
 
             self.logger.debug(f'Успешный ответ {response.status_code}')
             return response.json()
+        except requests.exceptions.RequestException as err:
+            self.logger.error(f"Ошибка запроса: {err}")
+            return response.status_code
+
+    def put(
+            self,
+            endpoint: str,
+            data: Optional[Dict[str, Any]] = None,
+            json: Optional[Dict[str, Any]] = None,
+            headers: Optional[Dict[str, str]] = None,
+            files: Optional[Dict[str, Any]] = None,
+            expected_status: Optional[list[int]] = None,
+            **kwargs: Any
+    ) -> Optional[Dict[str, Any]]:
+        """
+            Выполняет PUT-запрос к API по указанному endpoint с передачей данных.
+
+            :param endpoint: str - конечная точка API.
+            :param data: Optional[Dict[str, Any]] - form-data или x-www-form-urlencoded (по умолчанию None).
+            :param json: Optional[Dict[str, Any]] - JSON-данные (по умолчанию None).
+            :param headers: Optional[Dict[str, str]] - заголовки для запроса (по умолчанию None).
+            :param files: Optional[Dict[str, Any]] - файлы для отправки в запросе (по умолчанию None).
+            :param expected_status: Optional[list[int]] - ожидаемые коды ответа (по умолчанию 200-299).
+            :param kwargs: Дополнительные параметры, передаваемые в requests.put (например, timeout, cookies).
+            :return: Optional[Dict[str, Any]] - JSON-ответ от сервера или None, если запрос неудачный.
+
+        """
+        if expected_status is None:
+            expected_status = list(range(200, 300))
+
+        try:
+            response = requests.put(
+                self.base_url + endpoint,
+                data=data,
+                json=json,
+                headers=headers,
+                files=files,
+                **kwargs
+            )
+            response.raise_for_status()
+
+            if response.status_code not in expected_status:
+                self.logger.error(
+                    f"Неожиданный статус-код: {response.status_code} "
+                    f"(Ожидался один из: {expected_status}). Ответ: {response.text}"
+                )
+                raise ValueError(f"Получен неожиданный статус-код {response.status_code}")
+            self.logger.debug(f'Успешный ответ {response.status_code}')
+            return response.json()
 
         except requests.exceptions.RequestException as err:
             self.logger.error(f"Ошибка запроса: {err}")
-            return None
+            return response.status_code
 
-    def put(self, endpoint, data):
+    def delete(
+            self,
+            endpoint: str,
+            data: Optional[Dict[str, Any]] = None,
+            json: Optional[Dict[str, Any]] = None,
+            headers: Optional[Dict[str, str]] = None,
+            expected_status: Optional[list[int]] = None,
+            **kwargs: Any
+    ) -> Optional[Dict[str, Any]]:
         """
-            Выполняет PUT-запрос к API по-указанному endpoint с передачей данных.
+        Выполняет DELETE-запрос к API по указанному endpoint.
 
-            Параметры:
-            - endpoint: str, конечная точка API для выполнения PUT-запроса.
-            - data: dict, данные для отправки в запросе.
+        :param endpoint: str - конечная точка API.
+        :param data: Optional[Dict[str, Any]] - form-data или x-www-form-urlencoded (по умолчанию None).
+        :param json: Optional[Dict[str, Any]] - JSON-данные (по умолчанию None).
+        :param headers: Optional[Dict[str, str]] - заголовки для запроса (по умолчанию None).
+        :param expected_status: Optional[list[int]] - ожидаемые коды ответа (по умолчанию 200-299).
+        :param kwargs: Дополнительные параметры, передаваемые в requests.delete (например, timeout, cookies).
+        :return: Optional[Dict[str, Any]] - JSON-ответ от сервера или None, если запрос неудачный.
 
-            Возвращает:
-            - dict: JSON-ответ от сервера или None, если запрос завершился неудачно.
-
-            Логирование:
-            - Информация об успешном ответе.
-            - Ошибка, если запрос завершился неудачно.
+        Логирование:
+        - Информация об успешном ответе.
+        - Ошибка, если запрос завершился неудачно.
         """
+        if expected_status is None:
+            expected_status = list(range(200, 300))
+
         try:
-            response = requests.put(self.base_url + endpoint, json=data)
+            response = requests.delete(
+                self.base_url + endpoint,
+                data=data,
+                json=json,
+                headers=headers,
+                **kwargs
+            )
             response.raise_for_status()
 
+            if response.status_code not in expected_status:
+                self.logger.error(
+                    f"Неожиданный статус-код: {response.status_code} "
+                    f"(Ожидался один из: {expected_status}). Ответ: {response.text}"
+                )
+                raise ValueError(f"Получен неожиданный статус-код {response.status_code}")
             self.logger.debug(f'Успешный ответ {response.status_code}')
+            return response.status_code
 
-            return response.json()
-
-        except requests.exceptions.HTTPError as err:
-
-            self.logger.error(f"HTTP Error: {err} - Статус-код: {response.status_code}")
-
-            return None
-
-    def delete(self, endpoint):
-        """
-            Выполняет DELETE-запрос к API по-указанному endpoint.
-
-            Параметры:
-            - endpoint: str, конечная точка API для выполнения DELETE-запроса.
-
-            Возвращает:
-            - dict: JSON-ответ от сервера или None, если запрос завершился неудачно.
-
-            Логирование:
-            - Информация об успешном ответе.
-            - Ошибка, если запрос завершился неудачно.
-        """
-        try:
-            response = requests.delete(self.base_url + endpoint)
-            response.raise_for_status()
-
-            self.logger.debug(f'Успешный ответ {response.status_code}')
-
-            return response.json()
-
-        except requests.exceptions.HTTPError as err:
-
-            self.logger.error(f"HTTP Error: {err} - Статус-код: {response.status_code}")
-
-            return None
+        except requests.exceptions.RequestException as err:
+            self.logger.error(f"Ошибка запроса: {err}")
+            return response.status_code

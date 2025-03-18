@@ -77,7 +77,7 @@ class PetStorePet(BaseAPI):
             :param status - Новый статус питомца.
         """
         update_an_existing_pet = self.put(endpoint='/v2/pet',
-                                          data=
+                                          json=
                                           {
                                               "id": test_data.pet_data.id,
                                               "category": {
