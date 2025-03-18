@@ -19,15 +19,22 @@ def test_create_order_for_pet(pet_store_pet_fixture, order_store_pet_fixture, te
         assert create_pet_order["status"] == status
 
 
-# Тест поиска заказа по его идентификатору.
-@allure.title()
+@allure.title("Тест поиска заказа по его идентификатору")
 def test_find_purchase_order_id(order_store_pet_fixture, pet_store_pet_fixture, test_data):
-    generated_data = test_data.generate_test_data()
-    pet_store_pet_fixture.add_new_pet_store(test_data=generated_data, status="available")
-    create_pet_order = order_store_pet_fixture.create_order_for_pet(test_data=generated_data, status="approved")
-    get_order_data = order_store_pet_fixture.get_find_purchase_order_id(id=create_pet_order["id"])
-    assert get_order_data[0]["status"] == "approved"
-    assert get_order_data[0]["petId"] == generated_data.pet_data.id
+
+    with step("Генерируем данные"):
+        generated_data = test_data.generate_test_data()
+
+    with step("Добавляем питомца и создаём заказ"):
+        pet_store_pet_fixture.add_new_pet_store(test_data=generated_data, status="available")
+        create_pet_order = order_store_pet_fixture.create_order_for_pet(test_data=generated_data, status="approved")
+
+    with step("Запрашиваем данные о заказе по его ID"):
+        get_order_data = order_store_pet_fixture.get_find_purchase_order_id(id=create_pet_order["id"])
+
+    with step("Проверяем статусы"):
+        assert get_order_data[0]["status"] == "approved"
+        assert get_order_data[0]["petId"] == generated_data.pet_data.id
 
 
 #  Тест получения остатков по статусу.
