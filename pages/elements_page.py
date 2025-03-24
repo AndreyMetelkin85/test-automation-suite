@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-from framework.page_fixture import RegistrationForm
+from framework.managers import RegistrationForm
 from base.base_page import BasePage
 
 
