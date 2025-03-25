@@ -5,7 +5,7 @@ import pytest
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from framework.wait_page import Wait
-from framework.page_fixture import PageFixture
+from framework.managers import PageManager, ApiManager
 from qa_test_data.test_data import DataGenerator
 from api_methods.petstore_user_method import PetStoreUser
 from api_methods.petstore_pet_method import PetStorePet
@@ -108,7 +108,6 @@ def scroll_down(driver):
             Функция _scroll: которая прокручивает страницу на указанное количество пикселей.
 
             :param pixels: Количество пикселей, на которое следует прокрутить страницу.
-            :return: Функция _scroll, которая прокручивает страницу на указанное количество пикселей.
         """
         driver.execute_script(f"window.scrollBy(0, {pixels});")
         time.sleep(1.5)
@@ -116,26 +115,24 @@ def scroll_down(driver):
     return _scroll
 
 
-@pytest.fixture
+@pytest.fixture()
 def wait(driver):
-    """
-        Фикстура wait создает объект ожидания (WebDriverWait) для ожидания определенного условия веб-элемента.
+    """ Фикстура wait создает объект ожидания (WebDriverWait) для ожидания определенного условия веб-элемента. """
 
-        :param driver: Драйвер браузера Selenium.
-        :return: Объект ожидания (WebDriverWait).
-    """
     return Wait(driver)
 
+@pytest.fixture()
+def api_fixture():
+    """ Фикстура создает экземпляр ApiManager для работы с API методами приложения. """
 
-@pytest.fixture
+    return ApiManager()
+
+
+@pytest.fixture()
 def page_fixture(driver):
-    """
-        Фикстура page_fixture создает экземпляр объекта PageFixture, который представляет страницу веб-приложения.
+    """ Фикстура создает экземпляр PageManager для управления страницами веб-приложения. """
 
-        :param driver: Драйвер браузера Selenium.
-        :return: Экземпляр объекта PageFixture.
-    """
-    return PageFixture(driver)
+    return PageManager(driver)
 
 
 @pytest.fixture
