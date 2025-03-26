@@ -1,6 +1,6 @@
 import allure
 import pytest
-from conftest import page_fixture, registration_form_data, wait
+from conftest import page_fixture, wait
 from file.constants import PATH_TO_FILE
 from conftest import test_data
 
@@ -219,12 +219,13 @@ def test_delete_user_data(driver, page_fixture, registration_form_data, wait):
     assert registration_form_label.is_displayed()
 
     page_fixture.registration_form.fill_form_and_submit(
-        first_name=registration_form_data["first_name"],
-        last_name=registration_form_data["last_name"],
-        email=registration_form_data["email"],
-        age=registration_form_data["age"],
-        salary=registration_form_data["salary"],
-        department=registration_form_data["department"])
+        first_name=registration_form_data.first_name,
+        last_name=registration_form_data.last_name,
+        email=registration_form_data.email,
+        age=registration_form_data.age,
+        salary=registration_form_data.salary,
+        department=registration_form_data.department
+    )
 
     result = page_fixture.elements_page.results_table()
     result_text = [custom.text for custom in result]
