@@ -3,7 +3,7 @@ import faker
 import random
 from dataclasses import dataclass
 
-from qa_test_data.default_user_data import User, Category, Tags, PetData, OrderData, TextBoxFormData, \
+from test_data.default_user_data import User, Category, Tags, PetData, OrderData, TextBoxFormData, \
     RegistrationFormData, StudentRegistrationData
 
 
@@ -16,8 +16,8 @@ class TestData:
     pet_data: PetData
     order_data: OrderData
     text_box_form_data: TextBoxFormData
-    # registration_form_data: RegistrationFormData
-    # student_registration_form_data: StudentRegistrationData
+    registration_form_data: RegistrationFormData
+    student_registration_form_data: StudentRegistrationData
 
 
 class DataGenerator:
@@ -121,7 +121,7 @@ class DataGenerator:
         """ Генерирует тестовые данные для использования в тестах, связанных с заполнением формы. """
 
         fullname = self.faker.name()
-        email = self.faker.email(domain="google.com")
+        email = self.faker.email(domain="gmail.com")
         current_address = self.faker.address()
         permanent_address = self.faker.address()
 
@@ -134,30 +134,42 @@ class DataGenerator:
         return box_form_data
 
     def registration_form_data(self):
-        """
-           Генерирует тестовые данные для использования в тестах регистрации.
-        """
-        registration_form = {
-            "first_name": self.faker.first_name(),
-            "last_name": self.faker.last_name(),
-            "email": self.faker.email(),
-            "age": random.randint(18, 60),
-            "salary": random.randint(1000, 5000),
-            "department": self.faker.job()
+        """ Генерирует тестовые данные для использования в тестах регистрации. """
 
-        }
-        return registration_form
+        first_name = self.faker.first_name()
+        last_name = self.faker.last_name()
+        email = self.faker.email(domain="gmail.com")
+        age = random.randint(18, 60)
+        salary = random.randint(1000, 5000)
+        department = self.faker.job()
+
+        registration_form_data = RegistrationFormData()
+        registration_form_data.first_name = first_name
+        registration_form_data.last_name = last_name
+        registration_form_data.email = email
+        registration_form_data.age = age
+        registration_form_data.salary = salary
+        registration_form_data.department = department
+
+        return registration_form_data
 
     def student_registration_form(self):
-        student_form = {
-            "first_name": self.faker.first_name(),
-            "last_name": self.faker.last_name(),
-            "email": self.faker.email(),
-            "mobile_number": ''.join(random.choices('0123456789', k=10)),
-            "current_address": self.faker.address(),
+        """ Генерирует тестовые данные для заполнения формы регистрации студента. """
 
-        }
-        return student_form
+        first_name = self.faker.first_name()
+        last_name = self.faker.last_name()
+        email = self.faker.email(domain="gmail.com")
+        mobile_number = ''.join(random.choices('0123456789', k=10))
+        current_address = self.faker.address()
+
+        student_registration_form_data = StudentRegistrationData()
+        student_registration_form_data.first_name = first_name
+        student_registration_form_data.last_name = last_name
+        student_registration_form_data.email = email
+        student_registration_form_data.mobile_number = mobile_number
+        student_registration_form_data.current_address = current_address
+
+        return student_registration_form_data
 
     def generate_test_data(self):
         user = self.create_user_data()
@@ -166,10 +178,14 @@ class DataGenerator:
         category = self.create_category_data()
         order_data = self.create_order_test_data()
         box_form_data = self.create_text_box_form_data()
+        registration_form = self.registration_form_data()
+        student_form = self.student_registration_form()
         return TestData(user=user,
                         pet_data=pet_data,
                         category=category,
                         tags=tags,
                         order_data=order_data,
-                        text_box_form_data=box_form_data
+                        text_box_form_data=box_form_data,
+                        registration_form_data=registration_form,
+                        student_registration_form_data=student_form
                         )

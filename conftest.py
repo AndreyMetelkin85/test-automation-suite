@@ -6,10 +6,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from framework.wait_page import Wait
 from framework.managers import PageManager, ApiManager
-from qa_test_data.test_data import DataGenerator
-from api_methods.petstore_user_method import PetStoreUser
-from api_methods.petstore_pet_method import PetStorePet
-from api_methods.petstore_order_method import PetStoreOrder
+from test_data.test_data import DataGenerator
 import psycopg2
 from settings import database_config
 
@@ -121,6 +118,7 @@ def wait(driver):
 
     return Wait(driver)
 
+
 @pytest.fixture()
 def api_fixture():
     """ Фикстура создает экземпляр ApiManager для работы с API методами приложения. """
@@ -135,7 +133,7 @@ def page_fixture(driver):
     return PageManager(driver)
 
 
-@pytest.fixture
+@pytest.fixture()
 def registration_form_data(driver):
     """
         :param Фикстура для получения тестовых данных для формы с данными.
@@ -144,37 +142,18 @@ def registration_form_data(driver):
     return DataGenerator()
 
 
-@pytest.fixture
+@pytest.fixture()
 def user_test_data():
     """ Фикстура для предоставления тестовых данных. """
     return DataGenerator()
 
 
-@pytest.fixture
+@pytest.fixture()
 def test_data():
     return DataGenerator()
 
 
-@pytest.fixture
-def pet_store_user_fixture():
-    """ Фикстура для предоставления методов для взаимодействия с API магазина домашних животных. """
-    return PetStoreUser()
-
-
-@pytest.fixture
-def pet_store_pet_fixture():
-    """ Фикстура для предоставления методов для взаимодействия с API магазина домашних животных. """
-    return PetStorePet()
-
-
-@pytest.fixture
-def order_store_pet_fixture():
-    """ Фикстура для создания экземпляра класса PetStoreOrder для тестирования операций заказа. """
-
-    return PetStoreOrder()
-
-
-@pytest.fixture
+@pytest.fixture()
 def db_connection():
     """
         Фикстура для создания подключения к базе данных PostgreSQL.
@@ -201,7 +180,7 @@ def db_connection():
             print("[INFO] PostgreSQL connection closed")
 
 
-@pytest.fixture
+@pytest.fixture()
 def db_connection_db_postgres():
     """
         Фикстура для создания подключения к другой базе данных PostgreSQL.
@@ -234,7 +213,7 @@ def db_test_data():
     return DataGenerator()
 
 
-@pytest.fixture
+@pytest.fixture()
 def student_registration_form():
     """ Фикстура для создания тестовых данных. """
     return DataGenerator()

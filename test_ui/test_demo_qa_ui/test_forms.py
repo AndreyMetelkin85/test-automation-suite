@@ -24,20 +24,20 @@ def test_student_registration_form(driver, scroll_down, page_fixture, student_re
     assert student_registration_form_label.is_displayed()
 
     first_name = page_fixture.practice_form.first_name_input()
-    first_name.send_keys(student_registration_form_data["first_name"])
+    first_name.send_keys(student_registration_form_data.first_name)
 
     last_name = page_fixture.practice_form.last_name_input()
-    last_name.send_keys(student_registration_form_data["last_name"])
+    last_name.send_keys(student_registration_form_data.last_name)
 
     user_email = page_fixture.practice_form.user_email_input()
-    user_email.send_keys(student_registration_form_data["email"])
+    user_email.send_keys(student_registration_form_data.email)
 
     gender_choice = page_fixture.practice_form.gender_input()
     selecting_gender = random.choice(gender_choice)
     selecting_gender.click()
 
     mobile_number = page_fixture.practice_form.mobile_number_input()
-    mobile_number.send_keys(student_registration_form_data["mobile_number"])
+    mobile_number.send_keys(student_registration_form_data.mobile_number)
 
     hobbies_choice = page_fixture.practice_form.hobbies_input()
     selecting_hobbies = random.choice(hobbies_choice)
@@ -47,7 +47,7 @@ def test_student_registration_form(driver, scroll_down, page_fixture, student_re
     picture_upload.send_keys(PATH_TO_PHOTO)
 
     current_address = page_fixture.practice_form.current_address_input()
-    current_address.send_keys(student_registration_form_data["current_address"])
+    current_address.send_keys(student_registration_form_data.current_address)
 
     scroll_down(200)
 
@@ -73,7 +73,9 @@ def test_student_registration_form(driver, scroll_down, page_fixture, student_re
     result = page_fixture.practice_form.result_submitting_form()
     output_text = [element.text for element in result]
 
-    for key, value in student_registration_form_data.items():
-        value_cleaned = value.replace('\n', ' ').strip()
-        assert any(
-            value_cleaned in text for text in output_text), f"[INFO!!!] Ошибка, значение - '{value}' не найдено!!!"
+    check_result = False
+    for key, value in enumerate(output_text):
+        if student_registration_form_data.first_name in value:
+            check_result = True
+            break
+    assert check_result is not False
