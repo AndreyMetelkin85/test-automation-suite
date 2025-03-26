@@ -121,7 +121,7 @@ class DataGenerator:
         """ Генерирует тестовые данные для использования в тестах, связанных с заполнением формы. """
 
         fullname = self.faker.name()
-        email = self.faker.email(domain="google.com")
+        email = self.faker.email(domain="gmail.com")
         current_address = self.faker.address()
         permanent_address = self.faker.address()
 
@@ -138,7 +138,7 @@ class DataGenerator:
 
         first_name = self.faker.first_name()
         last_name = self.faker.last_name()
-        email = self.faker.email()
+        email = self.faker.email(domain="gmail.com")
         age = random.randint(18, 60)
         salary = random.randint(1000, 5000)
         department = self.faker.job()
@@ -158,7 +158,7 @@ class DataGenerator:
 
         first_name = self.faker.first_name()
         last_name = self.faker.last_name()
-        email = self.faker.email()
+        email = self.faker.email(domain="gmail.com")
         mobile_number = ''.join(random.choices('0123456789', k=10))
         current_address = self.faker.address()
 

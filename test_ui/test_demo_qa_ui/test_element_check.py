@@ -130,20 +130,26 @@ def test_submit_registration_form(driver, page_fixture, registration_form_data, 
     assert registration_form_label.is_displayed()
 
     page_fixture.registration_form.fill_form_and_submit(
-        first_name=registration_form_data["first_name"],
-        last_name=registration_form_data["last_name"],
-        email=registration_form_data["email"],
-        age=registration_form_data["age"],
-        salary=registration_form_data["salary"],
-        department=registration_form_data["department"])
+        first_name=registration_form_data.first_name,
+        last_name=registration_form_data.last_name,
+        email=registration_form_data.email,
+        age=registration_form_data.age,
+        salary=registration_form_data.salary,
+        department=registration_form_data.department
+    )
 
     result = page_fixture.elements_page.results_table()
     result_text = [element.text for element in result]
     element_results = [text.replace('\n', ' ').strip() for text in result_text]
 
-    for key, value in registration_form_data.items():
-        value_str = str(value)
-        assert any(value_str in text for text in element_results)
+    expected_result = (f"{registration_form_data.first_name}"
+                       f" {registration_form_data.last_name}"
+                       f" {registration_form_data.age}"
+                       f" {registration_form_data.email}"
+                       f" {registration_form_data.salary}"
+                       f" {registration_form_data.department}")
+
+    assert any(expected_result in result for result in element_results), "Данные в таблице не совпадают с ожидаемыми"
 
 
 @allure.story("Elements")
@@ -166,38 +172,37 @@ def test_update_user_data(driver, page_fixture, registration_form_data, wait):
     assert registration_form_label.is_displayed()
 
     page_fixture.registration_form.fill_form_and_submit(
-        first_name=registration_form_data["first_name"],
-        last_name=registration_form_data["last_name"],
-        email=registration_form_data["email"],
-        age=registration_form_data["age"],
-        salary=registration_form_data["salary"],
-        department=registration_form_data["department"])
+        first_name=registration_form_data.first_name,
+        last_name=registration_form_data.last_name,
+        email=registration_form_data.email,
+        age=registration_form_data.age,
+        salary=registration_form_data.salary,
+        department=registration_form_data.department)
 
     result_table = page_fixture.elements_page.results_table()
     text_result = [customer.text for customer in result_table]
     element_results = [text.replace('\n', ' ').strip() for text in text_result]
 
     name_updated = False
+
     for idx, text_value in enumerate(element_results):
         values = text_value.split()
-        if len(values) >= 1:
-            for reg_value in registration_form_data.values():
-                if values[0] == reg_value:
-                    update_button = page_fixture.elements_page.update_data_button()
-                    update_button[idx].click()
-                    update_name_data = page_fixture.registration_form.first_name()
-                    update_name_data.clear()
-                    update_name_data.send_keys(registration_form_data_update["first_name"])
-                    submit_button = page_fixture.registration_form.submit_button()
-                    submit_button.click()
-                    name_updated = True
-                    break
-            if name_updated:
-                break
-        else:
-            continue
 
-    assert name_updated, "[INFO!!!] Обновленное имя не найдено в элементах таблицы"
+        if registration_form_data.email in values:
+            update_button = page_fixture.elements_page.update_data_button()
+            update_button[idx].click()
+
+            update_name_data = page_fixture.registration_form.first_name()
+            update_name_data.clear()
+            update_name_data.send_keys(registration_form_data_update.first_name)
+
+            submit_button = page_fixture.registration_form.submit_button()
+            submit_button.click()
+
+            name_updated = True
+            break
+
+    assert name_updated, f"Ошибка: Имя пользователя с email {registration_form_data.email} не было обновлено."
 
 
 @allure.story("Elements")
@@ -231,21 +236,21 @@ def test_delete_user_data(driver, page_fixture, registration_form_data, wait):
     result_text = [custom.text for custom in result]
     element_results = [text.replace('\n', ' ').split() for text in result_text]
 
-    user_delete = True
-    for idx, values in enumerate(element_results):
-        if len(values) >= 1:
-            for reg_value in registration_form_data.values():
-                if values[0] == reg_value:
-                    delete_buttons = page_fixture.elements_page.delete_user()
-                    delete_buttons[idx].click()
-                    user_delete = False
-                    break
-            if not user_delete:
-                break
-        else:
-            continue
+    # Инициализируем переменную user_deleted с начальным значением False
+    user_deleted = False
 
-    assert not user_delete, "[INFO!!!], Пользователь не удалён из таблицы"
+    for idx, values in enumerate(element_results):
+        for value in values:
+            if value == registration_form_data.email:
+                delete_buttons = page_fixture.elements_page.delete_user()
+                delete_buttons[idx].click()
+                user_deleted = True
+                break
+        if user_deleted:
+            break
+
+    assert user_deleted, \
+        f"Ошибка: Пользователь с email {registration_form_data.email} не был найден или удален из таблицы."
 
 
 @allure.story("Elements")

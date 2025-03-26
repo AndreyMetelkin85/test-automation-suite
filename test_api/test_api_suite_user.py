@@ -1,7 +1,7 @@
 import allure
 from allure import step
 from conftest import test_data, api_fixture
-from qa_test_data.test_data import DataGenerator
+from test_data.test_data import DataGenerator
 
 
 @allure.feature("Добавление пользователя")
