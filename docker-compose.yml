@@ -18,4 +18,4 @@ services:
     env_file:
       - ./.env
     volumes:
-      - ./sql_file/demo-medium-20170815.sql:/docker-entrypoint-initdb.d/demo-medium-20170815.sql
+      - ./sql_file/demo-small-20170815.sql:/docker-entrypoint-initdb.d/demo-small-20170815.sql
