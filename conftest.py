@@ -24,6 +24,7 @@ def driver():
 
     options = ChromeOptions()
     options.add_argument("--headless=new")
+    options.add_argument("--no-sandbox")
     driver = webdriver.Chrome(options=options)
     driver.maximize_window()
     driver.implicitly_wait(5)
