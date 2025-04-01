@@ -160,3 +160,4 @@ cython_debug/
 .idea/
 results/
 config.py
+sql_file/
