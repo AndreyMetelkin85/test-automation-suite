@@ -29,7 +29,7 @@ def driver():
     options.add_argument('--disable-gpu')
     options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(options=options)
-    driver.set_window_size(width=1920, height=1080)
+    driver.maximize_window()
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
